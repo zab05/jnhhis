@@ -35,7 +35,12 @@
                   echo "<td>".$room['first_name']." ".$room['last_name']."</td>";
                 }
                 echo "<td>";
+                  if($room['patient_id']!=""){
+                    echo "<a href='#' role='button' class='btn btn-default btn-xs' disabled>Remove Bed</a>";
+                } else {
                   echo "<a href='".base_url()."Admin/remove_bed/".$roomid."/".$room['bed_id']."' role='button' class='btn btn-default btn-xs'>Remove Bed</a>";
+
+                }
                 echo "</td>";
               echo "</tr>";
             }

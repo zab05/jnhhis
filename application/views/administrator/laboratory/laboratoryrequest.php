@@ -1,25 +1,11 @@
 <section id="main-content">
   <section class="wrapper">
     <div class="row">
-      <div class="col-sm-3">
-          <section class="panel">
-              <header class="panel-heading" style="background-color: #000;"></header>
-              <table class="table">
-                <tr>
-                  <td colspan="2" align="center">Search Request :<br><br>
-<script type="text/javascript"> $(window).load(function(){ $("#search1").keyup(function () { var value = this.value.toLowerCase().trim(); $("#tables tr").each(function (index) { if (!index) return; $(this).find("td").each(function () { var id = $(this).text().toLowerCase().trim(); var not_found = (id.indexOf(value) == -1); $(this).closest('tr').toggle(!not_found); return not_found; }); }); }); }); </script>
-
-                  <input class="form-control" type="text" size="18%" id="search1" placeholder="Type to Search">
-                  </td>
-                </tr>
-              </table>
-          </section>
-      </div>
-      <div class="col-sm-9">
+      <div class="col-sm-12">
           <section class="panel">
               <header class="panel-heading" style="background-color: #000;"></header>
               <header class="panel-heading">
-                  <center><h4>ROOM LIST<h4></center>
+                  <center><h4>LABORATORY REQUEST<h4></center>
               </header>
               <table class="table table-hovered" style="text-align: center;">
                 <tr id="tblheader">
@@ -30,6 +16,25 @@
                     <td>Status</td>
                     <td>Action</td>
                 </tr>
+              <?php
+              foreach($laboratoryreq as $labreq){
+                echo"<td>".$labreq['lab_id']."</td>";
+                echo"<td>".$labreq['lab_date_req']."</td>";
+                echo"<td>".$labreq['lab_patient_checkin']."</td>";
+                echo"<td>".$labreq['first_name']." ".$labreq['last_name']."</td>";
+                if($labreq['lab_status']==1){
+                echo "<td>Approved</td>";
+              } elseif ($labreq['lab_status']==2) {
+                echo "<td>Cancelled</td>";
+              } else {
+                echo "<td>For Approval</td>";
+              }
+                echo "<td>";
+                  echo "<a href='".base_url()."Admin/ShowLabReq/".$labreq['lab_id']."' role='button' class='btn btn-default btn-xs'>Show</a>";
+                echo "</td>";
+              }
+
+              ?>
               </table>
           </section>
       </div>

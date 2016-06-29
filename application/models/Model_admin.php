@@ -391,8 +391,6 @@
     }
 
 
-    /*Room and Bed*/
-
     /*Admitting*/
     function insert_patient_to_beds($data, $bedid){
       $this->db->where('bed_id', $bedid);
@@ -475,6 +473,16 @@
     function add_item_inventory_import($data)
     {
       $this->db->insert('pharmacy_inventory',$data);
+    }
+
+    /* Laboratory Request*/
+    function get_laboratoryrequest_list()
+    {
+      $this->db->select('*');
+      $this->db->from('laboratory_request');
+      $this->db->join('patient','laboratory_request.lab_patient=patient.patient_id','left');
+      $query = $this->db->get();
+      return $query->result_array();
     }
   }
 ?>

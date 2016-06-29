@@ -762,8 +762,9 @@
     }
     /*=========================================================================================================================*/
 function LaboratoryRequests(){
+$data['laboratoryreq'] = $this->Model_admin->get_laboratoryrequest_list();
 $this->load->view('administrator/includes/header.php');
-$this->load->view('administrator/laboratory/laboratoryrequest.php');
+$this->load->view('administrator/laboratory/laboratoryrequest.php',$data);
 $this->load->view('administrator/includes/footer.php');
 }
     /*=========================================================================================================================*/
