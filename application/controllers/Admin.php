@@ -767,6 +767,12 @@ $this->load->view('administrator/includes/header.php');
 $this->load->view('administrator/laboratory/laboratoryrequest.php',$data);
 $this->load->view('administrator/includes/footer.php');
 }
+
+function ShowLabReq(){
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/showlaboratoryrequest.php');
+  $this->load->view('administrator/includes/footer.php');
+}
     /*=========================================================================================================================*/
     function pharmacy_inventory()
     {
