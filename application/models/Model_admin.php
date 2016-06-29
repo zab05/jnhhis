@@ -428,11 +428,6 @@
       $this->db->where('bed_id', $bed_id);
       $this->db->update('beds', $data);
     }
-
-    function update_patient_status($data, $patientid){
-      $this->db->where('patient_id', $patientid);
-      $this->db->update('patient', $data);
-    }
     /*Admitting*/
 
     function activate($id){
