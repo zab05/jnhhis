@@ -6,7 +6,7 @@
                 <header class="panel-heading" style="background-color: #000;"></header>
                 <table class="table">
                     <tr>
-                      <td colspan="2" align="center"><h5><a href="<?=base_url()?>Admin/AddPatient" role="button" class="btn btn-info">+ADD NEW PATIENT</a></h5></td>
+                      <td colspan="2" align="center"><h5><a href="<?=base_url()?>Admin/AddPatient" role="button" class="btn btn-info">+ADD NEW MEDICINE</a></h5></td>
                     </tr>
                     <tr>
                     </tr>

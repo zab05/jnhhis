@@ -29,7 +29,8 @@
       $this->db->insert('patient', $data);
     }
 
-    function edit_patient_information($data, $id){
+    function edit_patient_information($data, $id)
+    {
       $this->db->where('patient_id', $id);
       $this->db->update('patient', $data);
       return $id;
@@ -409,7 +410,7 @@
     function get_non_admitted_patient_list(){
       $this->db->select('*');
       $this->db->from('patient');
-      $this->db->where('patient_status', 0); 
+      $this->db->where('patient_status', 0);
       $query = $this->db->get();
       return $query->result_array();
     }
@@ -435,6 +436,45 @@
       $data = array('status'=>0);
       $this->db->where('user_id', $id);
       $this->db->update('users', $data);
+    }
+
+    /*Pharmacy Inventory*/
+    function get_pharmacy_inventory()
+    {
+      $this->db->select('*');
+      $this->db->from('pharmacy_inventory');
+      $query = $this->db->get();
+      return $query->result();
+    }
+
+    function count_pharmacy_inventory()
+    {
+      $this->db->select('*');
+      $this->db->from('pharmacy_inventory');
+      $query = $this->db->get();
+      return $query->num_rows();
+    }
+
+    function update_item_inventory($id, $data)
+    {
+      $this->db->where('item_id', $id);
+      $this->db->update('pharmacy_inventory', $data);
+    }
+
+    function delete_item_inventory($id)
+    {
+      $this->db->where('item_id',$id);
+      $this->db->delete('pharmacy_inventory');
+    }
+
+    function add_item_inventory($data)
+    {
+      $this->db->insert('pharmacy_inventory',$data);
+    }
+
+    function add_item_inventory_import($data)
+    {
+      $this->db->insert('pharmacy_inventory',$data);
     }
   }
 ?>
