@@ -10,10 +10,19 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th style="text-align: center;">Patient No.</th>
-                        <th style="text-align: center;">Name</th>
-                        <th style="text-align: center;">Date Registered</th>
-                        <th style="text-align: center;">Action</th>
+                        <td style="text-align: center;"><b>Name:</b> &ensp;<?php echo $laboratorytopatient->first_name." ".$laboratorytopatient->last_name; ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><b>Address:</b> &ensp;<?php echo $laboratorytopatient->present_address; ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><b>Number:</b> &ensp;<?php echo $laboratorytopatient->mobile_number." / ".$laboratorytopatient->telephone_number; ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><b>Date of Birth:</b> &ensp;<?php echo $laboratorytopatient->birthdate; ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><b>Gender:</b> &ensp;<?php echo $laboratorytopatient->gender ?></td>
                     </tr>
                     </thead>
                     <tbody align="center">
@@ -30,12 +39,18 @@
                 </header>
                 <table class="table table-striped">
                     <thead>
-                    <tr>
-                        <th style="text-align: center;">Patient No.</th>
-                        <th style="text-align: center;">Name</th>
-                        <th style="text-align: center;">Date Registered</th>
-                        <th style="text-align: center;">Action</th>
-                    </tr>
+                      <tr>
+                          <td style="text-align: center;"><b>Name:</b> &ensp;<?php echo $laboratorytouser->first_name." ".$laboratorytouser->last_name; ?></td>
+                      </tr>
+                      <tr>
+                          <td style="text-align: center;"><b>Email:</b> &ensp;<?php echo $laboratorytouser->email; ?></td>
+                      </tr>
+                      <tr>
+                          <td style="text-align: center;"><b>Number:</b> &ensp;<?php echo $laboratorytouser->contact_number; ?></td>
+                      </tr>
+                      <tr>
+                          <td style="text-align: center;"><b>Date of Birth:</b> &ensp;<?php echo $laboratorytouser->birthdate; ?></td>
+                      </tr>
                     </thead>
                     <tbody align="center">
 
