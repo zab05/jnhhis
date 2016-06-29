@@ -766,6 +766,98 @@
       redirect(base_url()."Admin/ViewRoom/".$roomid);
     }
     /*=========================================================================================================================*/
+    function LaboratoryRequests(){
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/laboratory/laboratoryrequest.php');
+      $this->load->view('administrator/includes/footer.php');
+    }
+    /*=========================================================================================================================*/
+    function pharmacy_inventory()
+    {
+      $data['items'] = $this->Model_admin->get_pharmacy_inventory();
+      $data['inventorycount'] = $this->Model_admin->count_pharmacy_inventory();
+      $this->load->view('administrator/includes/header');
+      $this->load->view('administrator/pharmacy/add_item_modal');
+      $this->load->view('administrator/pharmacy/delete_item_modal');
+      $this->load->view('administrator/pharmacy/update_item_modal');
+      $this->load->view('administrator/pharmacy/inventory',$data);
+    }
+
+    function update_item_inventory()
+    {
+      $id = $this->input->post('itemid');
+
+      $data = array('item_name'=>$this->input->post('name'),
+                    'item_description'=>$this->input->post('description'),
+                    'item_quantity'=>$this->input->post('quantity'),
+                    'item_price'=>$this->input->post('price'));
+
+      $this->Model_admin->update_item_inventory($id,$data);
+      redirect(base_url()."Admin/pharmacy_inventory");
+    }
+
+    function delete_item_inventory()
+    {
+      $id = $this->uri->segment(3);
+      $this->Model_admin->delete_item_inventory($id);
+      redirect(base_url()."Admin/pharmacy_inventory");
+    }
+
+    function add_item_inventory()
+    {
+      $data = array('item_name'=>$this->input->post('name'),
+                    'item_description'=>$this->input->post('description'),
+                    'item_quantity'=>$this->input->post('quantity'),
+                    'item_price'=>$this->input->post('price'));
+
+      $this->Model_admin->add_item_inventory($data);
+      redirect(base_url()."Admin/pharmacy_inventory");
+    }
+
+    function add_item_inventory_import()
+    {
+      $data['error'] = '';    //initialize image upload error array to empty
+
+	        $config['upload_path'] = './csv/';
+	        $config['allowed_types'] = 'csv';
+	        $config['max_size'] = '1000';
+
+	        $this->load->library('upload', $config);
+	        $this->upload->initialize($config);
+
+
+	        // If upload failed, display error
+	        if (!$this->upload->do_upload())
+          {
+	            redirect('Admin/pharmacy_inventory');
+	        }
+          else
+          {
+	            $file_data = $this->upload->data();
+	            $file_path =  './csv/'.$file_data['file_name'];
+
+	            if ($this->csvimport->get_array($file_path))
+              {
+	                $csv_array = $this->csvimport->get_array($file_path);
+	                foreach ($csv_array as $row)
+                  {
+	                    $insert_data = array(
+	                        'item_name'=>$row['Name'],
+	                        'item_description'=>$row['Description'],
+	                        'item_quantity'=>$row['Quantity'],
+	                        'item_price'=>$row['Price']
+	                    );
+	                    $this->Model_admin->add_item_inventory_import($insert_data);
+	                }
+	                //$this->session->set_flashdata('csv', '<div class="alert alert-success text-center">Users imported successfully!</div>');
+	                redirect(base_url().'admin/pharmacy_inventory');
+	            } else
+              $this->session->set_flashdata('error', "Error occured");
+					redirect('Admin/pharmacy_inventory');
+	            }
+
+    }
+    /*=========================================================================================================================*/
     function logout(){
       $this->session->sess_destroy();
       redirect(base_url());

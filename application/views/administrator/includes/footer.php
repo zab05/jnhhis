@@ -9,6 +9,11 @@
 <!--footer end-->
 </section>
 
+
+
+
+
+
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="<?=base_url()?>js/jquery.js"></script>
 <script src="<?=base_url()?>js/bootstrap.min.js"></script>
@@ -20,6 +25,8 @@
 <script src="<?=base_url()?>js/owl.carousel.js" ></script>
 <script src="<?=base_url()?>js/jquery.customSelect.min.js" ></script>
 <script src="<?=base_url()?>js/respond.min.js" ></script>
+<script src="<?=base_url()?>assets/data-tables/jquery.dataTables.js"></script>
+<script src="<?=base_url()?>assets/data-tables/DT_bootstrap.js"></script>
 
 <!--right slidebar-->
 <script src="<?=base_url()?>js/slidebars.min.js"></script>

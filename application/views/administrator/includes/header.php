@@ -20,6 +20,8 @@
     <!-- Custom styles for this template -->
     <link href="<?=base_url()?>css/style.css" rel="stylesheet">
     <link href="<?=base_url()?>css/style-responsive.css" rel="stylesheet" />
+
+
   </head>
   <body>
 
@@ -312,6 +314,7 @@
                               <li><a  href="#.html">Receiving of Pharmacy Items</a></li>
                               <li><a  href="#.html">Requesting of Drugs</a></li>
                               <li><a  href="#.html">Releasing of Drugs</a></li>
+                              <li><a  href="<?php echo base_url().'Admin/pharmacy_inventory'?>">Inventory</a></li>
                           </ul>
                       </li>
 
@@ -334,7 +337,7 @@
                           </a>
                           <ul class="sub">
                               <li><a  href="#.html">Laboratory Maintenance</a></li>
-                              <li><a  href="#.html">Laboratory Requests</a></li>
+                              <li><a  href="<?=base_url()?>Admin/LaboratoryRequests">Laboratory Requests</a></li>
                               <li><a  href="#.html">Approval of Requests</a></li>
                           </ul>
                       </li>
