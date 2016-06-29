@@ -23,6 +23,8 @@
       if(empty($id)){
         $data['patients'] = $this->Model_admin->get_patient_list();
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
+        $data['total_admitted_patients_count'] = $this->Model_admin->get_admitted_patient();
+        $data['total_admitted_in_er_count'] = $this->Model_admin->get_patient_admitted_in_er();
         $this->load->view('administrator/includes/header.php');
         $this->load->view('administrator/patient/patientlist.php', $data);
         $this->load->view('administrator/includes/footer.php');
