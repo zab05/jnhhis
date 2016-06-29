@@ -16,11 +16,11 @@
                     </tr>
                     <tr>
                       <td>Patients Admitted: </td>
-                      <td>1</td>
+                      <td></td>
                     </tr>
                     <tr>
                       <td>Patients in ER: </td>
-                      <td>1</td>
+                      <td></td>
                     </tr>
                 </table>
             </section>
