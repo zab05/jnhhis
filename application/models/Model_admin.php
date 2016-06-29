@@ -17,6 +17,22 @@
       return $query->num_rows();
     }
 
+    function get_admitted_patient(){
+      $this->db->select('*');
+      $this->db->from('patient');
+      $this->db->where('patient_status !=', 0);
+      $query = $this->db->get();
+      return $query->num_rows();
+    }
+    
+    function get_patient_admitted_in_er(){
+      $this->db->select('*');
+      $this->db->from('patient');
+      $this->db->where('patient_status ', 1);
+      $query = $this->db->get();
+      return $query->num_rows();
+    }
+
     function get_single_patient($id){
       $this->db->select('*');
       $this->db->from('patient');
@@ -423,6 +439,11 @@
     function dischargepatient($data, $patientid){
       $this->db->where('patient_id', $patientid);
       $this->db->update('admission_schedule', $data);
+    }
+
+    function removepatient_from_bed($data, $bed_id){
+      $this->db->where('bed_id', $bed_id);
+      $this->db->update('beds', $data);
     }
     /*Admitting*/
 
