@@ -30,17 +30,13 @@
                 if($room['patient_id']==""){
                     echo "<td>Bed Available</td>";
                     echo "<td>Empty</td>";
-                    echo "<td>";
-                      echo "<a href='".base_url()."Admin/remove_bed/".$roomid."/".$room['bed_id']."' role='button' class='btn btn-default btn-xs'>Remove Bed</a>";
-                    echo "</td>";
+
+                    echo "<td><a href='".base_url()."Admin/remove_bed/".$roomid."/".$room['bed_id']."' role='button' class='btn btn-default btn-xs'>Remove Bed</a></td>";
                 }else{
                   echo "<td>OCCUPIED</td>";
                   echo "<td>".$room['first_name']." ".$room['last_name']."</td>";
-                  echo "<td>";
-                    echo "<a href='".base_url()."Admin/remove_bed/".$roomid."/".$room['bed_id']."' role='button' class='btn btn-default btn-xs' disabled>Remove Bed</a>";
-                  echo "</td>";
+                  echo "<td><a href='javascript: void(0)' role='button' class='btn btn-default btn-xs' disabled>Remove Bed</a></td>";
                 }
-
               echo "</tr>";
             }
           ?>
