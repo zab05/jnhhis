@@ -627,6 +627,10 @@
       $this->Model_admin->update_patient_status($data_update_patient, $patient_id);
       redirect(base_url()."Admin/EmergencyRoom");
     }
+
+    function testing(){
+      
+    }
     /*=========================================================================================================================*/
     function RoomType()
     {
