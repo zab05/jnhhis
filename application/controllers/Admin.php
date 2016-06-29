@@ -761,6 +761,12 @@
       redirect(base_url()."Admin/ViewRoom/".$roomid);
     }
     /*=========================================================================================================================*/
+function LaboratoryRequests(){
+$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/laboratory/laboratoryrequest.php');
+$this->load->view('administrator/includes/footer.php');
+}
+    /*=========================================================================================================================*/
     function pharmacy_inventory()
     {
       $data['items'] = $this->Model_admin->get_pharmacy_inventory();
