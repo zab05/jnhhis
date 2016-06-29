@@ -409,7 +409,7 @@
     function get_non_admitted_patient_list(){
       $this->db->select('*');
       $this->db->from('patient');
-      $this->db->where('patient_status', 0); 
+      $this->db->where('patient_status', 0);
       $query = $this->db->get();
       return $query->result_array();
     }
@@ -422,6 +422,16 @@
     function dischargepatient($data, $patientid){
       $this->db->where('patient_id', $patientid);
       $this->db->update('admission_schedule', $data);
+    }
+
+    function removepatient_from_bed($data, $bed_id){
+      $this->db->where('bed_id', $bed_id);
+      $this->db->update('beds', $data);
+    }
+
+    function update_patient_status($data, $patientid){
+      $this->db->where('patient_id', $patientid);
+      $this->db->update('patient', $data);
     }
     /*Admitting*/
 
