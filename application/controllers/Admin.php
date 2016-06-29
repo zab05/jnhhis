@@ -676,9 +676,6 @@
       }
     }
 
-    function hehe(){
-      
-    }
     function Rooms(){
       $data['rooms'] = $this->Model_admin->get_room_list();
       $data['roomtypes'] = $this->Model_admin->get_roomtype_List();
