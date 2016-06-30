@@ -781,25 +781,23 @@ $this->load->view('administrator/includes/footer.php');
       $this->load->view('administrator/includes/footer.php');
     }
 
-
-
     function MakeLaboratoryRequests(){
-  $data['patientlist'] = $this->Model_admin->get_patient_list();
-  $this->load->view('administrator/includes/header.php');
-  $this->load->view('administrator/laboratory/makelaboratoryrequest.php',$data);
-  $this->load->view('administrator/includes/footer.php');
+$data['patientlist'] = $this->Model_admin->get_patient_list();
+$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/laboratory/makelaboratoryrequest.php',$data);
+$this->load->view('administrator/includes/footer.php');
 }
 
-  function MakeLaboratoryRequests2(){
-  $patient = $this->input->post('patient');
-  if($patient==""){
-  redirect(base_url()."Admin/MakeLaboratoryRequests");
-  }else{
-  $data['patient'] = $this->Model_admin->get_single_patient($patient);
-  $this->load->view('administrator/includes/header.php');
-  $this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
-  $this->load->view('administrator/includes/footer.php');
-  }
+function MakeLaboratoryRequests2(){
+$patient = $this->input->post('patient');
+if($patient==""){
+redirect(base_url()."Admin/MakeLaboratoryRequests");
+}else{
+$data['patient'] = $this->Model_admin->get_single_patient($patient);
+$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
+$this->load->view('administrator/includes/footer.php');
+}
 }
 
  function insert_patient_thrulaboratory(){
