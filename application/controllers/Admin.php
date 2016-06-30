@@ -768,9 +768,11 @@ $this->load->view('administrator/laboratory/laboratoryrequest.php',$data);
 $this->load->view('administrator/includes/footer.php');
 }
 
-function ShowLabReq(){
+function ShowLabReq($id){
+  $data['laboratorytopatient'] = $this->Model_admin->get_laboratorytopatient_data($id);
+  $data['laboratorytouser'] =  $this->Model_admin->get_laboratorytouser_data($id);
   $this->load->view('administrator/includes/header.php');
-  $this->load->view('administrator/laboratory/showlaboratoryrequest.php');
+  $this->load->view('administrator/laboratory/showlaboratoryrequest.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
     /*=========================================================================================================================*/
