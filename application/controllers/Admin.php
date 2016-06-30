@@ -766,12 +766,12 @@
       redirect(base_url()."Admin/ViewRoom/".$roomid);
     }
     /*=========================================================================================================================*/
-    function LaboratoryRequests(){
-      $data['laboratoryreq'] = $this->Model_admin->get_laboratoryrequest_list();
-      $this->load->view('administrator/includes/header.php');
-      $this->load->view('administrator/laboratory/laboratoryrequest.php',$data);
-      $this->load->view('administrator/includes/footer.php');
-    }
+function LaboratoryRequests(){
+$data['laboratoryreq'] = $this->Model_admin->get_laboratoryrequest_list();
+$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/laboratory/laboratoryrequest.php',$data);
+$this->load->view('administrator/includes/footer.php');
+}
 
     function ShowLabReq($id){
       $data['laboratorytopatient'] = $this->Model_admin->get_laboratorytopatient_data($id);
@@ -780,6 +780,70 @@
       $this->load->view('administrator/laboratory/showlaboratoryrequest.php',$data);
       $this->load->view('administrator/includes/footer.php');
     }
+
+    function MakeLaboratoryRequests(){
+$data['patientlist'] = $this->Model_admin->get_patient_list();
+$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/laboratory/makelaboratoryrequest.php',$data);
+$this->load->view('administrator/includes/footer.php');
+}
+
+function MakeLaboratoryRequests2(){
+$patient = $this->input->post('patient');
+if($patient==""){
+redirect(base_url()."Admin/MakeLaboratoryRequests");
+}else{
+$data['patient'] = $this->Model_admin->get_single_patient($patient);
+$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
+$this->load->view('administrator/includes/footer.php');
+}
+}
+
+ function insert_patient_thrulaboratory(){
+   $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('age', 'Age', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('birthday', 'Birthday', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('birthplace', 'Birthplace', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('occupation', 'Occupation', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('religion', 'Religion', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('nationality', 'Nationality', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('address', 'Address', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('telephone_number', 'Telephone number', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('mobile_number', 'Mobile number', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+
+  if($this->form_validation->run() == FALSE){
+    echo "may mali";
+  }else{
+    $data = array(
+      'first_name' => $this->input->post('firstname'),
+      'last_name' => $this->input->post('lastname'),
+      'middle_name' => $this->input->post('middlename'),
+      'gender' => $this->input->post('gender'),
+      'age' => $this->input->post('age'),
+      'birthdate' => $this->input->post('birthday'),
+      'birthplace' => $this->input->post('birthplace'),
+      'occupation' => $this->input->post('occupation'),
+      'religion' => $this->input->post('religion'),
+      'nationality' => $this->input->post('nationality'),
+      'present_address' => $this->input->post('address'),
+      'telephone_number' => $this->input->post('telephone_number'),
+      'mobile_number' => $this->input->post('mobile_number'),
+      'email' => $this->input->post('email'),
+      'patient_status' => "0",
+      'date_registered' => date('Y-m-d'),
+    );
+
+    $insertpatient = $this->Model_admin->insertpatient($data);
+      redirect(base_url()."Admin/MakeLaboratoryRequests");
+
+  }
+ }
+
     /*=========================================================================================================================*/
     function pharmacy_inventory()
     {
