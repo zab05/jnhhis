@@ -781,6 +781,7 @@ $this->load->view('administrator/includes/footer.php');
       $this->load->view('administrator/includes/footer.php');
     }
 
+
     function MakeLaboratoryRequests(){
 $data['patientlist'] = $this->Model_admin->get_patient_list();
 $this->load->view('administrator/includes/header.php');
@@ -798,6 +799,28 @@ $this->load->view('administrator/includes/header.php');
 $this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
 $this->load->view('administrator/includes/footer.php');
 }
+}
+
+function LabExamCateg(){
+  $data['examcateg'] = $this->Model_admin->get_all_examcateg();
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/labexamcateg.php',$data);
+  $this->load->view('administrator/includes/footer.php');
+}
+
+function EditExamCateg($id){
+  $data['examcateg'] = $this->Model_admin->get_examcateg($id);
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/editexamcateg.php',$data);
+  $this->load->view('administrator/includes/footer.php');
+}
+
+function LabExamType(){
+  $data['examtype'] = $this->Model_admin->get_all_examtype();
+  $data['examcateg'] = $this->Model_admin->get_all_examcateg();
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/labexamtype.php',$data);
+  $this->load->view('administrator/includes/footer.php');
 }
 
  function insert_patient_thrulaboratory(){
@@ -842,6 +865,51 @@ $this->load->view('administrator/includes/footer.php');
       redirect(base_url()."Admin/MakeLaboratoryRequests");
 
   }
+ }
+
+ function insert_category(){
+   $this->form_validation->set_rules('categname', 'Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('categdesc', 'Description', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run() == FALSE){
+     echo "Something's Wrong";
+   } else {
+     $data = array ('exam_cat_name' => $this->input->post('categname'),
+                    'exam_cat_desc' => $this->input->post('categdesc'));
+      $insertcategory = $this->Model_admin->insertcategory($data);
+      redirect(base_url()."Admin/LabExamCateg");
+   }
+ }
+
+ function update_examination_category($id)
+ {
+   $this->form_validation->set_rules('catname', 'Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('catdesc', 'Description', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run()==FALSE){
+     echo "Something's Wrong";
+   } else {
+     $data = array ('exam_cat_name' => $this->input->post('catname'),
+                    'exam_cat_desc' => $this->input->post('catdesc'));
+      $insertcategory = $this->Model_admin->updatecategory($id,$data);
+      redirect(base_url()."Admin/LabExamCateg");
+   }
+ }
+
+ function insert_examtype(){
+   $this->form_validation->set_rules('typename', 'Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('examcateg', 'Category', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('typedesc', 'Description', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run()==FALSE){
+     echo "Something's Wrong";
+   } else {
+     $data = array('lab_exam_type_name' => $this->input->post('typename'),
+                   'lab_exam_type_category_id' => $this->input->post('examcateg'),
+                   'lab_exam_type_description' => $this->input->post('typedesc'));
+    $insertetype = $this->Model_admin->insertexamtype($data);
+          redirect(base_url()."Admin/LabExamType");
+   }
  }
 
     /*=========================================================================================================================*/
