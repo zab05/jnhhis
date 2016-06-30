@@ -443,6 +443,24 @@
       $this->db->where('bed_id', $bed_id);
       $this->db->update('beds', $data);
     }
+
+    function get_room_list_for_directadmission(){
+      $this->db->select('*');
+      $this->db->from('rooms a');
+      $this->db->join('room_type b', 'a.room_type=b.room_type_id', 'left');
+      $this->db->where('a.room_type !=', 1);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function get_available_beds_for_directadmission(){
+      $this->db->select('*');
+      $this->db->from('beds a');
+      $this->db->join('rooms b', 'a.bed_roomid=b.room_id', 'left');
+      $this->db->where('b.room_type !=', 1);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
     /*Admitting*/
 
     function activate($id){
