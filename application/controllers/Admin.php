@@ -23,8 +23,8 @@
       if(empty($id)){
         $data['patients'] = $this->Model_admin->get_patient_list();
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
-        $data['total_admitted_patients_count'] = $this->Model_admin->get_admitted_patient();
-        $data['total_admitted_in_er_count'] = $this->Model_admin->get_patient_admitted_in_er();
+        $data['total_admitted_patients_count'] = $this->Model_admin->get_count_admitted_patient();
+        $data['total_admitted_in_er_count'] = $this->Model_admin->get_count_patient_admitted_in_er();
         $this->load->view('administrator/includes/header.php');
         $this->load->view('administrator/patient/patientlist.php', $data);
         $this->load->view('administrator/includes/footer.php');
@@ -669,13 +669,27 @@
                                         "patient_id"=>$patient
                                       );
      $data_update_patient_status = array(
-                                          "patient_status"=>1
+                                          "patient_status"=>2
                                         );
      $this->Model_admin->insert_patient_to_beds($data_bedstable, $bed_id);
      $this->Model_admin->insert_admission_schedule($data_admission_schedule);
      $this->Model_admin->insert_admitting_resident($data_admitting_resident);
      $this->Model_admin->update_patient_status($data_update_patient_status, $patient);
-     redirect(base_url().'Admin/ChooseBed/'.$roomid, 'refresh');
+     redirect(base_url().'Admin/ViewAdmittedPatients/'.$roomid, 'refresh');
+    }
+
+    function ViewAdmittedPatients($id = NULL){
+      if(empty($id)){
+        $data['rooms'] = $this->Model_admin->get_room_list();
+        $this->load->view('administrator/includes/header.php');
+        $this->load->view('administrator/admitting/roomlist.php', $data);
+        $this->load->view('administrator/includes/footer.php');
+      }else{
+        $data['beds'] = $this->Model_admin->get_admitted_patient($id);
+        $this->load->view('administrator/includes/header.php');
+        $this->load->view('administrator/admitting/viewadmittedpatient.php', $data);
+        $this->load->view('administrator/includes/footer.php');
+      }
     }
 
     /*=========================================================================================================================*/
