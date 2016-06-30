@@ -775,6 +775,13 @@ function ShowLabReq($id){
   $this->load->view('administrator/laboratory/showlaboratoryrequest.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
+
+function MakeLaboratoryRequests(){
+  $data['patientlist'] = $this->Model_admin->get_patient_list();
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/makelaboratoryrequest.php',$data);
+  $this->load->view('administrator/includes/footer.php');
+}
     /*=========================================================================================================================*/
     function pharmacy_inventory()
     {
