@@ -16,11 +16,11 @@
                     </tr>
                     <tr>
                       <td>Patients Admitted: </td>
-                      <td>1</td>
+                      <td><?=$total_admitted_patients_count?></td>
                     </tr>
                     <tr>
                       <td>Patients in ER: </td>
-                      <td>1</td>
+                      <td><?=$total_admitted_in_er_count?></td>
                     </tr>
                 </table>
             </section>

@@ -9,6 +9,7 @@
         <table class="table table-hovered" style="text-align: center;">
           <tr id="tblheader">
             <td>Bed #</td>
+            <td>Patient ID</td>
             <td>Patient Checked-In</td>
             <td>Status</td>
             <td>Action</td>
@@ -17,6 +18,7 @@
             foreach($emergency_rooms as $emergency_room){
               echo "<tr>";
                 echo "<td>".$emergency_room['bed_id']."</td>";
+                echo "<td>".$emergency_room['patient_id']."</td>";
                 if($emergency_room['patient_id'] == ""){
                   echo "<td>EMPTY</td>";
                   echo "<td>AVAILABLE</td>";
