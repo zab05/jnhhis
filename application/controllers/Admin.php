@@ -23,6 +23,8 @@
       if(empty($id)){
         $data['patients'] = $this->Model_admin->get_patient_list();
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
+        $data['total_admitted_patients_count'] = $this->Model_admin->get_admitted_patient();
+        $data['total_admitted_in_er_count'] = $this->Model_admin->get_patient_admitted_in_er();
         $this->load->view('administrator/includes/header.php');
         $this->load->view('administrator/patient/patientlist.php', $data);
         $this->load->view('administrator/includes/footer.php');
@@ -620,8 +622,11 @@
 
     function DischargePatient($patient_id, $bed_id){
       $data_discharge = array("status"=>2);
-      $data_update_bed = array();
-      $this->Model_admin->dischargepatient($data, $patient_id);
+      $data_update_bed = array("bed_patient"=>NULL);
+      $data_update_patient = array("patient_status"=>0);
+      $this->Model_admin->dischargepatient($data_discharge, $patient_id);
+      $this->Model_admin->removepatient_from_bed($data_update_bed, $bed_id);
+      $this->Model_admin->update_patient_status($data_update_patient, $patient_id);
       redirect(base_url()."Admin/EmergencyRoom");
     }
     /*=========================================================================================================================*/
@@ -761,20 +766,20 @@
       redirect(base_url()."Admin/ViewRoom/".$roomid);
     }
     /*=========================================================================================================================*/
-function LaboratoryRequests(){
-$data['laboratoryreq'] = $this->Model_admin->get_laboratoryrequest_list();
-$this->load->view('administrator/includes/header.php');
-$this->load->view('administrator/laboratory/laboratoryrequest.php',$data);
-$this->load->view('administrator/includes/footer.php');
-}
+    function LaboratoryRequests(){
+      $data['laboratoryreq'] = $this->Model_admin->get_laboratoryrequest_list();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/laboratory/laboratoryrequest.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
 
-function ShowLabReq($id){
-  $data['laboratorytopatient'] = $this->Model_admin->get_laboratorytopatient_data($id);
-  $data['laboratorytouser'] =  $this->Model_admin->get_laboratorytouser_data($id);
-  $this->load->view('administrator/includes/header.php');
-  $this->load->view('administrator/laboratory/showlaboratoryrequest.php',$data);
-  $this->load->view('administrator/includes/footer.php');
-}
+    function ShowLabReq($id){
+      $data['laboratorytopatient'] = $this->Model_admin->get_laboratorytopatient_data($id);
+      $data['laboratorytouser'] =  $this->Model_admin->get_laboratorytouser_data($id);
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/laboratory/showlaboratoryrequest.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
     /*=========================================================================================================================*/
     function pharmacy_inventory()
     {
