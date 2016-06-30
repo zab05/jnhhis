@@ -301,7 +301,8 @@
                           </a>
                           <ul class="sub">
                               <li><a  href="<?=base_url()?>Admin/EmergencyRoom">Emergency Room</a></li>
-                              <li><a  href="#.html">Direct Room Admission</a></li>
+                              <li><a  href="<?=base_url()?>Admin/DirectRoomAdmission">Direct Room Admission</a></li>
+                              <li><a  href="<?=base_url()?>Admin/ViewAdmittedPatients">View Admitted Patients</a></li>
                           </ul>
                       </li>
 

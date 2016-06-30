@@ -17,7 +17,7 @@
       return $query->num_rows();
     }
 
-    function get_admitted_patient(){
+    function get_count_admitted_patient(){
       $this->db->select('*');
       $this->db->from('patient');
       $this->db->where('patient_status !=', 0);
@@ -25,7 +25,7 @@
       return $query->num_rows();
     }
 
-    function get_patient_admitted_in_er(){
+    function get_count_patient_admitted_in_er(){
       $this->db->select('*');
       $this->db->from('patient');
       $this->db->where('patient_status ', 1);
@@ -442,6 +442,35 @@
     function removepatient_from_bed($data, $bed_id){
       $this->db->where('bed_id', $bed_id);
       $this->db->update('beds', $data);
+    }
+
+    function get_room_list_for_directadmission(){
+      $this->db->select('*');
+      $this->db->from('rooms a');
+      $this->db->join('room_type b', 'a.room_type=b.room_type_id', 'left');
+      $this->db->where('a.room_type !=', 1);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function get_available_beds_for_directadmission(){
+      $this->db->select('*');
+      $this->db->from('beds a');
+      $this->db->join('rooms b', 'a.bed_roomid=b.room_id', 'left');
+      $this->db->where('b.room_type !=', 1);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function get_admitted_patient($id){
+      $this->db->select('*');
+      $this->db->from('beds a');
+      $this->db->join('rooms b', 'a.bed_roomid=b.room_id', 'left');
+      $this->db->join('patient c', 'a.bed_patient=c.patient_id', 'left');
+      $this->db->where('a.bed_patient !=', NULL);
+      $this->db->where('a.bed_roomid', $id);
+      $query = $this->db->get();
+      return $query->result_array();
     }
     /*Admitting*/
 
