@@ -8,7 +8,7 @@
               <center>
               <?php
                 $attributes = array('class'=>'form-horizontal', 'role'=>'form');
-                echo form_open(base_url().'Admin/InsertAdmitFromER/'.$bed_id, $attributes);
+                echo form_open(base_url().'Admin/InsertAdmitFromDR/'.$bed_id.'/'.$roomid, $attributes);
               ?>
               <div class="form-group">
                   <div class="col-lg-12">
