@@ -913,6 +913,14 @@ function LabExamType(){
   $this->load->view('administrator/includes/footer.php');
 }
 
+function EditExamType($id){
+  $data['examtype'] = $this->Model_admin->get_specific_examtype($id);
+  $data['examcateg'] = $this->Model_admin->get_all_examcateg();
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/editexamtype.php',$data);
+  $this->load->view('administrator/includes/footer.php');
+}
+
  function insert_patient_thrulaboratory(){
    $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
    $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
@@ -983,6 +991,23 @@ function LabExamType(){
                     'exam_cat_desc' => $this->input->post('catdesc'));
       $insertcategory = $this->Model_admin->updatecategory($id,$data);
       redirect(base_url()."Admin/LabExamCateg");
+   }
+ }
+
+ function update_exam_type($id)
+ {
+   $this->form_validation->set_rules('typename', 'Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('typecateg', 'Category', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('typedesc', 'Description', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run()==FALSE){
+     echo "Something's Wrong";
+   } else {
+     $data = array ('lab_exam_type_name' => $this->input->post('typename'),
+                    'lab_exam_type_category_id' => $this->input->post('typecateg'),
+                    'lab_exam_type_description' => $this->input->post('typedesc'));
+      $insertcategory = $this->Model_admin->updateexamtype($id,$data);
+      redirect(base_url()."Admin/LabExamType");
    }
  }
 

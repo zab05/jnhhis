@@ -605,9 +605,23 @@
       return $query->result_array();
     }
 
+    function get_specific_examtype($id){
+      $this->db->select('*');
+      $this->db->from('laboratory_examination_type');
+      $this->db->where('lab_exam_type_id',$id);
+      $query = $this->db->get();
+      return $query->row();
+    }
+
     function insertexamtype($data)
     {
       $this->db->insert('laboratory_examination_type',$data);
+    }
+
+    function updateexamtype($id,$data)
+    {
+      $this->db->where('lab_exam_type_id',$id);
+      $this->db->update('laboratory_examination_type',$data);
     }
   }
 ?>
