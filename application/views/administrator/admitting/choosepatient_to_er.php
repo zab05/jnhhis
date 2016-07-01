@@ -19,6 +19,10 @@
                             echo $patient['patient_id'].": ".$patient['first_name']." ".$patient['middle_name']." ".$patient['last_name'];
                           echo "</option>";
                         }
+
+                        /*echo "<option value='".$patient['patient_id']."'>";
+                          echo $patient['patient_id'].": ".$patient['first_name']." ".$patient['middle_name']." ".$patient['last_name'];
+                        echo "</option>";*/
                       ?>
                     </select>
                   </div>
