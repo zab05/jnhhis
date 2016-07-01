@@ -32,7 +32,7 @@
                     echo "<a href='".base_url()."Admin/DischargePatient/".$bed['patient_id']."/".$bed['bed_id']."' role='button' class='btn btn-default btn-xs'>DISCHARGE</a>'";
                     echo "<a href='".base_url()."Admin/PatientList/".$bed['patient_id']."' role='button' class='btn btn-default btn-xs'>PATIENT INFO</a>'";
                     echo "<a href='#' role='button' class='btn btn-default btn-xs'>GO TO PHARMACY</a>'";
-                    echo "<a href='#' role='button' class='btn btn-default btn-xs'>TRANSFER ROOM</a>'";
+                    echo "<a href='".base_url()."Admin/TransferRoom/".$bed['patient_id']."/' role='button' class='btn btn-default btn-xs'>TRANSFER ROOM</a>'";
                   echo "</td>";
                 }
               echo "</tr>";
