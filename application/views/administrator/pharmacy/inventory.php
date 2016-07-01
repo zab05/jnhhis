@@ -28,6 +28,7 @@
                 <header class="panel-heading">
                     <center><h4>PATIENT LIST<h4></center>
                 </header>
+
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -150,8 +151,6 @@ function ValidateSingleInput(oInput) {
     return true;
 }
 </script>
-
-
 
 </body>
 
