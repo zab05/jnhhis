@@ -67,11 +67,11 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <td>Urgency: Urgent</td>
+                        <td>Urgency: </td>
                         <td>Blood</td>
                     </tr>
                     <tr>
-                        <td>Fasting: Non-Fasting</td>
+                        <td>Fasting: </td>
                         <td>Faeces</td>
                     </tr>
                     </thead>
@@ -95,9 +95,9 @@
                       <th style="text-align: center;">Description</th>
                     </tr>
                     <tr>
-                      <td style="text-align: center;">Dummy</td>
-                      <td style="text-align: center;">Dummy</td>
-                      <td style="text-align: center;">Dummy</td>
+                      <td style="text-align: center;"></td>
+                      <td style="text-align: center;"></td>
+                      <td style="text-align: center;"></td>
                     </tr>
                     </thead>
                     <tbody align="center">
@@ -115,7 +115,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                      <td style="text-align: center;">Remarks</td>
+                      <td style="text-align: center;"></td>
                     </tr>
                     </thead>
                     <tbody align="center">

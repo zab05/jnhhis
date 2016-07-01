@@ -23,8 +23,8 @@
       if(empty($id)){
         $data['patients'] = $this->Model_admin->get_patient_list();
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
-        $data['total_admitted_patients_count'] = $this->Model_admin->get_admitted_patient();
-        $data['total_admitted_in_er_count'] = $this->Model_admin->get_patient_admitted_in_er();
+        $data['total_admitted_patients_count'] = $this->Model_admin->get_count_admitted_patient();
+        $data['total_admitted_in_er_count'] = $this->Model_admin->get_count_patient_admitted_in_er();
         $this->load->view('administrator/includes/header.php');
         $this->load->view('administrator/patient/patientlist.php', $data);
         $this->load->view('administrator/includes/footer.php');
@@ -581,7 +581,7 @@
     }
     /*=========================================================================================================================*/
     function EmergencyRoom(){
-      $data['emergency_rooms'] = $this->Model_admin->get_beds_from_emergency_room();
+      $data['emergency_rooms'] = $this->Model_admin->get_available_beds_from_emergency_room();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/admitting/choose_er_room.php', $data);
       $this->load->view('administrator/includes/footer.php');
@@ -627,8 +627,98 @@
       $this->Model_admin->dischargepatient($data_discharge, $patient_id);
       $this->Model_admin->removepatient_from_bed($data_update_bed, $bed_id);
       $this->Model_admin->update_patient_status($data_update_patient, $patient_id);
-      redirect(base_url()."Admin/EmergencyRoom");
+      //redirect(base_url()."Admin/EmergencyRoom");
+      redirect($this->agent->referrer(), 'refresh');
     }
+
+    function DirectRoomAdmission(){
+      $data['rooms'] = $this->Model_admin->get_room_list_for_directadmission();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/admitting/choose_direct_room.php', $data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function ChooseBed($id){
+      $data['beds'] = $this->Model_admin->get_available_beds_for_directadmission($id);
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/admitting/choose_bed.php', $data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function ChoosePatientToDR($bed_id, $roomid){
+      $data['patients'] = $this->Model_admin->get_non_admitted_patient_list();
+      $data['bed_id'] = $bed_id;
+      $data['roomid'] = $roomid;
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/admitting/choosepatient_to_dr.php', $data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function InsertAdmitFromDR($bed_id, $roomid){
+      $patient = $this->input->post('patient');
+      $data_bedstable = array(
+                    "bed_patient"=>$patient
+                  );
+      $data_admission_schedule = array(
+                                        "admission_date"=>date('Y-m-d H:i:s'),
+                                        "patient_id"=>$patient,
+                                        "status"=>1
+                                       );
+      $data_admitting_resident = array(
+                                        "user_id"=>$this->session->userdata("user_id"),
+                                        "patient_id"=>$patient
+                                      );
+     $data_update_patient_status = array(
+                                          "patient_status"=>2
+                                        );
+     $this->Model_admin->insert_patient_to_beds($data_bedstable, $bed_id);
+     $this->Model_admin->insert_admission_schedule($data_admission_schedule);
+     $this->Model_admin->insert_admitting_resident($data_admitting_resident);
+     $this->Model_admin->update_patient_status($data_update_patient_status, $patient);
+     redirect(base_url().'Admin/ViewAdmittedPatients/'.$roomid, 'refresh');
+    }
+
+    function ViewAdmittedPatients($id = NULL){
+      if(empty($id)){
+        $data['rooms'] = $this->Model_admin->get_room_list();
+        $this->load->view('administrator/includes/header.php');
+        $this->load->view('administrator/admitting/roomlist.php', $data);
+        $this->load->view('administrator/includes/footer.php');
+      }else{
+        $data['beds'] = $this->Model_admin->get_admitted_patient($id);
+        $this->load->view('administrator/includes/header.php');
+        $this->load->view('administrator/admitting/viewadmittedpatient.php', $data);
+        $this->load->view('administrator/includes/footer.php');
+      }
+    }
+
+    function TransferRoom($patientid){
+      $data['rooms'] = $this->Model_admin->get_room_list_for_directadmission();
+      $data['patientid'] = $patientid;
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/admitting/choose_room_to_transfer.php', $data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function ChooseBedToTransfer($patientid, $roomid){
+      $data['beds'] = $this->Model_admin->get_available_beds_for_directadmission($roomid);
+      $data['patientid'] = $patientid;
+      $data['roomid'] = $roomid;
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/admitting/choose_bed_to_transfer.php', $data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function TransferPatient($patientid, $bedid, $roomid){
+      $data_remove_patient_from_prev_bed = array("bed_patient"=>NULL);
+      $data_transfer_patient_to_new_bed = array("bed_patient"=>$patientid);
+      $update_patient_status = array("patient_status"=>2);
+      $this->Model_admin->remove_patient_from_bed($data_remove_patient_from_prev_bed, $patientid);
+      $this->Model_admin->transfer_patient_to_new_bed($data_transfer_patient_to_new_bed, $bedid);
+      $this->Model_admin->update_patient_status($update_patient_status, $patientid);
+      redirect(base_url().'Admin/ViewAdmittedPatients/'.$roomid);
+    }
+
     /*=========================================================================================================================*/
     function RoomType()
     {
@@ -766,12 +856,12 @@
       redirect(base_url()."Admin/ViewRoom/".$roomid);
     }
     /*=========================================================================================================================*/
-    function LaboratoryRequests(){
-      $data['laboratoryreq'] = $this->Model_admin->get_laboratoryrequest_list();
-      $this->load->view('administrator/includes/header.php');
-      $this->load->view('administrator/laboratory/laboratoryrequest.php',$data);
-      $this->load->view('administrator/includes/footer.php');
-    }
+function LaboratoryRequests(){
+$data['laboratoryreq'] = $this->Model_admin->get_laboratoryrequest_list();
+$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/laboratory/laboratoryrequest.php',$data);
+$this->load->view('administrator/includes/footer.php');
+}
 
     function ShowLabReq($id){
       $data['laboratorytopatient'] = $this->Model_admin->get_laboratorytopatient_data($id);
@@ -780,6 +870,163 @@
       $this->load->view('administrator/laboratory/showlaboratoryrequest.php',$data);
       $this->load->view('administrator/includes/footer.php');
     }
+
+
+    function MakeLaboratoryRequests(){
+$data['patientlist'] = $this->Model_admin->get_patient_list();
+$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/laboratory/makelaboratoryrequest.php',$data);
+$this->load->view('administrator/includes/footer.php');
+}
+
+function MakeLaboratoryRequests2(){
+$patient = $this->input->post('patient');
+if($patient==""){
+redirect(base_url()."Admin/MakeLaboratoryRequests");
+}else{
+$data['patient'] = $this->Model_admin->get_single_patient($patient);
+$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
+$this->load->view('administrator/includes/footer.php');
+}
+}
+
+function LabExamCateg(){
+  $data['examcateg'] = $this->Model_admin->get_all_examcateg();
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/labexamcateg.php',$data);
+  $this->load->view('administrator/includes/footer.php');
+}
+
+function EditExamCateg($id){
+  $data['examcateg'] = $this->Model_admin->get_examcateg($id);
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/editexamcateg.php',$data);
+  $this->load->view('administrator/includes/footer.php');
+}
+
+function LabExamType(){
+  $data['examtype'] = $this->Model_admin->get_all_examtype();
+  $data['examcateg'] = $this->Model_admin->get_all_examcateg();
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/labexamtype.php',$data);
+  $this->load->view('administrator/includes/footer.php');
+}
+
+function EditExamType($id){
+  $data['examtype'] = $this->Model_admin->get_specific_examtype($id);
+  $data['examcateg'] = $this->Model_admin->get_all_examcateg();
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/editexamtype.php',$data);
+  $this->load->view('administrator/includes/footer.php');
+}
+
+ function insert_patient_thrulaboratory(){
+   $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('age', 'Age', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('birthday', 'Birthday', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('birthplace', 'Birthplace', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('occupation', 'Occupation', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('religion', 'Religion', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('nationality', 'Nationality', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('address', 'Address', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('telephone_number', 'Telephone number', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('mobile_number', 'Mobile number', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+
+  if($this->form_validation->run() == FALSE){
+    echo "may mali";
+  }else{
+    $data = array(
+      'first_name' => $this->input->post('firstname'),
+      'last_name' => $this->input->post('lastname'),
+      'middle_name' => $this->input->post('middlename'),
+      'gender' => $this->input->post('gender'),
+      'age' => $this->input->post('age'),
+      'birthdate' => $this->input->post('birthday'),
+      'birthplace' => $this->input->post('birthplace'),
+      'occupation' => $this->input->post('occupation'),
+      'religion' => $this->input->post('religion'),
+      'nationality' => $this->input->post('nationality'),
+      'present_address' => $this->input->post('address'),
+      'telephone_number' => $this->input->post('telephone_number'),
+      'mobile_number' => $this->input->post('mobile_number'),
+      'email' => $this->input->post('email'),
+      'patient_status' => "0",
+      'date_registered' => date('Y-m-d'),
+    );
+
+    $insertpatient = $this->Model_admin->insertpatient($data);
+      redirect(base_url()."Admin/MakeLaboratoryRequests");
+
+  }
+ }
+
+ function insert_category(){
+   $this->form_validation->set_rules('categname', 'Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('categdesc', 'Description', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run() == FALSE){
+     echo "Something's Wrong";
+   } else {
+     $data = array ('exam_cat_name' => $this->input->post('categname'),
+                    'exam_cat_desc' => $this->input->post('categdesc'));
+      $insertcategory = $this->Model_admin->insertcategory($data);
+      redirect(base_url()."Admin/LabExamCateg");
+   }
+ }
+
+ function update_examination_category($id)
+ {
+   $this->form_validation->set_rules('catname', 'Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('catdesc', 'Description', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run()==FALSE){
+     echo "Something's Wrong";
+   } else {
+     $data = array ('exam_cat_name' => $this->input->post('catname'),
+                    'exam_cat_desc' => $this->input->post('catdesc'));
+      $insertcategory = $this->Model_admin->updatecategory($id,$data);
+      redirect(base_url()."Admin/LabExamCateg");
+   }
+ }
+
+ function update_exam_type($id)
+ {
+   $this->form_validation->set_rules('typename', 'Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('typecateg', 'Category', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('typedesc', 'Description', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run()==FALSE){
+     echo "Something's Wrong";
+   } else {
+     $data = array ('lab_exam_type_name' => $this->input->post('typename'),
+                    'lab_exam_type_category_id' => $this->input->post('typecateg'),
+                    'lab_exam_type_description' => $this->input->post('typedesc'));
+      $insertcategory = $this->Model_admin->updateexamtype($id,$data);
+      redirect(base_url()."Admin/LabExamType");
+   }
+ }
+
+ function insert_examtype(){
+   $this->form_validation->set_rules('typename', 'Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('examcateg', 'Category', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('typedesc', 'Description', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run()==FALSE){
+     echo "Something's Wrong";
+   } else {
+     $data = array('lab_exam_type_name' => $this->input->post('typename'),
+                   'lab_exam_type_category_id' => $this->input->post('examcateg'),
+                   'lab_exam_type_description' => $this->input->post('typedesc'));
+    $insertetype = $this->Model_admin->insertexamtype($data);
+          redirect(base_url()."Admin/LabExamType");
+   }
+ }
+
     /*=========================================================================================================================*/
     function pharmacy_inventory()
     {
