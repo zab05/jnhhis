@@ -921,6 +921,20 @@ function EditExamType($id){
   $this->load->view('administrator/includes/footer.php');
 }
 
+function LabExamSpec(){
+  $data['labspec'] = $this->Model_admin->get_all_labspec();
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/labexamspec.php',$data);
+  $this->load->view('administrator/includes/footer.php');
+}
+
+function EditSpec($id){
+  $data['spec'] = $this->Model_admin->get_specific_specimen($id);
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/editspec.php',$data);
+  $this->load->view('administrator/includes/footer.php');
+}
+
  function insert_patient_thrulaboratory(){
    $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
    $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
@@ -1027,6 +1041,42 @@ function EditExamType($id){
    }
  }
 
+ function insert_labspecimen()
+ {
+   $this->form_validation->set_rules('specname', 'Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('specdesc', 'Description', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run()==FALSE)
+   {
+     echo "Something is Wrong";
+   }
+   else
+   {
+     $data = array('specimen_name' => $this->input->post('specname'),
+                   'specimen_description' => $this->input->post('specdesc'));
+     $this->Model_admin->insertspecimen($data);
+     redirect(base_url()."Admin/LabExamSpec");
+   }
+ }
+
+ function update_lab_specimen($id){
+   $this->form_validation->set_rules('specname', 'Name', 'required|trim|xss_clean|strip_tags');
+   $this->form_validation->set_rules('specdesc', 'Description', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run()==FALSE)
+   {
+     echo "Something is Wrong";
+   }
+   else
+   {
+     $data = array('specimen_name' => $this->input->post('specname'),
+                   'specimen_description' => $this->input->post('specdesc'));
+     $this->Model_admin->updatespecimen($id,$data);
+     redirect(base_url()."Admin/LabExamSpec");
+   }
+ }
+ }
+
     /*=========================================================================================================================*/
     function pharmacy_inventory()
     {
@@ -1112,7 +1162,7 @@ function EditExamType($id){
 					redirect('Admin/pharmacy_inventory');
 	            }
 
-    }
+
     /*=========================================================================================================================*/
     function logout(){
       $this->session->sess_destroy();
