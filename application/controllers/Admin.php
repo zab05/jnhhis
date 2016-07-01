@@ -1202,6 +1202,50 @@ function EditSpec($id)
         }
 
 
+        function pharmacy_request()
+        {
+            $data['items'] = $this->Model_admin->get_pharmacy_inventory();
+            $data['inventorycount'] = $this->Model_admin->count_pharmacy_inventory();
+            $this->load->view('administrator/includes/header');
+            $this->load->view('administrator/pharmacy/pharmacy_request_modal');
+            $this->load->view('administrator/pharmacy/pharmacy_request',$data);
+        }
+
+        function pharmacy_request_submit()
+        {
+          $itemids = array();
+          $quantities = array();
+          foreach($this->input->post('itemid') as $i)
+          {
+            $itemids[] = $i;
+          }
+
+          foreach($this->input->post('quantity') as $q)
+          {
+            $quantities[] = $q;
+          }
+
+          foreach ($quantities as $key => $value)
+          {
+            if($value == 0)
+            {
+              unset($itemids[$key]);
+              unset($quantities[$key]);
+            }
+          }
+
+          $itemids =  array_values($itemids);
+          $quantities = array_values($quantities);
+          $data = array();
+
+          for($i = 0; $i < sizeof($itemids); $i++)
+          {
+            
+          }
+
+        }
+
+
 
     /*=========================================================================================================================*/
     function logout()
