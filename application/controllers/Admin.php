@@ -958,6 +958,7 @@ $this->load->view('administrator/includes/footer.php');
       $this->Model_admin->update_item_inventory($id,$data);
       redirect(base_url()."Admin/pharmacy_inventory");
     }
+    
 
     function delete_item_inventory()
     {
