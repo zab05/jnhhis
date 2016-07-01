@@ -581,7 +581,7 @@
     }
     /*=========================================================================================================================*/
     function EmergencyRoom(){
-      $data['emergency_rooms'] = $this->Model_admin->get_beds_from_emergency_room();
+      $data['emergency_rooms'] = $this->Model_admin->get_available_beds_from_emergency_room();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/admitting/choose_er_room.php', $data);
       $this->load->view('administrator/includes/footer.php');
@@ -639,7 +639,7 @@
     }
 
     function ChooseBed($id){
-      $data['beds'] = $this->Model_admin->get_room_data($id);
+      $data['beds'] = $this->Model_admin->get_available_beds_for_directadmission($id);
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/admitting/choose_bed.php', $data);
       $this->load->view('administrator/includes/footer.php');
@@ -690,6 +690,33 @@
         $this->load->view('administrator/admitting/viewadmittedpatient.php', $data);
         $this->load->view('administrator/includes/footer.php');
       }
+    }
+
+    function TransferRoom($patientid){
+      $data['rooms'] = $this->Model_admin->get_room_list_for_directadmission();
+      $data['patientid'] = $patientid;
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/admitting/choose_room_to_transfer.php', $data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function ChooseBedToTransfer($patientid, $roomid){
+      $data['beds'] = $this->Model_admin->get_available_beds_for_directadmission($roomid);
+      $data['patientid'] = $patientid;
+      $data['roomid'] = $roomid;
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/admitting/choose_bed_to_transfer.php', $data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function TransferPatient($patientid, $bedid, $roomid){
+      $data_remove_patient_from_prev_bed = array("bed_patient"=>NULL);
+      $data_transfer_patient_to_new_bed = array("bed_patient"=>$patientid);
+      $update_patient_status = array("patient_status"=>2);
+      $this->Model_admin->remove_patient_from_bed($data_remove_patient_from_prev_bed, $patientid);
+      $this->Model_admin->transfer_patient_to_new_bed($data_transfer_patient_to_new_bed, $bedid);
+      $this->Model_admin->update_patient_status($update_patient_status, $patientid);
+      redirect(base_url().'Admin/ViewAdmittedPatients/'.$roomid);
     }
 
     /*=========================================================================================================================*/
