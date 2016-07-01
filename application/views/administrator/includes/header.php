@@ -337,6 +337,10 @@
                               <span>Laboratory</span>
                           </a>
                           <ul class="sub">
+                              <li><a  href="<?=base_url()?>Admin/LabExamType">Laboratory Exam Type</a></li>
+                              <li><a  href="#.html">Laboratory Specimens</a></li>
+                              <li><a  href="<?=base_url()?>Admin/LabExamCateg">Examination Category</a></li>
+                              <li>------------------------------------</li>
                               <li><a  href="<?=base_url()?>Admin/MakeLaboratoryRequests">Make Laboratory Request</a></li>
                               <li><a  href="#.html">Laboratory Maintenance</a></li>
                               <li><a  href="<?=base_url()?>Admin/LaboratoryRequests">Laboratory Requests</a></li>

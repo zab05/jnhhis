@@ -568,5 +568,60 @@
       $query = $this->db->get();
       return $query->row();
     }
+
+    function get_all_examcateg()
+    {
+      $this->db->select('*');
+      $this->db->from('examination_category');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function get_examcateg($id)
+    {
+        $this->db->select('*');
+        $this->db->from('examination_category');
+        $this->db->where('exam_cat_id',$id);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+    function insertcategory($data)
+    {
+      $this->db->insert('examination_category',$data);
+    }
+
+    function updatecategory($id,$data)
+    {
+      $this->db->where('exam_cat_id',$id);
+      $this->db->update('examination_category',$data);
+    }
+
+    function get_all_examtype(){
+      $this->db->select('*');
+      $this->db->from('laboratory_examination_type');
+      $this->db->join('examination_category','laboratory_examination_type.lab_exam_type_category_id=examination_category.exam_cat_id','left');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function get_specific_examtype($id){
+      $this->db->select('*');
+      $this->db->from('laboratory_examination_type');
+      $this->db->where('lab_exam_type_id',$id);
+      $query = $this->db->get();
+      return $query->row();
+    }
+
+    function insertexamtype($data)
+    {
+      $this->db->insert('laboratory_examination_type',$data);
+    }
+
+    function updateexamtype($id,$data)
+    {
+      $this->db->where('lab_exam_type_id',$id);
+      $this->db->update('laboratory_examination_type',$data);
+    }
   }
 ?>
