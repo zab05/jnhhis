@@ -338,7 +338,7 @@
                           </a>
                           <ul class="sub">
                               <li><a  href="<?=base_url()?>Admin/LabExamType">Laboratory Exam Type</a></li>
-                              <li><a  href="#.html">Laboratory Specimens</a></li>
+                              <li><a  href="<?=base_url()?>Admin/LabExamSpec">Laboratory Specimens</a></li>
                               <li><a  href="<?=base_url()?>Admin/LabExamCateg">Examination Category</a></li>
                               <li>------------------------------------</li>
                               <li><a  href="<?=base_url()?>Admin/MakeLaboratoryRequests">Make Laboratory Request</a></li>

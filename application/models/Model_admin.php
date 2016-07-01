@@ -623,5 +623,33 @@
       $this->db->where('lab_exam_type_id',$id);
       $this->db->update('laboratory_examination_type',$data);
     }
+
+    function get_all_labspec()
+    {
+      $this->db->select('*');
+      $this->db->from('laboratory_specimens');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function get_specific_specimen($id)
+    {
+      $this->db->select('*');
+      $this->db->from('laboratory_specimens');
+      $this->db->where('specimen_id',$id);
+      $query = $this->db->get();
+      return $query->row();
+    }
+
+    function insertspecimen($data)
+    {
+      $this->db->insert('laboratory_specimens',$data);
+    }
+
+    function updatespecimen($id,$data)
+    {
+      $this->db->where('specimen_id',$id);
+      $this->db->update('laboratory_specimens',$data);
+    }
   }
 ?>
