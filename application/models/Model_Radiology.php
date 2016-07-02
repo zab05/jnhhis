@@ -5,7 +5,7 @@
     function get_radiology_exams(){
       $this->db->select('*');
       $this->db->from('radiology_exam');
-      $this->db->where('exam_status', 0);
+      $this->db->where('exam_status', 1);
       $query = $this->db->get();
       return $query->result_array();
     }
