@@ -316,6 +316,8 @@
                               <li><a  href="#.html">Requesting of Drugs</a></li>
                               <li><a  href="#.html">Releasing of Drugs</a></li>
                               <li><a  href="<?php echo base_url().'Admin/pharmacy_inventory'?>">Inventory</a></li>
+                              <li>------------------------------------</li>
+                              <li><a  href="<?php echo base_url().'Admin/pharmacy_request'?>">Make Pharmacy Request</a></li>
                           </ul>
                       </li>
 

@@ -50,7 +50,7 @@
     function insert_radiology_exam(){
       $this->form_validation->set_rules('name', 'Exam Name', 'required|trim');
       $this->form_validation->set_rules('description', 'Exam Description', 'required|trim');
-
+      $this->form_validation->set_rules('price', 'Exam Price', 'requried|trim');
       if($this->form_validation->run() == FALSE){
         echo validation_errors();
       }else{
