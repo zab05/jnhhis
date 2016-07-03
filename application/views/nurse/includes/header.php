@@ -7,7 +7,7 @@
     <meta name="author" content="Mosaddek">
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="img/favicon.html">
-    <title>Radiology</title>
+    <!-- <title>Radiology</title> -->
     <!-- Bootstrap core CSS -->
     <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/bootstrap-reset.css" rel="stylesheet">
@@ -272,30 +272,29 @@
                   <!-- sidebar menu start-->
                   <ul class="sidebar-menu" id="nav-accordion">
                       <li>
-                          <a class="active" href="<?=base_url()?>Radiology">
+                          <a class="active" href="<?=base_url()?>Nurse">
                               <i class="fa fa-dashboard"></i>
                               <span>Dashboard</span>
                           </a>
                       </li>
 
                       <li>
-                          <a href="<?=base_url()?>Radiology/InsertRequest">
-                              <i class="fa fa-cogs"></i>
-                              <span>Make Radiology Request</span>
-                          </a>
-                      </li>
-
-                      <li>
-                          <a href="<?=base_url()?>Radiology/Maintenance">
-                              <i class="fa fa-cogs"></i>
-                              <span>Radiology Maintenance</span>
+                          <a href="<?=base_url()?>Nurse/vitalsigns">
+                              <i class="fa fa-tasks"></i>
+                              <span>View Patient vital signs</span>
                           </a>
                       </li>
 
                       <li>
                           <a href="#">
-                              <i class="fa fa-tasks"></i>
-                              <span>Radiology Requests</span>
+                              <i class="fa fa-medkit"></i>
+                              <span>Request Medicine</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#">
+                              <i class="fa fa-user-md"></i>
+                              <span>Doctor's Appointments</span>
                           </a>
                       </li>
 
@@ -305,6 +304,21 @@
                               <span>Approval of Requests</span>
                           </a>
                       </li>
+                      <li>
+                          <a href="#">
+                              <i class="fa fa-check-square-o"></i>
+                              <span>CSR Request</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#">
+                              <i class="fa fa-clock-o"></i>
+                              <span>Manage Shifting hours</span>
+                          </a>
+                      </li>
+
+
+
 
 
 

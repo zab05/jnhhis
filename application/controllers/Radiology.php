@@ -20,6 +20,10 @@
       $this->load->view('radiology/includes/footer.php');
     }
 
+    function InsertRequest(){
+
+    }
+    
     function Maintenance(){
       $data['radiology_exams'] = $this->Model_Radiology->get_radiology_exams();
       $this->load->view('radiology/includes/header.php');
@@ -50,13 +54,15 @@
     function insert_radiology_exam(){
       $this->form_validation->set_rules('name', 'Exam Name', 'required|trim');
       $this->form_validation->set_rules('description', 'Exam Description', 'required|trim');
-
+      $this->form_validation->set_rules('price', 'Exam Price', 'required|trim');
       if($this->form_validation->run() == FALSE){
         echo validation_errors();
       }else{
         $data = array(
                       'exam_name'=>$this->input->post('name'),
-                      'exam_description'=>$this->input->post('description')
+                      'exam_description'=>$this->input->post('description'),
+                      'exam_price'=>$this->input->post('price'),
+                      'exam_status'=>1
                      );
         $this->Model_Radiology->insert_radiology_exam($data);
         redirect(base_url()."Radiology/Maintenance", "refresh");
