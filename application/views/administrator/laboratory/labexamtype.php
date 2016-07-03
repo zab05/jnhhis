@@ -6,7 +6,7 @@
               <header class="panel-heading" style="background-color: #000;"></header>
               <table class="table">
                 <tr>
-                  <td colspan="2" align="center"><h5><a class="btn btn-info" data-toggle="modal" href="#addnewetpye">+ADD NEW CATEGORY</a></h5></td>
+                  <td colspan="2" align="center"><h5><a class="btn btn-info" data-toggle="modal" href="#addnewetpye">+ADD NEW EXAM TYPE</a></h5></td>
                 </tr>
               </table>
           </section>
@@ -33,7 +33,7 @@
                       echo "<td>".$etype['exam_cat_name'];
                       echo "<td>".$etype['lab_exam_type_description']."</td>";
                       echo "<td>";
-                        echo "<a href='".base_url()."Admin/EditExamType/".$etype['lab_exam_type_id']."' role='button' class='btn btn-default btn-xs'>Edit Lab Exam Type</a>";
+                        echo "<a href='".base_url()."Admin/EditExamType/".$etype['lab_exam_type_id']."' role='button' class='btn btn-default btn-xs'>Update Lab Exam Type</a>";
                       echo "</td>";
                     echo "</tr>";
                   }

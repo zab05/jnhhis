@@ -864,6 +864,7 @@ $this->load->view('administrator/includes/footer.php');
 }
 
     function ShowLabReq($id){
+      $data['requestno'] = $id;
       $data['laboratorytopatient'] = $this->Model_admin->get_laboratorytopatient_data($id);
       $data['laboratorytouser'] =  $this->Model_admin->get_laboratorytouser_data($id);
       $this->load->view('administrator/includes/header.php');
@@ -884,7 +885,11 @@ $patient = $this->input->post('patient');
 if($patient==""){
 redirect(base_url()."Admin/MakeLaboratoryRequests");
 }else{
+$data['labexamtype'] = $this->Model_admin->get_all_examtype();
+$data['urgencycat'] = $this->Model_admin->get_all_urgencycategory();
+$data['fastingcat'] = $this->Model_admin->get_all_fastingcategory();
 $data['patient'] = $this->Model_admin->get_single_patient($patient);
+$data['specimen'] = $this->Model_admin->get_all_labspec();
 $this->load->view('administrator/includes/header.php');
 $this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
 $this->load->view('administrator/includes/footer.php');
@@ -1075,7 +1080,39 @@ function EditSpec($id){
      redirect(base_url()."Admin/LabExamSpec");
    }
  }
+
+ function insert_laboratoryrequest()
+ {
+   $this->form_validation->set_rules('labremark', 'Remark', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run()==FALSE)
+   {
+     echo "Something is Wrong";
+   }
+   else {
+     $specimens = $this->input->post('specimens');
+     foreach($specimens as $spec){
+       $data1 = array('lab_user'=>1,
+                     'lab_patient'=>$this->input->post('patientid'),
+                     'lab_date_req'=>date('Y-m-d H:i:s'),
+                     'lab_patient_checkin'=>$this->input->post('patientchckin'),
+                     'urgency_cat_fk'=>$this->input->post('urgency'),
+                     'fasting_cat_fk'=>$this->input->post('fasting'),
+                     'spec_id_fk'=>$spec,
+                     'exam_type_fk'=>$this->input->post('laboratoryexam'));
+          $id = $this->Model_admin->insertlaboratoryrequest($data1);
+     }
+
+     $data2 = array('remark'=>$this->input->post('labremark'),
+                    'rem_user'=>1,
+                    'rem_date'=>date('Y-m-d'),
+                  'lab_id_fk'=>$id);
+      redirect(base_url()."Admin/LaboratoryRequests");
+   }
+
+
  }
+
 
     /*=========================================================================================================================*/
     function pharmacy_inventory()
@@ -1161,6 +1198,7 @@ function EditSpec($id){
               $this->session->set_flashdata('error', "Error occured");
 					redirect('Admin/pharmacy_inventory');
 	            }
+            }
 
 
     /*=========================================================================================================================*/
@@ -1169,4 +1207,5 @@ function EditSpec($id){
       redirect(base_url());
     }
   }
+
 ?>
