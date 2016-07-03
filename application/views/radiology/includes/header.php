@@ -279,6 +279,13 @@
                       </li>
 
                       <li>
+                          <a href="<?=base_url()?>Radiology/InsertRequest">
+                              <i class="fa fa-cogs"></i>
+                              <span>Make Radiology Request</span>
+                          </a>
+                      </li>
+
+                      <li>
                           <a href="<?=base_url()?>Radiology/Maintenance">
                               <i class="fa fa-cogs"></i>
                               <span>Radiology Maintenance</span>
