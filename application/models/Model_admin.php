@@ -651,5 +651,25 @@
       $this->db->where('specimen_id',$id);
       $this->db->update('laboratory_specimens',$data);
     }
+
+    function get_all_urgencycategory()
+    {
+      $this->db->select('*');
+      $this->db->from('urgency_cat');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function get_all_fastingcategory()
+    {
+      $this->db->select('*');
+      $this->db->from('fasting_cat');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function insertlaboratoryrequest($data1){
+      $this->db->insert('laboratory_request',$data1);
+    }
   }
 ?>

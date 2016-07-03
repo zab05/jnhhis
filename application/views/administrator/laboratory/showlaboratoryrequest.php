@@ -1,6 +1,11 @@
 <section id="main-content">
   <section class="wrapper">
     <div class="row">
+      <div class="col-sm-16">
+        <header class="panel-heading">
+<center><h4>Laboratory Request #<?=$requestno?><h4></center>
+        </header>
+      </div>
         <div class="col-sm-6">
             <section class="panel">
                 <header class="panel-heading" style="background-color: #000;"></header>
