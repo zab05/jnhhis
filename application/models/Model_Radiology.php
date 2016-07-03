@@ -5,7 +5,7 @@
     function get_radiology_exams(){
       $this->db->select('*');
       $this->db->from('radiology_exam');
-      $this->db->where('exam_status', 0);
+      $this->db->where('exam_status', 1);
       $query = $this->db->get();
       return $query->result_array();
     }
@@ -20,6 +20,13 @@
 
     function insert_radiology_exam($data){
       $this->db->insert('radiology_exam', $data);
+    }
+
+    function get_patient_list(){
+      $this->db->select('*');
+      $this->db->from('patient');
+      $query = $this->db->get();
+      return $query->result_array();
     }
 
     function deactivate($id, $data){

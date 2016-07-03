@@ -197,8 +197,8 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
@@ -305,8 +305,8 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
@@ -410,8 +410,8 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
@@ -512,11 +512,13 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
+
+
 
       if($this->form_validation->run() == FALSE){
         echo validation_errors();
@@ -1240,7 +1242,7 @@ function EditSpec($id)
 
           for($i = 0; $i < sizeof($itemids); $i++)
           {
-            
+
           }
 
         }
