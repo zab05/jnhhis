@@ -53,7 +53,7 @@
                               <i class="fa fa-tasks"></i>
                               <span class="badge bg-success">6</span>
                           </a>
-                          <ul class="dropdown-menu extended tasks-bar " style="margin-left: 200px">
+                          <ul class="dropdown-menu extended tasks-bar " >
                               <div class="notify-arrow notify-arrow-green"></div>
                               <li>
                                   <p class="green">You have 6 pending tasks</p>
@@ -407,6 +407,6 @@
 
 
                   </ul>
-                  <!-- sidebar menu end-->
+                  <!-- sidebar menu endsadfasdfasdfsadf-->
               </div>
           </aside>
