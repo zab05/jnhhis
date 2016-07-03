@@ -867,6 +867,7 @@ $this->load->view('administrator/includes/footer.php');
 }
 
     function ShowLabReq($id){
+      $data['requestno'] = $id;
       $data['laboratorytopatient'] = $this->Model_admin->get_laboratorytopatient_data($id);
       $data['laboratorytouser'] =  $this->Model_admin->get_laboratorytouser_data($id);
       $this->load->view('administrator/includes/header.php');
@@ -883,6 +884,22 @@ $this->load->view('administrator/includes/footer.php');
       $this->load->view('administrator/includes/footer.php');
     }
 
+<<<<<<< HEAD
+function MakeLaboratoryRequests2(){
+$patient = $this->input->post('patient');
+if($patient==""){
+redirect(base_url()."Admin/MakeLaboratoryRequests");
+}else{
+$data['labexamtype'] = $this->Model_admin->get_all_examtype();
+$data['urgencycat'] = $this->Model_admin->get_all_urgencycategory();
+$data['fastingcat'] = $this->Model_admin->get_all_fastingcategory();
+$data['patient'] = $this->Model_admin->get_single_patient($patient);
+$data['specimen'] = $this->Model_admin->get_all_labspec();
+$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
+$this->load->view('administrator/includes/footer.php');
+}
+=======
 function MakeLaboratoryRequests2()
 {
   $patient = $this->input->post('patient');
@@ -897,6 +914,7 @@ function MakeLaboratoryRequests2()
   $this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
   $this->load->view('administrator/includes/footer.php');
   }
+>>>>>>> fa69afe03bae41936cb8afe9df166becf3272958
 }
 
 function LabExamCateg()
@@ -1109,6 +1127,41 @@ function EditSpec($id)
    }
  }
 
+<<<<<<< HEAD
+ function insert_laboratoryrequest()
+ {
+   $this->form_validation->set_rules('labremark', 'Remark', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run()==FALSE)
+   {
+     echo "Something is Wrong";
+   }
+   else {
+     $specimens = $this->input->post('specimens');
+     foreach($specimens as $spec){
+       $data1 = array('lab_user'=>1,
+                     'lab_patient'=>$this->input->post('patientid'),
+                     'lab_date_req'=>date('Y-m-d H:i:s'),
+                     'lab_patient_checkin'=>$this->input->post('patientchckin'),
+                     'urgency_cat_fk'=>$this->input->post('urgency'),
+                     'fasting_cat_fk'=>$this->input->post('fasting'),
+                     'spec_id_fk'=>$spec,
+                     'exam_type_fk'=>$this->input->post('laboratoryexam'));
+          $id = $this->Model_admin->insertlaboratoryrequest($data1);
+     }
+
+     $data2 = array('remark'=>$this->input->post('labremark'),
+                    'rem_user'=>1,
+                    'rem_date'=>date('Y-m-d'),
+                  'lab_id_fk'=>$id);
+      redirect(base_url()."Admin/LaboratoryRequests");
+   }
+
+
+ }
+=======
+>>>>>>> fa69afe03bae41936cb8afe9df166becf3272958
+
 
     /*=========================================================================================================================*/
 
@@ -1179,6 +1232,23 @@ function EditSpec($id)
 
                   if ($this->csvimport->get_array($file_path))
                   {
+<<<<<<< HEAD
+	                    $insert_data = array(
+	                        'item_name'=>$row['Name'],
+	                        'item_description'=>$row['Description'],
+	                        'item_quantity'=>$row['Quantity'],
+	                        'item_price'=>$row['Price']
+	                    );
+	                    $this->Model_admin->add_item_inventory_import($insert_data);
+	                }
+	                //$this->session->set_flashdata('csv', '<div class="alert alert-success text-center">Users imported successfully!</div>');
+	                redirect(base_url().'admin/pharmacy_inventory');
+	            } else
+              $this->session->set_flashdata('error', "Error occured");
+					redirect('Admin/pharmacy_inventory');
+	            }
+            }
+=======
                       $csv_array = $this->csvimport->get_array($file_path);
                       foreach ($csv_array as $row)
                       {
@@ -1245,6 +1315,7 @@ function EditSpec($id)
 
         }
 
+>>>>>>> fa69afe03bae41936cb8afe9df166becf3272958
 
 
     /*=========================================================================================================================*/
@@ -1253,6 +1324,10 @@ function EditSpec($id)
       $this->session->sess_destroy();
       redirect(base_url());
     }
+<<<<<<< HEAD
+  }
+=======
 }
+>>>>>>> fa69afe03bae41936cb8afe9df166becf3272958
 
 ?>

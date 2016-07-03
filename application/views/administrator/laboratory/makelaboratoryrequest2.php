@@ -48,15 +48,13 @@
               <header class="panel-heading" align="center">CHOOSE LABORATORY EXAMINATION</header>
             <div class="form-group">
                 <div class="col-lg-12">
-                  <select name="laboratoryexam" size="5" style="height: 100%;">
-                    <option value'1'>1: Hematology</option>
+                  <select name="laboratoryexam" size="10" style="height: 100%;">
                     <?php
-                      /*foreach($patientlist as $patient){
-                        echo "<option value='".$patient['patient_id']."'>";
-                          echo $patient['patient_id'].": ".$patient['first_name']." ".$patient['middle_name']." ".$patient['last_name'];
+                      foreach($labexamtype as $etype){
+                        echo "<option value='".$etype['lab_exam_type_id']."'>";
+                          echo $etype['lab_exam_type_id'].": ".$etype['lab_exam_type_name'];
                         echo "</option>";
-                      }*/
-
+                      }
                     ?>
                   </select>
                   <div class="form-group">
@@ -64,8 +62,13 @@
                       <label  class="col-lg-5 col-sm-3 control-label">Urgency:</label>
                       <div class="col-lg-2">
                           <select class="form-control" name="urgency">
-                                <option value='1'>Normal</option>";
-                                <option value='2'>Urgent</option>";
+                            <?php
+                              foreach($urgencycat as $ucat){
+                                echo "<option value='".$ucat['urg_id']."'>";
+                                  echo $ucat['urg_name'];
+                                echo "</option>";
+                              }
+                            ?>
                           </select>
                       </div>
                   </div>
@@ -73,12 +76,39 @@
                     <br>
                       <label  class="col-lg-5 col-sm-3 control-label">Fasting:</label>
                       <div class="col-lg-2">
-                          <select class="form-control" name="urgency">
-                                <option value='1'>Non-Fasting</option>";
-                                <option value='2'>Fasting</option>";
+                          <select class="form-control" name="fasting">
+                            <?php
+                              foreach($fastingcat as $fcat){
+                                echo "<option value='".$fcat['fast_id']."'>";
+                                  echo $fcat['fast_name'];
+                                echo "</option>";
+                              }
+                            ?>
                           </select>
                       </div>
                   </div>
+                  <div class="form-group">
+                    <br>
+                      <label  class="col-lg-5 col-sm-3 control-label">Specimen:</label>
+                      <div class="col-lg-2">
+                            <?php
+                              foreach($specimen as $spec){
+                                  echo "<input type='checkbox' name='specimens[]' value='".$spec['specimen_id']."'/>".$spec['specimen_name'];
+                                  echo "<br>";
+                              }
+                            ?>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <br>
+                      <label  class="col-lg-5 col-sm-3 control-label">Comment/Remark:</label>
+                      <div class="col-lg-2">
+                  <textarea name="labremark" rows="5" cols="40"></textarea>
+                  <input type="hidden" name="patientid" value="<?php echo $patient->patient_id; ?>"/>
+                  <input type="hidden" name="patientchckin" value="<?php echo $patient->date_registered; ?>"/>
+                      </div>
+                  </div>
+
                 </div>
             </div>
             <div class="form-group">
