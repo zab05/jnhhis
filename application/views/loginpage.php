@@ -24,7 +24,7 @@
   body{
 	  font-weight: 300;
   }
-  
+
   ::-webkit-input-placeholder {
    color: red;
 }
@@ -41,7 +41,7 @@
                                <?php
                                  $attributes = array('name' => 'userLogin', 'id' => 'userLogin', 'method' => 'post');
                                  echo form_open('Norahs/checkLogin', $attributes); ?>
-								<img width="350" src="<?php echo base_url()?>/img/nohraslogo.png">
+								<img width="350" src="<?php echo base_url()?>/img/norahslogo.png">
 								<div class="col-md-6 col-md-offset-3">
 								<div class="row">
 									<div class="col-md-6">
@@ -60,9 +60,9 @@
 								<label class="pull-left" style="font-weight: 300">
 											<a href="<?=base_url()?>Norahs/forgotPassword">Forgot Password?</a>
 								</label>
-								
+
 									<input style="font-weight: 300; BORDER: #B2203C;background-color:#B2203C " type="submit" class="btn btn-lg btn-danger btn-block" value="LOGIN"/>
-									
+
 								</div>
                             </fieldset>
                         </form>
