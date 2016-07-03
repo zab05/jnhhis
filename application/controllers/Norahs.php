@@ -10,7 +10,7 @@
       }else if($this->session->userdata("user_loggedin")==TRUE && $this->session->userdata("user_type")==2){
         ///redirect("Host","refresh");
       }else if($this->session->userdata("user_loggedin")==TRUE && $this->session->userdata("user_type")==3){
-        //redirect("Admin","refresh");
+      redirect("Nurse","refresh");
       }else if($this->session->userdata("user_loggedin")==TRUE && $this->session->userdata("user_type")==4){
         //redirect(base_url());
       }else if($this->session->userdata("user_loggedin")==TRUE && $this->session->userdata("user_type")==5){
@@ -63,6 +63,8 @@
                 redirect(base_url()."Admin","refresh");
               }else if($user_details->type_id == 5){
                 redirect(base_url()."Radiology", "refresh");
+              }else if($user_details->type_id == 3){
+                redirect(base_url()."Nurse", "refresh");
               }else{
                 echo "Unauthorized Access!";
               }
