@@ -34,16 +34,26 @@
               <!--logo start-->
               <a href="index-2.html" class="logo">NORA<span>HS</span></a>
               <!--logo end-->
-              <div class="nav notify-row" id="top_menu">
+
+              <div class="nav notify-row " id="top_menu">
                   <!--  notification start -->
                   <ul class="nav top-menu">
                       <!-- settings start -->
+
+                      <!-- notification dropdown end -->
+                  </ul>
+                  <!--  notification end -->
+              </div>
+              <div class="top-nav ">
+                  <!--search & user info start-->
+                  <ul class="nav pull-right top-menu">
+                      <!-- user login dropdown start-->
                       <li class="dropdown">
                           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                               <i class="fa fa-tasks"></i>
                               <span class="badge bg-success">6</span>
                           </a>
-                          <ul class="dropdown-menu extended tasks-bar">
+                          <ul class="dropdown-menu extended tasks-bar " style="margin-left: 200px">
                               <div class="notify-arrow notify-arrow-green"></div>
                               <li>
                                   <p class="green">You have 6 pending tasks</p>
@@ -237,18 +247,10 @@
                               </li>
                           </ul>
                       </li>
-                      <!-- notification dropdown end -->
-                  </ul>
-                  <!--  notification end -->
-              </div>
-              <div class="top-nav ">
-                  <!--search & user info start-->
-                  <ul class="nav pull-right top-menu">
-                      <!-- user login dropdown start-->
                       <li class="dropdown">
                           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                              <img alt="" src="<?=base_url()?>img/avatar1_small.jpg">
-                              <span class="username">Jhon Doue</span>
+                              <img alt="" width="30"src="<?=base_url()?>img/doctor.png">
+                              <span class="username"><?php echo $this->session->userdata("user_firstname") ?></span>
                               <b class="caret"></b>
                           </a>
                           <ul class="dropdown-menu extended logout">
@@ -259,11 +261,11 @@
                               <li><a href="<?=base_url()?>Admin/Logout"><i class="fa fa-key"></i> Log Out</a></li>
                           </ul>
                       </li>
-                      <li class="sb-toggle-right">
-                          <i class="fa  fa-align-right"></i>
-                      </li>
+
                       <!-- user login dropdown end -->
                   </ul>
+
+
                   <!--search & user info end-->
               </div>
           </header>
@@ -301,7 +303,8 @@
                           </a>
                           <ul class="sub">
                               <li><a  href="<?=base_url()?>Admin/EmergencyRoom">Emergency Room</a></li>
-                              <li><a  href="#.html">Direct Room Admission</a></li>
+                              <li><a  href="<?=base_url()?>Admin/DirectRoomAdmission">Direct Room Admission</a></li>
+                              <li><a  href="<?=base_url()?>Admin/ViewAdmittedPatients">View Admitted Patients</a></li>
                           </ul>
                       </li>
 
@@ -315,6 +318,8 @@
                               <li><a  href="#.html">Requesting of Drugs</a></li>
                               <li><a  href="#.html">Releasing of Drugs</a></li>
                               <li><a  href="<?php echo base_url().'Admin/pharmacy_inventory'?>">Inventory</a></li>
+                              <li>------------------------------------</li>
+                              <li><a  href="<?php echo base_url().'Admin/pharmacy_request'?>">Make Pharmacy Request</a></li>
                           </ul>
                       </li>
 
@@ -336,11 +341,19 @@
                               <span>Laboratory</span>
                           </a>
                           <ul class="sub">
-                              <li><a  href="#.html">Laboratory Maintenance</a></li>
-                              <li><a  href="#.html">Laboratory Requests</a></li>
-                              <li><a  href="#.html">Approval of Requests</a></li>
+                                <li class="sub-menu">
+                                    <a  href="#">Laboratory Maintenance</a>
+                                    <ul class="sub">
+                                      <li><a  href="<?=base_url()?>Admin/LabExamType">Laboratory Exam Type</a></li>
+                                      <li><a  href="<?=base_url()?>Admin/LabExamSpec">Laboratory Specimens</a></li>
+                                      <li><a  href="<?=base_url()?>Admin/LabExamCateg">Examination Category</a></li>
+                                    </ul>
+                                </li>
+                              <li><a  href="<?=base_url()?>Admin/LaboratoryRequests">Laboratory Requests</a></li>
+                              <li><a  href="<?=base_url()?>Admin/AppofReq">Approval of Requests</a></li>
                           </ul>
                       </li>
+
 
                       <li class="sub-menu">
                           <a href="javascript:;" >
