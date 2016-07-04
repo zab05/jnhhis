@@ -1,13 +1,21 @@
+<style>
+b{color:#222;font-weight:600}
+table tr td {border:0}
+#patient-info tr td{border:0}
+</style>
 <section id="main-content">
   <section class="wrapper">
       <div class="row">
           <div class="col-sm-3">
             <section class="panel">
-                <header class="panel-heading" style="background-color: #000;"></header>
+                <header style="font-weight:300" class="panel-heading">
+                   New Patient
+
+                </header>
+                <div class="panel-body">
+                <div class="adv-table">
                 <table class="table">
-                    <tr>
-                      <td colspan="2" align="center"><h5><a href="<?=base_url()?>Admin/AddPatient" role="button" class="btn btn-info">+ADD NEW PATIENT</a></h5></td>
-                    </tr>
+
                     <tr>
                     </tr>
                     <tr>
@@ -23,13 +31,18 @@
                       <td>1</td>
                     </tr>
                 </table>
+                <center>
+        				<a href="<?=base_url()?>Admin/AddPatient" role="button" class="btn btn-sm btn-round btn-success"><i class="fa fa-plus-circle"></i> Add Patient</a>
+        				</center>
+              </div>
+            </div>
             </section>
           </div>
 
           <div class="col-sm-9">
             <section class="panel" style="height: 100%;">
               <header class="panel-heading">
-                  <center><h3>PATIENT INFORMATION<h3></center>
+                  Patient Information
               </header>
               <table class="table" style="text-align: center;">
                 <tr id="tblheader">
@@ -48,25 +61,25 @@
                 </tr>
               </table>
               <center>
-              <table class="table table-bordered" style="width: 50%; text-align: center;">
+              <table id="patient-info" class="table" style="width: 50%; text-align: left; ">
                 <tr>
-                  <td style="width: 50%;"><b>Patient Number:</b></td>
+                  <td style="border:0;width: 50%;"><b>Patient Number:</b></td>
                   <td><?=" ".$patient->patient_id?></td>
                 </tr>
 
                 <tr>
-                  <td style="width: 50%;"><b>Age:</b></td>
+                  <td style="border:0;width: 50%;"><b>Age:</b></td>
                   <td><?=" ".$patient->age?></td>
                 </tr>
 
                 <tr>
-                  <td style="width: 50%;"><b>Birthday:</b></td>
+                  <td style="border:0;width: 50%;"><b>Birthday:</b></td>
                   <td><?=" ".date('F d, Y', strtotime($patient->birthdate))?></td>
 
                 </tr>
 
                 <tr>
-                  <td style="width: 50%;"><b>Gender:</b></td>
+                  <td style="border:0;width: 50%;"><b>Gender:</b></td>
                   <td>
                     <?php
                      if($patient->gender == 'M'){
@@ -79,35 +92,35 @@
                 </tr>
 
                 <tr>
-                  <td style="width: 50%;"><b>Mobile Number:</b></td>
+                  <td style="border:0;width: 50%;"><b>Mobile Number:</b></td>
                   <td><?=" ".$patient->mobile_number?></td>
                 </tr>
 
                 <tr>
-                  <td style="width: 50%;"><b>Telephone Number:</b></td>
+                  <td style="border:0;width: 50%;"><b>Telephone Number:</b></td>
                   <td><?=" ".$patient->telephone_number?></td>
                 </tr>
 
                 <tr>
-                  <td style="width: 50%;"><b>Address:</b></td>
+                  <td style="border:0;width: 50%;"><b>Address:</b></td>
                   <td><?=" ".$patient->present_address?></td>
                 </tr>
 
                 <tr>
-                  <td style="width: 50%;"><b>Nationality:</b></td>
+                  <td style="border:0;width: 50%;"><b>Nationality:</b></td>
                   <td><?=" ".$patient->nationality?></td>
                 </tr>
 
                 <tr>
-                  <td colspan="2">
-                    <a href="<?=base_url()?>Admin/Billing/<?=$patient->patient_id?>" role="button" class="btn btn-default">Overall Billing</a>
-                    <a href="<?=base_url()?>Admin/PatientHistory/<?=$patient->patient_id?>" role="button" class="btn btn-default">Medical History</a>
-                    <a href="<?=base_url()?>Admin/VitalSign/<?=$patient->patient_id?>" role="button" class="btn btn-default">Vital Signs</a>
+                  <td colspan="2" style="text-align:left">
+                    <a href="<?=base_url()?>Admin/Billing/<?=$patient->patient_id?>" role="button" class="btn btn-shadow btn-default"><i class="fa fa-money"></i> Overall Billing</a>
+                    <a href="<?=base_url()?>Admin/PatientHistory/<?=$patient->patient_id?>" role="button" class="btn btn-shadow btn-primary"><i class="fa fa-archive"></i> Medical History</a>
+                    <a href="<?=base_url()?>Admin/VitalSign/<?=$patient->patient_id?>" role="button" class="btn btn-shadow btn-success"><i class="fa fa-h-square"></i> Vital Signs</a>
                     <br>
                     <br>
-                    <a href="<?=base_url()?>Admin/Pharmacy/<?=$patient->patient_id?>" role="button" class="btn btn-default">Pharmacy</a>
-                    <a href="#" role="button" class="btn btn-default">Laboratory</a>
-                    <a href="#" role="button" class="btn btn-default">Radiology</a>
+                    <a href="<?=base_url()?>Admin/Pharmacy/<?=$patient->patient_id?>" role="button" class="btn btn-shadow btn-info"><i class="fa fa-medkit"></i> Pharmacy</a>
+                    <a href="#" role="button" class="btn btn-shadow btn-warning"><i class="fa fa-flask"></i> Laboratory</a>
+                    <a href="#" role="button" class="btn btn-shadow btn-danger"><i class="fa fa-stethoscope"></i> Radiology</a>
                   </td>
                 </tr>
               </table>

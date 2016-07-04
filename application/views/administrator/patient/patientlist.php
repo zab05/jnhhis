@@ -4,12 +4,12 @@
         <div class="col-sm-3">
             <section class="panel">
 
-				<header style="font-weight:300" class="panel-heading">
-					 New Patient
+      				<header style="font-weight:300" class="panel-heading">
+      					 New Patient
 
-				</header>
-				<div class="panel-body">
-				<div class="adv-table">
+      				</header>
+      				<div class="panel-body">
+      				<div class="adv-table">
                 <table class="table">
 
                     <tr>
@@ -69,7 +69,7 @@
                             echo "<td>";
                               echo "<div class='btn-group' role='group' aria-label='...'>";
                                 echo "<a href='".base_url()."Admin/PatientList/".$patient['patient_id']."' role='button' class='btn btn-sm btn-info'>View</a>";
-                                echo "<a href='".base_url()."Admin/PatientHistory/".$patient['patient_id']."' role='button' class='btn btn-sm btn-success'>History</a>";
+                                echo "<a href='".base_url()."Admin/PatientHistory/".$patient['patient_id']."' role='button' class='btn btn-sm btn-primary'>History</a>";
                                 echo "<a href='".base_url()."Admin/EditPatient/".$patient['patient_id']."' role='button' class='btn btn-sm btn-warning'>Edit</a>";
                               echo "</div>";
                             echo "</td>";
