@@ -27,7 +27,7 @@
         $data['total_admitted_in_er_count'] = $this->Model_admin->get_count_patient_admitted_in_er();
         $this->load->view('administrator/includes/header.php');
         $this->load->view('administrator/patient/patientlist.php', $data);
-        $this->load->view('administrator/includes/footer.php');
+        //$this->load->view('administrator/includes/footer.php');
       }else{
         $data['patient'] = $this->Model_admin->get_single_patient($id);
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
@@ -383,7 +383,7 @@
       $data['total_inactive_radiologist'] = $this->Model_admin->get_total_inactive_radiologists();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/radiology/active_radiologist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactiveRadiologist(){
@@ -393,7 +393,7 @@
       $data['total_inactive_radiologist'] = $this->Model_admin->get_total_inactive_radiologists();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/radiology/inactive_radiologist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddRadiologist(){
@@ -485,7 +485,7 @@
       $data['total_inactive_pharmacist'] = $this->Model_admin->get_total_inactive_pharmacist();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/pharmacy/active_pharmacist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactivePharmacist(){
@@ -495,7 +495,7 @@
       $data['total_inactive_pharmacist'] = $this->Model_admin->get_total_inactive_pharmacist();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/pharmacy/inactive_pharmacist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddPharmacist(){

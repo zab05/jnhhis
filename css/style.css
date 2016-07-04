@@ -6222,3 +6222,11 @@ header.blue-bg .search:focus {
 	color: #444
 }
 
+.adv-table table tbody{
+	text-align:left;
+}
+
+.adv-table table tbody td:last-child{
+	text-align:center;
+	
+}
