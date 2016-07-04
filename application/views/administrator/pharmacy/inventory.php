@@ -27,7 +27,7 @@
 
                 </table>
 				<center>
-				<a href="#addModal" data-toggle="modal" role="button" class="btn btn-sm btn-round btn-success"><i class="fa fa-plus"></i> Add Medicine</a>
+				<a href="#addModal" data-toggle="modal" role="button" class="btn btn-sm btn-round btn-success"><i class="fa fa-plus-circle"></i> Add Medicine</a>
 				</center>
 				</div>
 				</div>

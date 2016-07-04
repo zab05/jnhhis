@@ -171,7 +171,7 @@
       $data['total_inactive_doctors_count'] = $this->Model_admin->get_total_inactive_doctor_count();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/doctor/active_doctorlist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactiveDoctor(){
@@ -181,7 +181,7 @@
       $data['total_inactive_doctors_count'] = $this->Model_admin->get_total_inactive_doctor_count();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/doctor/inactive_doctorlist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddDoctor(){
@@ -278,7 +278,7 @@
       $data['total_inactive_bedside_nurse'] = $this->Model_admin->get_total_inactive_bedside_nurse();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/nurse/active_nurselist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactiveNurse(){
@@ -290,7 +290,7 @@
       $data['total_inactive_bedside_nurse'] = $this->Model_admin->get_total_inactive_bedside_nurse();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/nurse/inactive_nurselist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddNurse(){
