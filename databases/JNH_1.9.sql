@@ -57,11 +57,11 @@ AFTER UPDATE ON admission_schedule
 FOR EACH ROW
 
 BEGIN
-	
+
 	insert ignore into discharge_schedule(patient_id,admit_id)
     select patient_id,admission_id from admission_schedule
-    where status = 2; 
-	
+    where status = 2;
+
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;

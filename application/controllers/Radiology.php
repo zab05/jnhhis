@@ -38,6 +38,14 @@
       $this->load->view('radiology/includes/footer.php');
     }
 
+    function MakeRadiologyRequest(){
+      $data['radiology_exams'] = $this->Model_Radiology->get_inactive_radiology_exams();
+      $data['patients'] = $this->Model_Radiology->get_patient_list();
+      $this->load->view('radiology/includes/header.php');
+      $this->load->view('radiology/makeradiologyrequst.php', $data);
+      $this->load->view('radiology/includes/footer.php');
+    }
+
     function DeactivateExam($id){
       $data = array('exam_status'=>0);
       $this->Model_Radiology->deactivate($id, $data);

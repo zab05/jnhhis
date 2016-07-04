@@ -293,6 +293,13 @@
                       </li>
 
                       <li>
+                          <a href="<?=base_url()?>Radiology/MakeRadiologyRequest">
+                              <i class="fa fa-cogs"></i>
+                              <span>Make Radiology Requests</span>
+                          </a>
+                      </li>
+
+                      <li>
                           <a href="#">
                               <i class="fa fa-tasks"></i>
                               <span>Radiology Requests</span>
