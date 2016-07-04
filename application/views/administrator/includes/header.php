@@ -327,9 +327,8 @@
                               <span>CSR</span>
                           </a>
                           <ul class="sub">
-                              <li><a  href="#.html">Receiving of CSR Items</a></li>
-                              <li><a  href="#.html">Requesting of Items</a></li>
-                              <li><a  href="#.html">Releasing of Items</a></li>
+                              <li><a  href="<?=base_url()?>Admin/CSRPendingrequests">Pending Requests</a></li>
+                              <li><a  href="<?=base_url()?>Admin/CSRListofproducts">List of Products</a></li>
                           </ul>
                       </li>
 

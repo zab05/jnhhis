@@ -65,7 +65,7 @@
                       </div>
 
                       <div class="form-group">
-                          <label  class="col-lg-3 col-sm-3 control-label">Room Location: </label>
+                          <label  class="col-lg-3 col-sm-3 control-label">Room Price: </label>
                           <div class="col-lg-9">
                             <input type="text" class="form-control"  name="roomprice" placeholder="Room Price">
                           </div>

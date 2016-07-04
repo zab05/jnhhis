@@ -1229,7 +1229,18 @@ function EditSpec($id){
 	            }
             }
 
+    /*=========================================================================================================================*/
+    function CSRListofproducts(){
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/csr/listofproducts.php');
+      $this->load->view('administrator/includes/footer.php');
+    }
 
+    function CSRPendingrequests(){
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/csr/pendingrequest.php');
+      $this->load->view('administrator/includes/footer.php');
+    }
     /*=========================================================================================================================*/
     function logout(){
       $this->session->sess_destroy();

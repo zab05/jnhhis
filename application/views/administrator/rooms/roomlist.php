@@ -29,7 +29,7 @@
                 <?php
                   foreach($rooms as $room){
                     echo "<tr>";
-                      echo "<td>".$room['room_type_id']."</td>";
+                      echo "<td>".$room['room_id']."</td>";
                       echo "<td>".$room['room_name']."</td>";
                       echo "<td>".$room['room_location']."</td>";
                       echo "<td>".$room['occupancy_status_name']."</td>";
