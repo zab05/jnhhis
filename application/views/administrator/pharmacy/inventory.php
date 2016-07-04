@@ -1,35 +1,49 @@
+
+
 <section id="main-content">
   <section class="wrapper">
     <div class="row">
         <div class="col-sm-3">
+
             <section class="panel">
-                <header class="panel-heading" style="background-color: #000;"></header>
-                <table class="table">
-                    <tr>
-                      <td colspan="2" align="center"><h5><a href="#addModal" data-toggle="modal" role="button" class="btn btn-info">+ADD NEW MEDICINE</a></h5></td>
-                    </tr>
-                    <tr>
-                    </tr>
+			<header style="font-weight:300" class="panel-heading">
+                 New Item
+             <span class="tools pull-right">
+
+             </span>
+            </header>
+               <div class="panel-body">
+               <div class="adv-table">
+
+                <table  class="table">
                     <tr>
                       <td>Overall items: </td>
                       <td><?php echo $inventorycount?></td>
                     </tr>
                     <tr>
                       <td>Overall Stock: </td>
-                      <td>1</td>
+                      <td >1</td>
                     </tr>
 
                 </table>
+				<center>
+				<a href="#addModal" data-toggle="modal" role="button" class="btn btn-sm btn-round btn-success"><i class="fa fa-plus-circle"></i> Add Item</a>
+				</center>
+				</div>
+				</div>
             </section>
         </div>
         <div class="col-sm-9">
             <section class="panel">
-                <header class="panel-heading" style="background-color: #000;"></header>
-                <header class="panel-heading">
-                    <center><h4>PATIENT LIST<h4></center>
-                </header>
+			<header style="font-weight:300" class="panel-heading">
+                 Inventory List
+             <span class="tools pull-right">
+             </span>
+             </header>
+				<div class="panel-body">
+                <div class="adv-table">
 
-                <table class="table table-striped">
+                <table class="table table-striped" id="dynamic-table">
                     <thead>
                     <tr>
                         <th style="text-align: center;">#</th>
@@ -54,12 +68,12 @@
                           echo '<td>';
                           echo "<div class='btn-group' role='group' aria-label='...'>";
                                 ?>
-                                <a href="#myModal" class="btn btn-default" data-toggle="modal" data-updatingid="<?php echo $i->item_id ?>"
+                                <a href="#myModal" class="btn btn-warning" data-toggle="modal" data-updatingid="<?php echo $i->item_id ?>"
                                                                                                data-updatingname="<?php echo $i->item_name?>"
                                                                                                data-updatingdescription="<?php echo $i->item_description?>"
                                                                                                data-updatingquantity="<?php echo $i->item_quantity?>"
-                                                                                               data-updatingprice="<?php echo $i->item_price?>">Update</a>
-                                <a href="#" class="btn btn-default" data-href="<?php echo base_url();?>Admin/delete_item_inventory/<?php echo $i->item_id?>" data-toggle="modal" data-target="#confirm-delete">Delete</a></td>
+                                                                                               data-updatingprice="<?php echo $i->item_price?>">Edit</a>
+                                <a href="#" class="btn btn-danger" data-href="<?php echo base_url();?>Admin/delete_item_inventory/<?php echo $i->item_id?>" data-toggle="modal" data-target="#confirm-delete">Delete</a></td>
                                 <?php
                           echo "</div>";
                           echo "</td>";
@@ -69,6 +83,8 @@
                       ?>
                     </tbody>
                 </table>
+				</div>
+				</div>
             </section>
         </div>
     </div>
@@ -76,12 +92,8 @@
 </section>
 
 <!--footer start-->
-<footer class="site-footer">
-    <div class="container">
-      <div class="text-center">
-          2013 &copy; FlatLab by VectorLab.
-      </div>
-    </div>
+<footer class="">
+
 </footer>
 <!--footer end-->
 </section>
@@ -151,6 +163,11 @@ function ValidateSingleInput(oInput) {
     return true;
 }
 </script>
+
+<!--dynamic table initialization -->
+<script type="text/javascript" language="javascript" src="<?php echo base_url()?>assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/data-tables/DT_bootstrap.js"></script>
+<script src="<?php echo base_url()?>js/dynamic_table_init.js"></script>
 
 </body>
 
