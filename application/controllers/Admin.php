@@ -31,6 +31,8 @@
       }else{
         $data['patient'] = $this->Model_admin->get_single_patient($id);
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
+        $data['total_admitted_patients_count'] = $this->Model_admin->get_count_admitted_patient();
+        $data['total_admitted_in_er_count'] = $this->Model_admin->get_count_patient_admitted_in_er();
         $this->load->view('administrator/includes/header.php');
         $this->load->view('administrator/patient/show_patient.php', $data);
         $this->load->view('administrator/includes/footer.php');
