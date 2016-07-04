@@ -20,6 +20,10 @@
       $this->load->view('radiology/includes/footer.php');
     }
 
+    function InsertRequest(){
+
+    }
+    
     function Maintenance(){
       $data['radiology_exams'] = $this->Model_Radiology->get_radiology_exams();
       $this->load->view('radiology/includes/header.php');

@@ -569,6 +569,49 @@
       return $query->row();
     }
 
+    function get_laboratorytorequest_data($id)
+    {
+      $this->db->select('*');
+      $this->db->from('laboratory_request a');
+      $this->db->join('urgency_cat u', 'a.urgency_cat_fk=u.urg_id','left');
+      $this->db->join('fasting_cat f', 'a.fasting_cat_fk=f.fast_id', 'left');
+      $this->db->join('laboratory_examination_type l', 'a.exam_type_fk=l.lab_exam_type_id', 'left');
+      $this->db->join('examination_category e', 'l.lab_exam_type_category_id=e.exam_cat_id', 'left');
+      $query = $this->db->get();
+      return $query->row();
+    }
+
+    function get_laboratorytospecimen_data($id)
+    {
+      $this->db->select('*');
+      $this->db->from('lab_specimen_request a');
+      $this->db->join('laboratory_specimens l', 'a.specimen_id=l.specimen_id', 'left');
+      $this->db->where('lab_req_id',$id);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function get_laboratorytoremarks_data($id)
+    {
+      $this->db->select('*');
+      $this->db->from('lab_request_remarks');
+      $this->db->where('lab_id_fk',$id);
+      $query = $this->db->get();
+      return $query->row();
+    }
+
+    function approvelabreq($id,$data)
+    {
+      $this->db->where('lab_id',$id);
+      $this->db->update('laboratory_request',$data);
+    }
+
+    function cancellabreq($id,$data)
+    {
+      $this->db->where('lab_id',$id);
+      $this->db->update('laboratory_request',$data);
+    }
+
     function get_all_examcateg()
     {
       $this->db->select('*');
@@ -650,6 +693,36 @@
     {
       $this->db->where('specimen_id',$id);
       $this->db->update('laboratory_specimens',$data);
+    }
+
+    function get_all_urgencycategory()
+    {
+      $this->db->select('*');
+      $this->db->from('urgency_cat');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function get_all_fastingcategory()
+    {
+      $this->db->select('*');
+      $this->db->from('fasting_cat');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function insertlaboratoryrequest($data1){
+      $this->db->insert('laboratory_request',$data1);
+      $labid = $this->db->insert_id();
+      return $labid;
+    }
+
+    function insertrequestspecimen($data2){
+      $this->db->insert('lab_specimen_request',$data2);
+    }
+
+    function insertrequestremark($data3){
+      $this->db->insert('lab_request_remarks',$data3);
     }
   }
 ?>

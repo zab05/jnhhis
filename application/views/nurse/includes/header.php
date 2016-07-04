@@ -7,7 +7,7 @@
     <meta name="author" content="Mosaddek">
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="img/favicon.html">
-    <title>Administrator</title>
+    <!-- <title>Radiology</title> -->
     <!-- Bootstrap core CSS -->
     <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/bootstrap-reset.css" rel="stylesheet">
@@ -20,8 +20,6 @@
     <!-- Custom styles for this template -->
     <link href="<?=base_url()?>css/style.css" rel="stylesheet">
     <link href="<?=base_url()?>css/style-responsive.css" rel="stylesheet" />
-
-
   </head>
   <body>
 
@@ -256,7 +254,7 @@
                               <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                               <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
                               <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
-                              <li><a href="<?=base_url()?>Admin/Logout"><i class="fa fa-key"></i> Log Out</a></li>
+                              <li><a href="<?=base_url()?>Radiology/Logout"><i class="fa fa-key"></i> Log Out</a></li>
                           </ul>
                       </li>
                       <li class="sb-toggle-right">
@@ -274,134 +272,55 @@
                   <!-- sidebar menu start-->
                   <ul class="sidebar-menu" id="nav-accordion">
                       <li>
-                          <a class="active" href="index-2.html">
+                          <a class="active" href="<?=base_url()?>Nurse">
                               <i class="fa fa-dashboard"></i>
                               <span>Dashboard</span>
                           </a>
                       </li>
 
-                      <li class="sub-menu">
-                          <a href="index-2.html">
-                              <i class="fa fa-cogs"></i>
-                              <span>Maintenance</span>
+                      <li>
+                          <a href="<?=base_url()?>Nurse/vitalsigns">
+                              <i class="fa fa-tasks"></i>
+                              <span>View Patient vital signs</span>
                           </a>
                       </li>
 
-                      <li class="sub-menu">
-                          <a href="<?=base_url()?>Admin/PatientList">
-                              <i class="fa fa-list-alt"></i>
-                              <span>Patient List</span>
-                          </a>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa fa-sign-in"></i>
-                              <span>Admit Patient</span>
-                          </a>
-                          <ul class="sub">
-                              <li><a  href="<?=base_url()?>Admin/EmergencyRoom">Emergency Room</a></li>
-                              <li><a  href="<?=base_url()?>Admin/DirectRoomAdmission">Direct Room Admission</a></li>
-                              <li><a  href="<?=base_url()?>Admin/ViewAdmittedPatients">View Admitted Patients</a></li>
-                          </ul>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
+                      <li>
+                          <a href="#">
                               <i class="fa fa-medkit"></i>
-                              <span>Pharmacy</span>
+                              <span>Request Medicine</span>
                           </a>
-                          <ul class="sub">
-                              <li><a  href="#.html">Receiving of Pharmacy Items</a></li>
-                              <li><a  href="#.html">Requesting of Drugs</a></li>
-                              <li><a  href="#.html">Releasing of Drugs</a></li>
-                              <li><a  href="<?php echo base_url().'Admin/pharmacy_inventory'?>">Inventory</a></li>
-                              <li>------------------------------------</li>
-                              <li><a  href="<?php echo base_url().'Admin/pharmacy_request'?>">Make Pharmacy Request</a></li>
-                          </ul>
                       </li>
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa fa-truck"></i>
-                              <span>CSR</span>
-                          </a>
-                          <ul class="sub">
-                              <li><a  href="#.html">Receiving of CSR Items</a></li>
-                              <li><a  href="#.html">Requesting of Items</a></li>
-                              <li><a  href="#.html">Releasing of Items</a></li>
-                          </ul>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa fa-flask"></i>
-                              <span>Laboratory</span>
-                          </a>
-                          <ul class="sub">
-                                <li class="sub-menu">
-                                    <a  href="#">Laboratory Maintenance</a>
-                                    <ul class="sub">
-                                      <li><a  href="<?=base_url()?>Admin/LabExamType">Laboratory Exam Type</a></li>
-                                      <li><a  href="<?=base_url()?>Admin/LabExamSpec">Laboratory Specimens</a></li>
-                                      <li><a  href="<?=base_url()?>Admin/LabExamCateg">Examination Category</a></li>
-                                    </ul>
-                                </li>
-                              <li><a  href="<?=base_url()?>Admin/LaboratoryRequests">Laboratory Requests</a></li>
-                              <li><a  href="<?=base_url()?>Admin/AppofReq">Approval of Requests</a></li>
-                          </ul>
-                      </li>
-
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa  fa-stethoscope"></i>
-                              <span>Radiology</span>
-                          </a>
-                          <ul class="sub">
-                              <li><a  href="#.html">Radiology Maintenance</a></li>
-                              <li><a  href="#.html">Radiology Requests</a></li>
-                              <li><a  href="#.html">Approval of Requests</a></li>
-                          </ul>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa fa-users"></i>
-                              <span>Employee</span>
-                          </a>
-                          <ul class="sub">
-                              <li><a  href="<?=base_url()?>Admin/DoctorList">Doctors</a></li>
-                              <li><a  href="<?=base_url()?>Admin/NurseList">Nurses</a></li>
-                              <li><a  href="<?=base_url()?>Admin/RadiologistList">Radiologists</a></li>
-                              <li><a  href="<?=base_url()?>Admin/PharmacistList">Pharmacists</a></li>
-                          </ul>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa fa-building-o"></i>
-                              <span>Rooms</span>
-                          </a>
-                          <ul class="sub">
-                              <li><a  href="<?=base_url()?>Admin/RoomType">Room Type</a></li>
-                              <li><a  href="<?=base_url()?>Admin/Rooms">Rooms</a></li>
-                          </ul>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="index-2.html">
-                              <i class="fa fa-money"></i>
-                              <span>Billing and Payment</span>
+                      <li>
+                          <a href="#">
+                              <i class="fa fa-user-md"></i>
+                              <span>Doctor's Appointments</span>
                           </a>
                       </li>
 
-                      <li class="sub-menu">
-                          <a href="index-2.html">
-                              <i class="fa fa-map-marker"></i>
-                              <span>Directory</span>
+                      <li>
+                          <a href="#">
+                              <i class="fa fa-check-square-o"></i>
+                              <span>Approval of Requests</span>
                           </a>
                       </li>
+                      <li>
+                          <a href="#">
+                              <i class="fa fa-check-square-o"></i>
+                              <span>CSR Request</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#">
+                              <i class="fa fa-clock-o"></i>
+                              <span>Manage Shifting hours</span>
+                          </a>
+                      </li>
+
+
+
+
+
 
 
                   </ul>
