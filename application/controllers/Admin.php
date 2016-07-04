@@ -1140,9 +1140,7 @@ function EditSpec($id){
         $this->Model_admin->insertrequestremark($data3);
       redirect(base_url()."Admin/LaboratoryRequests");
    }
-
-
- }
+  }
 
 
     /*=========================================================================================================================*/
