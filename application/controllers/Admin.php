@@ -725,7 +725,7 @@
       $data['roomtypes'] = $this->Model_admin->get_roomtype_List();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/rooms/roomtypelist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function insert_roomtype(){
@@ -776,7 +776,7 @@
       $data['roomtypes'] = $this->Model_admin->get_roomtype_List();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/rooms/roomlist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function insert_room(){
