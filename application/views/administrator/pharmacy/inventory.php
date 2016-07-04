@@ -1,20 +1,20 @@
 
-  
+
 <section id="main-content">
   <section class="wrapper">
     <div class="row">
         <div class="col-sm-3">
-			
+
             <section class="panel">
 			<header style="font-weight:300" class="panel-heading">
-                 New Medicine
+                 New Item
              <span class="tools pull-right">
-			 
+
              </span>
             </header>
                <div class="panel-body">
                <div class="adv-table">
-				
+
                 <table  class="table">
                     <tr>
                       <td>Overall items: </td>
@@ -27,7 +27,7 @@
 
                 </table>
 				<center>
-				<a href="#addModal" data-toggle="modal" role="button" class="btn btn-sm btn-round btn-success"><i class="fa fa-plus-circle"></i> Add Medicine</a>
+				<a href="#addModal" data-toggle="modal" role="button" class="btn btn-sm btn-round btn-success"><i class="fa fa-plus-circle"></i> Add Item</a>
 				</center>
 				</div>
 				</div>
@@ -42,7 +42,7 @@
              </header>
 				<div class="panel-body">
                 <div class="adv-table">
-				
+
                 <table class="table table-striped" id="dynamic-table">
                     <thead>
                     <tr>
@@ -68,12 +68,12 @@
                           echo '<td>';
                           echo "<div class='btn-group' role='group' aria-label='...'>";
                                 ?>
-                                <a href="#myModal" class="btn btn-default" data-toggle="modal" data-updatingid="<?php echo $i->item_id ?>"
+                                <a href="#myModal" class="btn btn-warning" data-toggle="modal" data-updatingid="<?php echo $i->item_id ?>"
                                                                                                data-updatingname="<?php echo $i->item_name?>"
                                                                                                data-updatingdescription="<?php echo $i->item_description?>"
                                                                                                data-updatingquantity="<?php echo $i->item_quantity?>"
-                                                                                               data-updatingprice="<?php echo $i->item_price?>">Update</a>
-                                <a href="#" class="btn btn-default" data-href="<?php echo base_url();?>Admin/delete_item_inventory/<?php echo $i->item_id?>" data-toggle="modal" data-target="#confirm-delete">Delete</a></td>
+                                                                                               data-updatingprice="<?php echo $i->item_price?>">Edit</a>
+                                <a href="#" class="btn btn-danger" data-href="<?php echo base_url();?>Admin/delete_item_inventory/<?php echo $i->item_id?>" data-toggle="modal" data-target="#confirm-delete">Delete</a></td>
                                 <?php
                           echo "</div>";
                           echo "</td>";
@@ -93,7 +93,7 @@
 
 <!--footer start-->
 <footer class="">
-   
+
 </footer>
 <!--footer end-->
 </section>

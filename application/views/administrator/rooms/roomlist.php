@@ -9,7 +9,7 @@
 			  <div class="panel-body">
               <div class="adv-table">
               <table class="table">
-                
+
               </table>
 			<center style="padding: 20px;" >
 			<a class="btn btn-round btn-sm btn-success" data-toggle="modal" href="#addnewroom"><i class="fa fa-plus-circle"></i> Add Room</a>
@@ -48,8 +48,8 @@
                       echo "<td>".$room['occupancy_status_name']."</td>";
                       echo "<td>".$room['maintenance_status_name']."</td>";
                       echo "<td>";
-                        echo "<a href='".base_url()."Admin/ViewRoom/".$room['room_id']."' role='button' class='btn btn-default btn-xs'>View Room</a>";
-                        echo "<a href='".base_url()."Admin/UpdateRoom/".$room['room_id']."' role='button' class='btn btn-default btn-xs'>Update Room</a>";
+                        echo "<a href='".base_url()."Admin/ViewRoom/".$room['room_id']."' role='button' class='btn btn-info btn-sm'>View</a>";
+                        echo "<a href='".base_url()."Admin/UpdateRoom/".$room['room_id']."' role='button' class='btn btn-warning btn-sm'>Edit</a>";
                       echo "</td>";
                     echo "</tr>";
                   }
@@ -63,7 +63,7 @@
     </div>
 
     <div class="modal fade modal-dialog-center" id="addnewroom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content-wrap">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -77,7 +77,7 @@
                       ?>
 
                       <div class="form-group">
-                          <label  class="col-lg-3 col-sm-3 control-label">Room Type: </label>
+                          <label  class="col-lg-3 col-sm-3 control-label">Room Type </label>
                           <div class="col-lg-9">
                               <select class="form-control" name="roomtype">
                                 <?php
@@ -90,14 +90,14 @@
                       </div>
 
                       <div class="form-group">
-                          <label  class="col-lg-3 col-sm-3 control-label">Room Location: </label>
+                          <label  class="col-lg-3 col-sm-3 control-label">Room Location </label>
                           <div class="col-lg-9">
                               <input type="text" name="roomloc" class="form-control" placeholder="Room Location">
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label  class="col-lg-3 col-sm-3 control-label">Number of Beds: </label>
+                          <label  class="col-lg-3 col-sm-3 control-label">Number of Beds </label>
                           <div class="col-lg-9">
                               <select class="form-control" name="bednum">
                                 <?php
@@ -112,7 +112,7 @@
                     </div>
                     <div class="modal-footer">
                         <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                        <input type="submit" value="Submit" class="btn btn-warning">
+                        <input type="submit" value="Submit" class="btn btn-success">
                     </div>
                     <?=form_close()?>
                 </div>

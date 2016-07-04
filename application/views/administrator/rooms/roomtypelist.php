@@ -9,7 +9,7 @@
 			  <div class="panel-body">
               <div class="adv-table">
               <table class="table">
-              
+
               </table>
 			  <center style="padding: 20px;" >
 			  <a class="btn btn-round btn-sm btn-success" data-toggle="modal" href="#addnewroomtype"><i class="fa fa-plus-circle"></i> Add Room Type</a>
@@ -44,7 +44,7 @@
                       echo "<td>".$roomtype['room_description']."</td>";
                       echo "<td>".$roomtype['room_price']."</td>";
                       echo "<td>";
-                        echo "<a href='".base_url()."Admin/UpdateRoomType/".$roomtype['room_type_id']."' role='button' class='btn btn-default btn-xs'>Edit</a>";
+                        echo "<a href='".base_url()."Admin/UpdateRoomType/".$roomtype['room_type_id']."' role='button' class='btn btn-sm btn-warning'>Edit</a>";
                       echo "</td>";
                     echo "</tr>";
                   }
@@ -58,7 +58,7 @@
     </div>
 
     <div class="modal fade modal-dialog-center" id="addnewroomtype" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content-wrap">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -72,21 +72,21 @@
                       ?>
 
                       <div class="form-group">
-                          <label  class="col-lg-3 col-sm-3 control-label">Room Name: </label>
+                          <label  class="col-lg-3 col-sm-3 control-label">Room Name </label>
                           <div class="col-lg-9">
                             <input type="text" class="form-control"  name="roomname" placeholder="Room Name">
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label  class="col-lg-3 col-sm-3 control-label">Room Location: </label>
+                          <label  class="col-lg-3 col-sm-3 control-label">Room Location </label>
                           <div class="col-lg-9">
-                            <input type="text" class="form-control"  name="roomprice" placeholder="Room Price">
+                            <input type="text" class="form-control"  name="roomprice" placeholder="Room Location">
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label  class="col-lg-3 col-sm-3 control-label">Room Description: </label>
+                          <label  class="col-lg-3 col-sm-3 control-label">Room Description </label>
                           <div class="col-lg-9">
                             <textarea class="form-control" name="roomdesc" placeholder="Room Description"></textarea>
                           </div>
@@ -95,7 +95,7 @@
                     </div>
                     <div class="modal-footer">
                         <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                        <input type="submit" value="Submit" class="btn btn-warning">
+                        <input type="submit" value="Submit" class="btn btn-success">
                     </div>
                     <?=form_close()?>
                 </div>
