@@ -418,7 +418,7 @@
       if($this->form_validation->run() == FALSE){
         echo "may mali";
       }else{
-        $data = array("type_id"=>5,
+        $data = array("type_id"=>6,
                       "username"=>$this->input->post('username'),
                       "password"=>sha1("radiologist"),
                       "email"=>$this->input->post('email'),
@@ -430,6 +430,7 @@
                       "gender"=>$this->input->post('gender'),
                       "status"=>1,
                       "employment_date"=>date('Y-m-d'),
+                      "dept"=>"DEPT-0005"
                     );
         $doctor_id = $this->Model_admin->insert_user($data);
         redirect(base_url().'Admin/RadiologistList');
@@ -522,7 +523,7 @@
       if($this->form_validation->run() == FALSE){
         echo validation_errors();
       }else{
-        $data = array("type_id"=>6,
+        $data = array("type_id"=>7,
                       "username"=>$this->input->post('username'),
                       "password"=>sha1("pharmacist"),
                       "email"=>$this->input->post('email'),
