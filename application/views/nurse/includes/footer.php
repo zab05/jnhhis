@@ -1,14 +1,13 @@
 <!--footer start-->
-<footer class="">
-
+<footer class="site-footer">
+    <div class="container">
+      <div class="text-center">
+          2013 &copy; FlatLab by VectorLab.
+      </div>
+    </div>
 </footer>
 <!--footer end-->
 </section>
-
-
-
-
-
 
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="<?=base_url()?>js/jquery.js"></script>
@@ -21,8 +20,6 @@
 <script src="<?=base_url()?>js/owl.carousel.js" ></script>
 <script src="<?=base_url()?>js/jquery.customSelect.min.js" ></script>
 <script src="<?=base_url()?>js/respond.min.js" ></script>
-<script src="<?=base_url()?>assets/data-tables/jquery.dataTables.js"></script>
-<script src="<?=base_url()?>assets/data-tables/DT_bootstrap.js"></script>
 
 <!--right slidebar-->
 <script src="<?=base_url()?>js/slidebars.min.js"></script>

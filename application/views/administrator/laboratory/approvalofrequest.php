@@ -1,17 +1,7 @@
 <section id="main-content">
   <section class="wrapper">
     <div class="row">
-      <div class="col-sm-3">
-          <section class="panel">
-              <header class="panel-heading" style="background-color: #000;"></header>
-              <table class="table">
-                <tr>
-                  <td colspan="2" align="center"><h5><a class="btn btn-info" href="<?=base_url()?>Admin/MakeLaboratoryRequests">+NEW LABORATORY REQUEST</a></h5></td>
-                </tr>
-              </table>
-          </section>
-      </div>
-      <div class="col-sm-9">
+      <div class="col-sm-12">
           <section class="panel">
               <header class="panel-heading" style="background-color: #000;"></header>
               <header class="panel-heading">
@@ -42,6 +32,8 @@
               }
                 echo "<td>";
                   echo "<a href='".base_url()."Admin/ShowLabReq/".$labreq['lab_id']."' role='button' class='btn btn-default btn-xs'>Show</a>";
+                  echo " <a href='".base_url()."Admin/ApproveLabReq/".$labreq['lab_id']."' role='button' class='btn btn-default btn-xs'>Approve</a>";
+                  echo " <a href='".base_url()."Admin/CancelLabReq/".$labreq['lab_id']."' role='button' class='btn btn-default btn-xs'>Cancel</a>";
                 echo "</td>";
                 echo "</tr>";
               }

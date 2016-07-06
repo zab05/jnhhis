@@ -1,6 +1,11 @@
 <section id="main-content">
   <section class="wrapper">
     <div class="row">
+      <div class="col-sm-16">
+        <header class="panel-heading">
+<center><h4>Laboratory Request #<?=$requestno?><h4></center>
+        </header>
+      </div>
         <div class="col-sm-6">
             <section class="panel">
                 <header class="panel-heading" style="background-color: #000;"></header>
@@ -62,18 +67,40 @@
             <section class="panel">
                 <header class="panel-heading" style="background-color: #000;"></header>
                 <header class="panel-heading">
-     <center><h4>SAMPLE DETAILS<h4></center>
+     <center><h4>Urgency and Fasting Details<h4></center>
                 </header>
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <td>Urgency: </td>
-                        <td>Blood</td>
+                        <td style="text-align: center;">Urgency: <?php echo $laboratorytolabrequest->urg_name; ?> </td>
                     </tr>
                     <tr>
-                        <td>Fasting: </td>
-                        <td>Faeces</td>
+                        <td style="text-align: center;">Fasting: <?php echo $laboratorytolabrequest->fast_name; ?></td>
                     </tr>
+                    </thead>
+                    <tbody align="center">
+
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading" style="background-color: #000;"></header>
+                <header class="panel-heading">
+     <center><h4>Specimen/s Received<h4></center>
+                </header>
+                <table class="table table-striped">
+                    <thead>
+                    <?php
+                    foreach($laboratorytospecimen as $spec)
+                    {
+                      echo "<tr>";
+                      echo "<td style='text-align: center;'>".$spec['specimen_name']."</td>";
+                      echo "</tr>";
+                    }
+                    ?>
                     </thead>
                     <tbody align="center">
 
@@ -95,9 +122,9 @@
                       <th style="text-align: center;">Description</th>
                     </tr>
                     <tr>
-                      <td style="text-align: center;"></td>
-                      <td style="text-align: center;"></td>
-                      <td style="text-align: center;"></td>
+                      <td style="text-align: center;"><?php echo $laboratorytolabrequest->lab_exam_type_name; ?></td>
+                      <td style="text-align: center;"><?php echo $laboratorytolabrequest->exam_cat_name; ?></td>
+                      <td style="text-align: center;"><?php echo $laboratorytolabrequest->lab_exam_type_description; ?></td>
                     </tr>
                     </thead>
                     <tbody align="center">
@@ -115,7 +142,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                      <td style="text-align: center;"></td>
+                      <td style="text-align: center;"><?php echo $laboratorytoremarks->remark; ?></td>
                     </tr>
                     </thead>
                     <tbody align="center">

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.12, for Win32 (AMD64)
 --
--- Host: localhost    Database: jnh_schema
+-- Host: localhost    Database: jnh_2
 -- ------------------------------------------------------
 -- Server version	5.7.13-log
 
@@ -33,16 +33,6 @@ CREATE TABLE `admission_schedule` (
   CONSTRAINT `fk_Patient_admission` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `admission_schedule`
---
-
-LOCK TABLES `admission_schedule` WRITE;
-/*!40000 ALTER TABLE `admission_schedule` DISABLE KEYS */;
-INSERT INTO `admission_schedule` VALUES (2,'PTNT-0001',2,'2016-06-29 14:48:55',NULL),(3,'PTNT-0002',2,'2016-06-29 14:49:00',NULL),(4,'PTNT-0003',2,'2016-06-29 14:49:25',NULL),(5,'PTNT-0005',2,'2016-06-29 14:57:06',NULL),(6,'PTNT-0006',2,'2016-06-29 14:57:34',NULL);
-/*!40000 ALTER TABLE `admission_schedule` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -88,15 +78,6 @@ CREATE TABLE `admitting_diagnosis` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `admitting_diagnosis`
---
-
-LOCK TABLES `admitting_diagnosis` WRITE;
-/*!40000 ALTER TABLE `admitting_diagnosis` DISABLE KEYS */;
-/*!40000 ALTER TABLE `admitting_diagnosis` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `admitting_resident`
 --
 
@@ -116,15 +97,6 @@ CREATE TABLE `admitting_resident` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `admitting_resident`
---
-
-LOCK TABLES `admitting_resident` WRITE;
-/*!40000 ALTER TABLE `admitting_resident` DISABLE KEYS */;
-/*!40000 ALTER TABLE `admitting_resident` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `attending_physician`
 --
 
@@ -142,15 +114,6 @@ CREATE TABLE `attending_physician` (
   CONSTRAINT `fk_Patient_attending` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `attending_physician`
---
-
-LOCK TABLES `attending_physician` WRITE;
-/*!40000 ALTER TABLE `attending_physician` DISABLE KEYS */;
-/*!40000 ALTER TABLE `attending_physician` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `beds`
@@ -173,15 +136,6 @@ CREATE TABLE `beds` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `beds`
---
-
-LOCK TABLES `beds` WRITE;
-/*!40000 ALTER TABLE `beds` DISABLE KEYS */;
-/*!40000 ALTER TABLE `beds` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `discharge_schedule`
 --
 
@@ -199,18 +153,8 @@ CREATE TABLE `discharge_schedule` (
   KEY `fk_Patient_discharge` (`patient_id`),
   CONSTRAINT `fk_Patient_discharge` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
   CONSTRAINT `fk_admit_id` FOREIGN KEY (`admit_id`) REFERENCES `admission_schedule` (`admission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `discharge_schedule`
---
-
-LOCK TABLES `discharge_schedule` WRITE;
-/*!40000 ALTER TABLE `discharge_schedule` DISABLE KEYS */;
-INSERT INTO `discharge_schedule` VALUES (1,'PTNT-0001','2016-06-29 14:48:55',NULL,2),(2,'PTNT-0002','2016-06-29 14:49:00',NULL,3),(3,'PTNT-0003','2016-06-29 14:49:05',NULL,4),(6,'PTNT-0005','2016-06-29 14:57:06',NULL,5),(7,'PTNT-0006','2016-06-29 14:57:34',NULL,6);
-/*!40000 ALTER TABLE `discharge_schedule` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `disposition_status`
@@ -229,15 +173,6 @@ CREATE TABLE `disposition_status` (
   CONSTRAINT `disposition_status_ibfk_1` FOREIGN KEY (`disposition_id`) REFERENCES `final_disposition` (`disposition_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `disposition_status`
---
-
-LOCK TABLES `disposition_status` WRITE;
-/*!40000 ALTER TABLE `disposition_status` DISABLE KEYS */;
-/*!40000 ALTER TABLE `disposition_status` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `doctor_information`
@@ -260,16 +195,6 @@ CREATE TABLE `doctor_information` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `doctor_information`
---
-
-LOCK TABLES `doctor_information` WRITE;
-/*!40000 ALTER TABLE `doctor_information` DISABLE KEYS */;
-INSERT INTO `doctor_information` VALUES (2,6,'',3),(3,7,'',1),(4,15,'',1),(5,17,'',6);
-/*!40000 ALTER TABLE `doctor_information` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `doctor_specializations`
 --
 
@@ -283,16 +208,6 @@ CREATE TABLE `doctor_specializations` (
   PRIMARY KEY (`spec_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `doctor_specializations`
---
-
-LOCK TABLES `doctor_specializations` WRITE;
-/*!40000 ALTER TABLE `doctor_specializations` DISABLE KEYS */;
-INSERT INTO `doctor_specializations` VALUES (1,'Allergist ','conducts the diagnosis and treatment of allergic conditions.'),(2,'Anesthesiologist ','treats chronic pain syndromes; administers anesthesia and monitors the patient during surgery.\r\n'),(3,'Cardiologist ','treats heart disease'),(4,'Dermatologist ','treats skin diseases, including some skin cancers'),(5,'Gastroenterologist ','treats stomach disorders'),(6,'Hematologist','treats diseases of the blood and blood-forming tissues (oncology including cancer and other tumors)'),(7,'Internal Medicine Physician','treats diseases and disorders of internal structures of the body.'),(8,'Nephrologist ','treats kidney diseases.'),(9,'Neurologist ','treats diseases and disorders of the nervous system.'),(10,'Neurosurgeon ','conducts surgery of the nervous system.'),(11,'Obstetrician ','treats women during pregnancy and childbirth'),(12,'Gynecologist ',' treats diseases of the female reproductive system and genital tract.\r\n'),(13,'Nurse-Midwifery','manages a woman\'s health care, especially during pregnancy, delivery, and the postpartum period.'),(14,'Occupational Medicine Physician','diagnoses and treats work-related disease or injury.'),(15,'Ophthalmologist ','treats eye defects, injuries, and diseases.'),(16,'Oral and Maxillofacial Surgeon','surgically treats diseases, injuries, and defects of the hard and soft tissues of the face, mouth, and jaws.'),(17,'Orthopaedic Surgeon','preserves and restores the function of the musculoskeletal system.'),(18,'Otolaryngologist ','(Head and Neck Surgeon) - treats diseases of the ear, nose, and throat,and some diseases of the head and neck, including facial plastic surgery.'),(19,'Pathologist ','diagnoses and treats the study of the changes in body tissues and organs which cause or are caused by disease'),(20,'Pediatrician ','treats infants, toddlers, children and teenagers.'),(21,'Plastic Surgeon','restores, reconstructs, corrects or improves in the shape and appearance of damaged body structures, especially the face.'),(22,'Podiatrist ','provides medical and surgical treatment of the foot.'),(23,'Psychiatrist ',' treats patients with mental and emotional disorders.'),(24,'Pulmonary Medicine Physician','diagnoses and treats lung disorders.'),(25,'Radiation Onconlogist','diagnoses and treats disorders with the use of diagnostic imaging, including X-rays, sound waves, radioactive substances, and magnetic fields.'),(26,'Diagnostic Radiologist','diagnoses and medically treats diseases and disorders of internal structures of the body.'),(27,'Rheumatologist ','treats rheumatic diseases, or conditions characterized by inflammation, soreness and stiffness of muscles, and pain in joints and associated structures'),(28,'Urologist ','diagnoses and treats the male and female urinary tract and the male reproductive system');
-/*!40000 ALTER TABLE `doctor_specializations` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `examination_category`
@@ -311,15 +226,6 @@ CREATE TABLE `examination_category` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `examination_category`
---
-
-LOCK TABLES `examination_category` WRITE;
-/*!40000 ALTER TABLE `examination_category` DISABLE KEYS */;
-/*!40000 ALTER TABLE `examination_category` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `fasting_cat`
 --
 
@@ -333,15 +239,6 @@ CREATE TABLE `fasting_cat` (
   UNIQUE KEY `fast_name` (`fast_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `fasting_cat`
---
-
-LOCK TABLES `fasting_cat` WRITE;
-/*!40000 ALTER TABLE `fasting_cat` DISABLE KEYS */;
-/*!40000 ALTER TABLE `fasting_cat` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `final_disposition`
@@ -361,15 +258,6 @@ CREATE TABLE `final_disposition` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `final_disposition`
---
-
-LOCK TABLES `final_disposition` WRITE;
-/*!40000 ALTER TABLE `final_disposition` DISABLE KEYS */;
-/*!40000 ALTER TABLE `final_disposition` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `icd_code10`
 --
 
@@ -386,15 +274,6 @@ CREATE TABLE `icd_code10` (
   CONSTRAINT `icd_code10_ibfk_1` FOREIGN KEY (`diagnosis_id`) REFERENCES `admitting_diagnosis` (`diagnosis_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `icd_code10`
---
-
-LOCK TABLES `icd_code10` WRITE;
-/*!40000 ALTER TABLE `icd_code10` DISABLE KEYS */;
-/*!40000 ALTER TABLE `icd_code10` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `immidiate_contact`
@@ -416,13 +295,44 @@ CREATE TABLE `immidiate_contact` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `immidiate_contact`
+-- Table structure for table `lab_request_remarks`
 --
 
-LOCK TABLES `immidiate_contact` WRITE;
-/*!40000 ALTER TABLE `immidiate_contact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `immidiate_contact` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `lab_request_remarks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lab_request_remarks` (
+  `remarks_id` int(11) NOT NULL AUTO_INCREMENT,
+  `remark` varchar(255) NOT NULL,
+  `rem_user` int(11) NOT NULL,
+  `rem_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `lab_id_fk` int(11) NOT NULL,
+  PRIMARY KEY (`remarks_id`),
+  KEY `fk_lab_id` (`lab_id_fk`),
+  KEY `fk_user_rem` (`rem_user`),
+  CONSTRAINT `fk_lab_id` FOREIGN KEY (`lab_id_fk`) REFERENCES `laboratory_request` (`lab_id`),
+  CONSTRAINT `fk_user_rem` FOREIGN KEY (`rem_user`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `lab_specimen_request`
+--
+
+DROP TABLE IF EXISTS `lab_specimen_request`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lab_specimen_request` (
+  `trans_spec_id` int(11) NOT NULL AUTO_INCREMENT,
+  `lab_req_id` int(11) NOT NULL,
+  `specimen_id` int(11) NOT NULL,
+  PRIMARY KEY (`trans_spec_id`),
+  KEY `fk_lab_reqid` (`lab_req_id`),
+  KEY `fk_lab_specid` (`specimen_id`),
+  CONSTRAINT `fk_lab_reqid` FOREIGN KEY (`lab_req_id`) REFERENCES `laboratory_request` (`lab_id`),
+  CONSTRAINT `fk_lab_specid` FOREIGN KEY (`specimen_id`) REFERENCES `laboratory_specimens` (`specimen_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `laboratory_examination_type`
@@ -444,15 +354,6 @@ CREATE TABLE `laboratory_examination_type` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `laboratory_examination_type`
---
-
-LOCK TABLES `laboratory_examination_type` WRITE;
-/*!40000 ALTER TABLE `laboratory_examination_type` DISABLE KEYS */;
-/*!40000 ALTER TABLE `laboratory_examination_type` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `laboratory_request`
 --
 
@@ -466,22 +367,19 @@ CREATE TABLE `laboratory_request` (
   `lab_date_req` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `lab_status` tinyint(4) NOT NULL DEFAULT '1',
   `lab_patient_checkin` date DEFAULT NULL,
+  `urgency_cat_fk` int(11) NOT NULL,
+  `fasting_cat_fk` int(11) NOT NULL,
   PRIMARY KEY (`lab_id`),
   KEY `fk_lab_patient_2` (`lab_patient`),
   KEY `fk_user_req2` (`lab_user`),
+  KEY `fk_urg_id2` (`urgency_cat_fk`),
+  KEY `fk_fast_id2` (`fasting_cat_fk`),
+  CONSTRAINT `fk_fast_id2` FOREIGN KEY (`fasting_cat_fk`) REFERENCES `fasting_cat` (`fast_id`),
   CONSTRAINT `fk_lab_patient_2` FOREIGN KEY (`lab_patient`) REFERENCES `patient` (`patient_id`),
+  CONSTRAINT `fk_urg_id2` FOREIGN KEY (`urgency_cat_fk`) REFERENCES `urgency_cat` (`urg_id`),
   CONSTRAINT `fk_user_req2` FOREIGN KEY (`lab_user`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `laboratory_request`
---
-
-LOCK TABLES `laboratory_request` WRITE;
-/*!40000 ALTER TABLE `laboratory_request` DISABLE KEYS */;
-/*!40000 ALTER TABLE `laboratory_request` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `laboratory_specimens`
@@ -500,15 +398,6 @@ CREATE TABLE `laboratory_specimens` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `laboratory_specimens`
---
-
-LOCK TABLES `laboratory_specimens` WRITE;
-/*!40000 ALTER TABLE `laboratory_specimens` DISABLE KEYS */;
-/*!40000 ALTER TABLE `laboratory_specimens` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `maintenance`
 --
 
@@ -522,15 +411,6 @@ CREATE TABLE `maintenance` (
   PRIMARY KEY (`maintenance_status_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `maintenance`
---
-
-LOCK TABLES `maintenance` WRITE;
-/*!40000 ALTER TABLE `maintenance` DISABLE KEYS */;
-/*!40000 ALTER TABLE `maintenance` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `maintenance_status`
@@ -550,15 +430,6 @@ CREATE TABLE `maintenance_status` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `maintenance_status`
---
-
-LOCK TABLES `maintenance_status` WRITE;
-/*!40000 ALTER TABLE `maintenance_status` DISABLE KEYS */;
-/*!40000 ALTER TABLE `maintenance_status` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `occupancy`
 --
 
@@ -572,15 +443,6 @@ CREATE TABLE `occupancy` (
   PRIMARY KEY (`occupancy_status_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `occupancy`
---
-
-LOCK TABLES `occupancy` WRITE;
-/*!40000 ALTER TABLE `occupancy` DISABLE KEYS */;
-/*!40000 ALTER TABLE `occupancy` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `occupancy_status`
@@ -598,15 +460,6 @@ CREATE TABLE `occupancy_status` (
   CONSTRAINT `occupancy_status_ibfk_1` FOREIGN KEY (`room_type_id`) REFERENCES `room_type` (`room_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `occupancy_status`
---
-
-LOCK TABLES `occupancy_status` WRITE;
-/*!40000 ALTER TABLE `occupancy_status` DISABLE KEYS */;
-/*!40000 ALTER TABLE `occupancy_status` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `patient`
@@ -639,16 +492,6 @@ CREATE TABLE `patient` (
   UNIQUE KEY `fk_bedRooms` (`patient_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `patient`
---
-
-LOCK TABLES `patient` WRITE;
-/*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES ('lol','lol','lol','lol@gmail.com',12,'M','0000-00-00','mandaluyong','student','qwe','qwe','qwe',88989,'lol','lol','PTNT-0001','2016-06-24','0000-00-00'),('Revilla','Karl Angelo','Rey','karlangelorevilla@gmail.com',19,'M','1997-03-18','Quezon City','Student','Catholic','Filipino','Sauyo',4560186,'09425491361','','PTNT-0002','2016-06-24','0000-00-00'),('Cadiz','Johnel','Jeje','',20,'M','1996-04-20','Quezon City','Student','Catholic','Filipino','Timog',1234567,'09999999999','0','PTNT-0003','2016-06-24','0000-00-00'),('Tan','Liz Arabelle','Trinidad','lizarabelletan@gmail.com',20,'F','1996-04-09','Manila','Student','Catholic','Filipino','Talipapa',3580757,'09228884552','0','PTNT-0005','2016-06-24','0000-00-00'),('Tan','Lei Angeli','Trinidad','leitan@gmail.com',15,'F','2001-06-12','Dubai','Student','Catholic','Filipino','Talipapa',3580757,'09228884552','0','PTNT-0006','2016-06-24','0000-00-00'),('Tan','Lisette Ann','Trinidad','liantan@gmail.com',22,'F','1994-09-22','Manila','Teacher','Catholic','Filipino','Talipapa',3580757,'09228884552','0','PTNT-0007','2016-06-24','0000-00-00'),('Revilla','Karl','Rey','karlalexisrevilla@gmail.com',12,'M','2003-10-28','Quezon City','Student','Catholic','Filipino','Sauyo',4560186,'09111111111','0','PTNT-0008','2016-06-24','0000-00-00'),('Rey','Martin Ian','Cagungun','martinianrey@gmail.com',11,'M','2004-07-08','Quezon City','Student','Catholic','Filipino','Sauyo',4560186,'09222222222','0','PTNT-0009','2016-06-24','0000-00-00'),('Rey','Marie Margarette','Cagungun','margarette@gmail.com',13,'F','2001-10-15','Quezon City','Student','Catholic','Filipino','Sauyo',4560186,'09333333333','0','PTNT-0010','2016-06-24','0000-00-00'),('Tantoco','Abbygail','Tan','abbygail@gmail.com',16,'F','2000-10-15','Quezon City','Student','Catholic','Filipino','Talipapa',3580757,'09444444444','0','PTNT-0011','2016-06-24','0000-00-00'),('Tantoco','Binky','Tan','binky@gmail.com',21,'F','1995-10-25','Quezon City','Teacher','Catholic','Filipino','Talipapa',3580757,'09555555555','0','PTNT-0012','2016-06-24','0000-00-00'),('Rey','Margarette','Cagungun','margarette_1015@yahoo.com',13,'F','1995-10-15','Quezon City','Teacher','Catholic','Filipino','Bagbag Novaliches Quezon City',4560186,'09391910650','0','PTNT-0013','2016-06-25','0000-00-00');
-/*!40000 ALTER TABLE `patient` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -687,15 +530,6 @@ CREATE TABLE `patient_category` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `patient_category`
---
-
-LOCK TABLES `patient_category` WRITE;
-/*!40000 ALTER TABLE `patient_category` DISABLE KEYS */;
-/*!40000 ALTER TABLE `patient_category` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `patient_sequence`
 --
 
@@ -707,16 +541,6 @@ CREATE TABLE `patient_sequence` (
   PRIMARY KEY (`pat_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `patient_sequence`
---
-
-LOCK TABLES `patient_sequence` WRITE;
-/*!40000 ALTER TABLE `patient_sequence` DISABLE KEYS */;
-INSERT INTO `patient_sequence` VALUES (1),(2),(3),(5),(6),(7),(8),(9),(10),(11),(12),(13);
-/*!40000 ALTER TABLE `patient_sequence` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `pharmacy_audit`
@@ -742,15 +566,6 @@ CREATE TABLE `pharmacy_audit` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pharmacy_audit`
---
-
-LOCK TABLES `pharmacy_audit` WRITE;
-/*!40000 ALTER TABLE `pharmacy_audit` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pharmacy_audit` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `pharmacy_inventory`
 --
 
@@ -768,13 +583,26 @@ CREATE TABLE `pharmacy_inventory` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pharmacy_inventory`
+-- Table structure for table `pharmacy_request`
 --
 
-LOCK TABLES `pharmacy_inventory` WRITE;
-/*!40000 ALTER TABLE `pharmacy_inventory` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pharmacy_inventory` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `pharmacy_request`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pharmacy_request` (
+  `phar_req_id` int(11) NOT NULL AUTO_INCREMENT,
+  `phar_req_quan` int(11) NOT NULL,
+  `phar_item_id` int(11) NOT NULL,
+  `phar_user_id` int(11) NOT NULL,
+  `phar_req_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `phar_patient` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`phar_req_id`),
+  KEY `fk_patpharm_id2` (`phar_patient`),
+  KEY `fk_user_id2` (`phar_user_id`),
+  CONSTRAINT `fk_patpharm_id2` FOREIGN KEY (`phar_patient`) REFERENCES `patient` (`patient_id`),
+  CONSTRAINT `fk_user_id2` FOREIGN KEY (`phar_user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `radiology_exam`
@@ -792,15 +620,6 @@ CREATE TABLE `radiology_exam` (
   UNIQUE KEY `exam_name` (`exam_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `radiology_exam`
---
-
-LOCK TABLES `radiology_exam` WRITE;
-/*!40000 ALTER TABLE `radiology_exam` DISABLE KEYS */;
-/*!40000 ALTER TABLE `radiology_exam` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `radiology_request`
@@ -827,15 +646,6 @@ CREATE TABLE `radiology_request` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `radiology_request`
---
-
-LOCK TABLES `radiology_request` WRITE;
-/*!40000 ALTER TABLE `radiology_request` DISABLE KEYS */;
-/*!40000 ALTER TABLE `radiology_request` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `referral_physician`
 --
 
@@ -855,15 +665,6 @@ CREATE TABLE `referral_physician` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `referral_physician`
---
-
-LOCK TABLES `referral_physician` WRITE;
-/*!40000 ALTER TABLE `referral_physician` DISABLE KEYS */;
-/*!40000 ALTER TABLE `referral_physician` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `room_type`
 --
 
@@ -878,15 +679,6 @@ CREATE TABLE `room_type` (
   PRIMARY KEY (`room_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `room_type`
---
-
-LOCK TABLES `room_type` WRITE;
-/*!40000 ALTER TABLE `room_type` DISABLE KEYS */;
-/*!40000 ALTER TABLE `room_type` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `rooms`
@@ -912,15 +704,6 @@ CREATE TABLE `rooms` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `rooms`
---
-
-LOCK TABLES `rooms` WRITE;
-/*!40000 ALTER TABLE `rooms` DISABLE KEYS */;
-/*!40000 ALTER TABLE `rooms` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `sample_det_lab`
 --
 
@@ -939,15 +722,6 @@ CREATE TABLE `sample_det_lab` (
   CONSTRAINT `fk_urg_id` FOREIGN KEY (`urg_cat_fk`) REFERENCES `urgency_cat` (`urg_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sample_det_lab`
---
-
-LOCK TABLES `sample_det_lab` WRITE;
-/*!40000 ALTER TABLE `sample_det_lab` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sample_det_lab` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `service_categories`
@@ -969,15 +743,6 @@ CREATE TABLE `service_categories` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `service_categories`
---
-
-LOCK TABLES `service_categories` WRITE;
-/*!40000 ALTER TABLE `service_categories` DISABLE KEYS */;
-/*!40000 ALTER TABLE `service_categories` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `time_difference`
 --
 
@@ -995,15 +760,6 @@ CREATE TABLE `time_difference` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `time_difference`
---
-
-LOCK TABLES `time_difference` WRITE;
-/*!40000 ALTER TABLE `time_difference` DISABLE KEYS */;
-/*!40000 ALTER TABLE `time_difference` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `urgency_cat`
 --
 
@@ -1017,15 +773,6 @@ CREATE TABLE `urgency_cat` (
   UNIQUE KEY `urg_name` (`urg_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `urgency_cat`
---
-
-LOCK TABLES `urgency_cat` WRITE;
-/*!40000 ALTER TABLE `urgency_cat` DISABLE KEYS */;
-/*!40000 ALTER TABLE `urgency_cat` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `user_schedules`
@@ -1047,15 +794,6 @@ CREATE TABLE `user_schedules` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_schedules`
---
-
-LOCK TABLES `user_schedules` WRITE;
-/*!40000 ALTER TABLE `user_schedules` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_schedules` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `user_type`
 --
 
@@ -1069,16 +807,6 @@ CREATE TABLE `user_type` (
   PRIMARY KEY (`type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user_type`
---
-
-LOCK TABLES `user_type` WRITE;
-/*!40000 ALTER TABLE `user_type` DISABLE KEYS */;
-INSERT INTO `user_type` VALUES (1,'Administrator','Can manage all features in systems'),(2,'Doctor','Edi Doctor'),(3,'Nurse Manager','Nurse Manager'),(4,'Bedside Nurse','Bedside Nurse'),(5,'Radiologist','Radiologist'),(6,'Pharmacist','Pharmacist'),(7,'Yung tao sa laboratory','');
-/*!40000 ALTER TABLE `user_type` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -1108,16 +836,6 @@ CREATE TABLE `users` (
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `user_type` (`type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,1,'admin','d033e22ae348aeb5660fc2140aec35850c4da997','administrator@gmail.com','Admin','Admin','Admin','1997-03-18','09425491361','M',1,'2016-06-23'),(6,2,'lttan','1f0160076c9f42a157f0a8f0dcc68e02ff69045b','lizarabelletan@gmail.com','Liz Arabelle','Tan','Trinidad','1996-04-09','09228884552','F',1,'2016-06-24'),(7,2,'leitan','1f0160076c9f42a157f0a8f0dcc68e02ff69045b','leitan@gmail.com','Lei Angeli','Tan','Trinidad','2001-06-12','09111111111','F',1,'2016-06-24'),(8,3,'marvis','285f9a003f671c2486a3f87ea1ad5e37699ebc38','marvis@gmail.com','Marvis','Cleofas','Revilla','1987-03-09','09111111111','M',1,'2016-06-25'),(9,3,'leahcalimba','285f9a003f671c2486a3f87ea1ad5e37699ebc38','leah_calimba@yahoo.com','Leah','Calimba','David','1994-01-20','09666666666','F',1,'2016-06-25'),(10,4,'denisevaldi','285f9a003f671c2486a3f87ea1ad5e37699ebc38','denise_valdi@yahoo.com','Denise','Valdivieso','Soledad','1996-09-09','09777777777','F',1,'2016-06-25'),(11,3,'sandritahernandez','285f9a003f671c2486a3f87ea1ad5e37699ebc38','sandrahernan@yahoo.com','Sandra','Hernandez','Legazpi','1992-11-12','09888888888','F',1,'2016-06-25'),(12,4,'lourainesol','285f9a003f671c2486a3f87ea1ad5e37699ebc38','lourainesoledad@yahoo.com','Louraine','Soledad','Rey','1994-06-15','09555555555','F',1,'2016-06-25'),(13,4,'krishdelosreyes','285f9a003f671c2486a3f87ea1ad5e37699ebc38','kirishatae@yahoo.com','Krisha','Delos Reyes','Rey','1993-09-25','09228884552','F',1,'2016-06-25'),(14,3,'gerbengbeng','285f9a003f671c2486a3f87ea1ad5e37699ebc38','gerbyguittu@yahoo.com','Gerby','Guittu','Zapata','1992-12-24','09111111111','F',1,'2016-06-25'),(15,2,'megmegrey','1f0160076c9f42a157f0a8f0dcc68e02ff69045b','megmegrey@yahoo.com','Marie','Rey','Cagungun','1994-04-17','09555555555','F',1,'2016-06-25'),(17,2,'leahcalimba1','1f0160076c9f42a157f0a8f0dcc68e02ff69045b','leah123@yahoo.com','Leah','Calimba','Rey','1991-02-27','09222222222','F',1,'2016-06-25'),(18,5,'nichole','81323d4a8b7385d92825f42404dfaea0544c9742','nichole@gmail.com','Nichole','Malazav','Compe','2003-12-25','09999999992','F',1,'2016-06-25'),(19,6,'marierey','c0755c8ac8b27b615262ef7d938e0c1e9c83bf5f','marieee@yahoo.com','Marie','Rey','Dantes','1990-06-28','09111111112','M',1,'2016-06-25'),(20,6,'marianqt','c0755c8ac8b27b615262ef7d938e0c1e9c83bf5f','marianrivera@yahoo.com','Marian','Rivera','Rey','1986-09-11','09888888888','F',1,'2016-06-25'),(21,6,'raineulan','c0755c8ac8b27b615262ef7d938e0c1e9c83bf5f','lourainesa@yahoo.com','Louraine','Soledad','Aspecto','1989-01-08','09777777777','F',1,'2016-06-25'),(22,6,'tutispanis','c0755c8ac8b27b615262ef7d938e0c1e9c83bf5f','alexisrev@yahoo.com','Alexis','Revilla','Rey','1988-04-16','09444444444','M',1,'2016-06-25'),(23,6,'motmot','c0755c8ac8b27b615262ef7d938e0c1e9c83bf5f','motmotrs@yahoo.com','Mot','Rey','Sy','1994-07-12','09666666666','M',1,'2016-06-25'),(24,5,'erinny','81323d4a8b7385d92825f42404dfaea0544c9742','erinnsyy@yahoo.com','Erin','Sy','Compe','0000-00-00','09444444444','F',1,'2016-06-25'),(25,5,'armandqtp2t','81323d4a8b7385d92825f42404dfaea0544c9742','ledorski@yahoo.com','Armand','Valdivieso','Ledor','1982-08-24','09222222222','M',1,'2016-06-25'),(26,5,'alpachupapi','81323d4a8b7385d92825f42404dfaea0544c9742','alexisbibepanti@yahoo.com','Alexis','Panti','Bibe','1996-06-01','09696969369','M',1,'2016-06-25'),(27,5,'martintol','81323d4a8b7385d92825f42404dfaea0544c9742','batumbakalian@yahoo.com','Martin Ian','Batumbakal','Rey','1981-06-17','09333333333','M',1,'2016-06-25');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1128,4 +846,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-30 14:46:42
+-- Dump completed on 2016-07-03 15:26:51

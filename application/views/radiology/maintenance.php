@@ -24,6 +24,7 @@
               <td>ID</td>
               <td>Name</td>
               <td>Description</td>
+              <td>Price</td>
               <td>Action</td>
             </tr>
             <?php
@@ -32,6 +33,7 @@
                   echo "<td>".$radiology_exam['exam_id']."</td>";
                   echo "<td>".$radiology_exam['exam_name']."</td>";
                   echo "<td>".$radiology_exam['exam_description']."</td>";
+                  echo "<td>".$radiology_exam['exam_price']."</td>";
                   echo "<td>";
                     echo "<a href='".base_url()."Radiology/EditExam/".$radiology_exam['exam_id']."' role='button' class='btn btn-default btn-sm'>Edit</a>";
                     echo "<a href='".base_url()."Radiology/DeactivateExam/".$radiology_exam['exam_id']."' role='button' class='btn btn-default btn-sm'>Deactivate</a>";
@@ -69,6 +71,13 @@
                           <label  class="col-lg-3 col-sm-3 control-label">Exam Description: </label>
                           <div class="col-lg-9">
                               <input type="text" name="description" class="form-control" placeholder="Exam Description">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label  class="col-lg-3 col-sm-3 control-label">Exam Price: </label>
+                          <div class="col-lg-9">
+                              <input type="text" name="price" class="form-control" placeholder="Exam Price">
                           </div>
                       </div>
 

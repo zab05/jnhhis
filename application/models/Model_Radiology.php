@@ -22,6 +22,13 @@
       $this->db->insert('radiology_exam', $data);
     }
 
+    function get_patient_list(){
+      $this->db->select('*');
+      $this->db->from('patient');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
     function deactivate($id, $data){
       $this->db->where('exam_id', $id);
       $this->db->update('radiology_exam', $data);

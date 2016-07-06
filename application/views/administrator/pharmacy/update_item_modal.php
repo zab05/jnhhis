@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Update item</h4>
+        <h4 class="modal-title" id="myModalLabel">Update Item</h4>
       </div>
       <div class="modal-body">
 
@@ -12,20 +12,20 @@
 
                                 <input type="hidden" name="itemid">
                                   <div class="form-group">
-                                  <label for="name">Name:</label>
+                                  <label for="name">Name</label>
                                   <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
                                   </div>
                                  <div class="form-group">
-                                  <label for="description">Description:</label>
+                                  <label for="description">Description</label>
                                   <input type="text" class="form-control" id="description" name="description" placeholder="Description" required>
                                   </div>
 
                                   <div>
-                                  <label for="name">Quantity:</label>
+                                  <label for="name">Quantity</label>
                                   <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Quantity" required>
                                   </div>
                                  <div class="form-group">
-                                  <label for="description">Price:</label>
+                                  <label for="description">Price</label>
                                   <input type="text" class="form-control" id="price" name="price" placeholder="Price" required>
                                   </div>
 
@@ -33,7 +33,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button style="margin-top: -5px;" type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-success">Submit</button>
       </div>
       </form>
     </div>

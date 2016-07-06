@@ -1,7 +1,6 @@
 <?php
   if (!defined('BASEPATH'))exit('No direct script access allowed');
-  class Admin extends CI_Controller
-  {
+  class Admin extends CI_Controller{
     function __construct(){
       parent::__construct();
       $this->load->model('Model_admin');
@@ -28,7 +27,7 @@
         $data['total_admitted_in_er_count'] = $this->Model_admin->get_count_patient_admitted_in_er();
         $this->load->view('administrator/includes/header.php');
         $this->load->view('administrator/patient/patientlist.php', $data);
-        $this->load->view('administrator/includes/footer.php');
+        //$this->load->view('administrator/includes/footer.php');
       }else{
         $data['patient'] = $this->Model_admin->get_single_patient($id);
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
@@ -172,7 +171,7 @@
       $data['total_inactive_doctors_count'] = $this->Model_admin->get_total_inactive_doctor_count();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/doctor/active_doctorlist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactiveDoctor(){
@@ -182,7 +181,7 @@
       $data['total_inactive_doctors_count'] = $this->Model_admin->get_total_inactive_doctor_count();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/doctor/inactive_doctorlist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddDoctor(){
@@ -197,8 +196,8 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
@@ -279,7 +278,7 @@
       $data['total_inactive_bedside_nurse'] = $this->Model_admin->get_total_inactive_bedside_nurse();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/nurse/active_nurselist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactiveNurse(){
@@ -291,7 +290,7 @@
       $data['total_inactive_bedside_nurse'] = $this->Model_admin->get_total_inactive_bedside_nurse();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/nurse/inactive_nurselist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddNurse(){
@@ -305,8 +304,8 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
@@ -384,7 +383,7 @@
       $data['total_inactive_radiologist'] = $this->Model_admin->get_total_inactive_radiologists();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/radiology/active_radiologist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactiveRadiologist(){
@@ -394,7 +393,7 @@
       $data['total_inactive_radiologist'] = $this->Model_admin->get_total_inactive_radiologists();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/radiology/inactive_radiologist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddRadiologist(){
@@ -410,8 +409,8 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
@@ -419,7 +418,7 @@
       if($this->form_validation->run() == FALSE){
         echo "may mali";
       }else{
-        $data = array("type_id"=>5,
+        $data = array("type_id"=>6,
                       "username"=>$this->input->post('username'),
                       "password"=>sha1("radiologist"),
                       "email"=>$this->input->post('email'),
@@ -431,6 +430,7 @@
                       "gender"=>$this->input->post('gender'),
                       "status"=>1,
                       "employment_date"=>date('Y-m-d'),
+                      "dept"=>"DEPT-0005"
                     );
         $doctor_id = $this->Model_admin->insert_user($data);
         redirect(base_url().'Admin/RadiologistList');
@@ -486,7 +486,7 @@
       $data['total_inactive_pharmacist'] = $this->Model_admin->get_total_inactive_pharmacist();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/pharmacy/active_pharmacist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactivePharmacist(){
@@ -496,7 +496,7 @@
       $data['total_inactive_pharmacist'] = $this->Model_admin->get_total_inactive_pharmacist();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/pharmacy/inactive_pharmacist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddPharmacist(){
@@ -512,16 +512,18 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
 
+
+
       if($this->form_validation->run() == FALSE){
         echo validation_errors();
       }else{
-        $data = array("type_id"=>6,
+        $data = array("type_id"=>7,
                       "username"=>$this->input->post('username'),
                       "password"=>sha1("pharmacist"),
                       "email"=>$this->input->post('email'),
@@ -726,7 +728,7 @@
       $data['roomtypes'] = $this->Model_admin->get_roomtype_List();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/rooms/roomtypelist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function insert_roomtype(){
@@ -777,7 +779,7 @@
       $data['roomtypes'] = $this->Model_admin->get_roomtype_List();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/rooms/roomlist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function insert_room(){
@@ -857,8 +859,6 @@
       redirect(base_url()."Admin/ViewRoom/".$roomid);
     }
     /*=========================================================================================================================*/
-
-
 function LaboratoryRequests(){
 $data['laboratoryreq'] = $this->Model_admin->get_laboratoryrequest_list();
 $this->load->view('administrator/includes/header.php');
@@ -867,56 +867,77 @@ $this->load->view('administrator/includes/footer.php');
 }
 
     function ShowLabReq($id){
+      $data['requestno'] = $id;
       $data['laboratorytopatient'] = $this->Model_admin->get_laboratorytopatient_data($id);
       $data['laboratorytouser'] =  $this->Model_admin->get_laboratorytouser_data($id);
+      $data['laboratorytolabrequest'] = $this->Model_admin->get_laboratorytorequest_data($id);
+      $data['laboratorytospecimen'] = $this->Model_admin->get_laboratorytospecimen_data($id);
+      $data['laboratorytoremarks'] = $this->Model_admin->get_laboratorytoremarks_data($id);
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/laboratory/showlaboratoryrequest.php',$data);
       $this->load->view('administrator/includes/footer.php');
     }
 
 
-    function MakeLaboratoryRequests()
-    {
-      $data['patientlist'] = $this->Model_admin->get_patient_list();
-      $this->load->view('administrator/includes/header.php');
-      $this->load->view('administrator/laboratory/makelaboratoryrequest.php',$data);
-      $this->load->view('administrator/includes/footer.php');
-    }
-
-function MakeLaboratoryRequests2()
-{
-  $patient = $this->input->post('patient');
-  if($patient=="")
-  {
-    redirect(base_url()."Admin/MakeLaboratoryRequests");
-  }
-  else
-  {
-  $data['patient'] = $this->Model_admin->get_single_patient($patient);
-  $this->load->view('administrator/includes/header.php');
-  $this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
-  $this->load->view('administrator/includes/footer.php');
-  }
+    function MakeLaboratoryRequests(){
+$data['patientlist'] = $this->Model_admin->get_patient_list();
+$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/laboratory/makelaboratoryrequest.php',$data);
+$this->load->view('administrator/includes/footer.php');
 }
 
-function LabExamCateg()
+function MakeLaboratoryRequests2(){
+$patient = $this->input->post('patient');
+if($patient==""){
+redirect(base_url()."Admin/MakeLaboratoryRequests");
+}else{
+$data['labexamtype'] = $this->Model_admin->get_all_examtype();
+$data['urgencycat'] = $this->Model_admin->get_all_urgencycategory();
+$data['fastingcat'] = $this->Model_admin->get_all_fastingcategory();
+$data['patient'] = $this->Model_admin->get_single_patient($patient);
+$data['specimen'] = $this->Model_admin->get_all_labspec();
+$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
+$this->load->view('administrator/includes/footer.php');
+}
+}
+
+function AppofReq(){
+  $data['laboratoryreq'] = $this->Model_admin->get_laboratoryrequest_list();
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/approvalofrequest.php',$data);
+  $this->load->view('administrator/includes/footer.php');
+}
+
+function ApproveLabReq($id)
 {
+      $data = array('lab_status'=>2);
+      $this->Model_admin->approvelabreq($id,$data);
+      redirect(base_url()."Admin/AppofReq");
+}
+
+function CancelLabReq($id)
+{
+        $data = array('lab_status'=>3);
+        $this->Model_admin->cancellabreq($id,$data);
+        redirect(base_url()."Admin/AppofReq");
+}
+
+function LabExamCateg(){
   $data['examcateg'] = $this->Model_admin->get_all_examcateg();
   $this->load->view('administrator/includes/header.php');
   $this->load->view('administrator/laboratory/labexamcateg.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
 
-function EditExamCateg($id)
-{
+function EditExamCateg($id){
   $data['examcateg'] = $this->Model_admin->get_examcateg($id);
   $this->load->view('administrator/includes/header.php');
   $this->load->view('administrator/laboratory/editexamcateg.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
 
-function LabExamType()
-{
+function LabExamType(){
   $data['examtype'] = $this->Model_admin->get_all_examtype();
   $data['examcateg'] = $this->Model_admin->get_all_examcateg();
   $this->load->view('administrator/includes/header.php');
@@ -924,8 +945,7 @@ function LabExamType()
   $this->load->view('administrator/includes/footer.php');
 }
 
-function EditExamType($id)
-{
+function EditExamType($id){
   $data['examtype'] = $this->Model_admin->get_specific_examtype($id);
   $data['examcateg'] = $this->Model_admin->get_all_examcateg();
   $this->load->view('administrator/includes/header.php');
@@ -933,24 +953,21 @@ function EditExamType($id)
   $this->load->view('administrator/includes/footer.php');
 }
 
-function LabExamSpec()
-{
+function LabExamSpec(){
   $data['labspec'] = $this->Model_admin->get_all_labspec();
   $this->load->view('administrator/includes/header.php');
   $this->load->view('administrator/laboratory/labexamspec.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
 
-function EditSpec($id)
-{
+function EditSpec($id){
   $data['spec'] = $this->Model_admin->get_specific_specimen($id);
   $this->load->view('administrator/includes/header.php');
   $this->load->view('administrator/laboratory/editspec.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
 
- function insert_patient_thrulaboratory()
- {
+ function insert_patient_thrulaboratory(){
    $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
    $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
    $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
@@ -966,12 +983,9 @@ function EditSpec($id)
    $this->form_validation->set_rules('mobile_number', 'Mobile number', 'required|trim|xss_clean|strip_tags');
    $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
 
-  if($this->form_validation->run() == FALSE)
-  {
+  if($this->form_validation->run() == FALSE){
     echo "may mali";
-  }
-  else
-  {
+  }else{
     $data = array(
       'first_name' => $this->input->post('firstname'),
       'last_name' => $this->input->post('lastname'),
@@ -997,17 +1011,13 @@ function EditSpec($id)
   }
  }
 
- function insert_category()
- {
+ function insert_category(){
    $this->form_validation->set_rules('categname', 'Name', 'required|trim|xss_clean|strip_tags');
    $this->form_validation->set_rules('categdesc', 'Description', 'required|trim|xss_clean|strip_tags');
 
-   if($this->form_validation->run() == FALSE)
-   {
+   if($this->form_validation->run() == FALSE){
      echo "Something's Wrong";
-   }
-   else
-   {
+   } else {
      $data = array ('exam_cat_name' => $this->input->post('categname'),
                     'exam_cat_desc' => $this->input->post('categdesc'));
       $insertcategory = $this->Model_admin->insertcategory($data);
@@ -1020,12 +1030,9 @@ function EditSpec($id)
    $this->form_validation->set_rules('catname', 'Name', 'required|trim|xss_clean|strip_tags');
    $this->form_validation->set_rules('catdesc', 'Description', 'required|trim|xss_clean|strip_tags');
 
-   if($this->form_validation->run()==FALSE)
-   {
+   if($this->form_validation->run()==FALSE){
      echo "Something's Wrong";
-   }
-   else
-   {
+   } else {
      $data = array ('exam_cat_name' => $this->input->post('catname'),
                     'exam_cat_desc' => $this->input->post('catdesc'));
       $insertcategory = $this->Model_admin->updatecategory($id,$data);
@@ -1039,12 +1046,9 @@ function EditSpec($id)
    $this->form_validation->set_rules('typecateg', 'Category', 'required|trim|xss_clean|strip_tags');
    $this->form_validation->set_rules('typedesc', 'Description', 'required|trim|xss_clean|strip_tags');
 
-   if($this->form_validation->run()==FALSE)
-   {
+   if($this->form_validation->run()==FALSE){
      echo "Something's Wrong";
-   }
-   else
-   {
+   } else {
      $data = array ('lab_exam_type_name' => $this->input->post('typename'),
                     'lab_exam_type_category_id' => $this->input->post('typecateg'),
                     'lab_exam_type_description' => $this->input->post('typedesc'));
@@ -1053,18 +1057,14 @@ function EditSpec($id)
    }
  }
 
- function insert_examtype()
- {
+ function insert_examtype(){
    $this->form_validation->set_rules('typename', 'Name', 'required|trim|xss_clean|strip_tags');
    $this->form_validation->set_rules('examcateg', 'Category', 'required|trim|xss_clean|strip_tags');
    $this->form_validation->set_rules('typedesc', 'Description', 'required|trim|xss_clean|strip_tags');
 
-   if($this->form_validation->run()==FALSE)
-   {
+   if($this->form_validation->run()==FALSE){
      echo "Something's Wrong";
-   }
-   else
-   {
+   } else {
      $data = array('lab_exam_type_name' => $this->input->post('typename'),
                    'lab_exam_type_category_id' => $this->input->post('examcateg'),
                    'lab_exam_type_description' => $this->input->post('typedesc'));
@@ -1091,8 +1091,7 @@ function EditSpec($id)
    }
  }
 
- function update_lab_specimen($id)
- {
+ function update_lab_specimen($id){
    $this->form_validation->set_rules('specname', 'Name', 'required|trim|xss_clean|strip_tags');
    $this->form_validation->set_rules('specdesc', 'Description', 'required|trim|xss_clean|strip_tags');
 
@@ -1109,122 +1108,132 @@ function EditSpec($id)
    }
  }
 
+ function insert_laboratoryrequest()
+ {
+   $this->form_validation->set_rules('labremark', 'Remark', 'required|trim|xss_clean|strip_tags');
+
+   if($this->form_validation->run()==FALSE)
+   {
+     echo "Something is Wrong";
+   }
+   else {
+     $specimens = $this->input->post('specimens');
+     $data1 = array('lab_user'=>1,
+                   'lab_patient'=>$this->input->post('patientid'),
+                   'lab_date_req'=>date('Y-m-d H:i:s'),
+                   'lab_patient_checkin'=>$this->input->post('patientchckin'),
+                   'urgency_cat_fk'=>$this->input->post('urgency'),
+                   'fasting_cat_fk'=>$this->input->post('fasting'),
+                   'exam_type_fk'=>$this->input->post('laboratoryexam'));
+        $id = $this->Model_admin->insertlaboratoryrequest($data1);
+
+     foreach($specimens as $spec){
+       $data2 = array('lab_req_id'=>$id,
+                      'specimen_id'=>$spec);
+        $this->Model_admin->insertrequestspecimen($data2);
+
+     }
+
+     $data3 = array('remark'=>$this->input->post('labremark'),
+                    'rem_user'=>1,
+                    'rem_date'=>date('Y-m-d'),
+                  'lab_id_fk'=>$id);
+        $this->Model_admin->insertrequestremark($data3);
+      redirect(base_url()."Admin/LaboratoryRequests");
+   }
+  }
+
 
     /*=========================================================================================================================*/
+    function pharmacy_inventory()
+    {
+      $data['items'] = $this->Model_admin->get_pharmacy_inventory();
+      $data['inventorycount'] = $this->Model_admin->count_pharmacy_inventory();
+      $this->load->view('administrator/includes/header');
+      $this->load->view('administrator/pharmacy/add_item_modal');
+      $this->load->view('administrator/pharmacy/delete_item_modal');
+      $this->load->view('administrator/pharmacy/update_item_modal');
+      $this->load->view('administrator/pharmacy/inventory',$data);
+    }
 
-        function pharmacy_inventory()
-        {
-          $data['items'] = $this->Model_admin->get_pharmacy_inventory();
-          $data['inventorycount'] = $this->Model_admin->count_pharmacy_inventory();
-          $this->load->view('administrator/includes/header');
-          $this->load->view('administrator/pharmacy/add_item_modal');
-          $this->load->view('administrator/pharmacy/delete_item_modal');
-          $this->load->view('administrator/pharmacy/update_item_modal');
-          $this->load->view('administrator/pharmacy/inventory',$data);
-        }
+    function update_item_inventory()
+    {
+      $id = $this->input->post('itemid');
 
-        function update_item_inventory()
-        {
-          $id = $this->input->post('itemid');
+      $data = array('item_name'=>$this->input->post('name'),
+                    'item_description'=>$this->input->post('description'),
+                    'item_quantity'=>$this->input->post('quantity'),
+                    'item_price'=>$this->input->post('price'));
 
-          $data = array('item_name'=>$this->input->post('name'),
-                        'item_description'=>$this->input->post('description'),
-                        'item_quantity'=>$this->input->post('quantity'),
-                        'item_price'=>$this->input->post('price'));
+      $this->Model_admin->update_item_inventory($id,$data);
+      redirect(base_url()."Admin/pharmacy_inventory");
+    }
 
-          $this->Model_admin->update_item_inventory($id,$data);
-          redirect(base_url()."Admin/pharmacy_inventory");
-        }
+    function delete_item_inventory()
+    {
+      $id = $this->uri->segment(3);
+      $this->Model_admin->delete_item_inventory($id);
+      redirect(base_url()."Admin/pharmacy_inventory");
+    }
 
+    function add_item_inventory()
+    {
+      $data = array('item_name'=>$this->input->post('name'),
+                    'item_description'=>$this->input->post('description'),
+                    'item_quantity'=>$this->input->post('quantity'),
+                    'item_price'=>$this->input->post('price'));
 
-        function delete_item_inventory()
-        {
-          $id = $this->uri->segment(3);
-          $this->Model_admin->delete_item_inventory($id);
-          redirect(base_url()."Admin/pharmacy_inventory");
-        }
+      $this->Model_admin->add_item_inventory($data);
+      redirect(base_url()."Admin/pharmacy_inventory");
+    }
 
-        function add_item_inventory()
-        {
-          $data = array('item_name'=>$this->input->post('name'),
-                        'item_description'=>$this->input->post('description'),
-                        'item_quantity'=>$this->input->post('quantity'),
-                        'item_price'=>$this->input->post('price'));
-
-          $this->Model_admin->add_item_inventory($data);
-          redirect(base_url()."Admin/pharmacy_inventory");
-        }
-
-        function add_item_inventory_import()
-        {
-          $data['error'] = '';    //initialize image upload error array to empty
-
-              $config['upload_path'] = './csv/';
-              $config['allowed_types'] = 'csv';
-              $config['max_size'] = '1000';
-
-              $this->load->library('upload', $config);
-              $this->upload->initialize($config);
-
-
-              // If upload failed, display error
-              if (!$this->upload->do_upload())
-              {
-                  redirect('Admin/pharmacy_inventory');
-              }
-              else
-              {
-                  $file_data = $this->upload->data();
-                  $file_path =  './csv/'.$file_data['file_name'];
-
-                  if ($this->csvimport->get_array($file_path))
-                  {
-                      $csv_array = $this->csvimport->get_array($file_path);
-                      foreach ($csv_array as $row)
-                      {
-                          $insert_data = array(
-                              'item_name'=>$row['Name'],
-                              'item_description'=>$row['Description'],
-                              'item_quantity'=>$row['Quantity'],
-                              'item_price'=>$row['Price']
-                          );
-                          $this->Model_admin->add_item_inventory_import($insert_data);
-                      }
-                      //$this->session->set_flashdata('csv', '<div class="alert alert-success text-center">Users imported successfully!</div>');
-                      redirect(base_url().'admin/pharmacy_inventory');
-                  }
-                   else
-                  {
-                      $this->session->set_flashdata('error', "Error occured");
-                      redirect('Admin/pharmacy_inventory');
-                  }
-          }
-        }
-
-
-        function pharmacy_request()
-        {
-            $data['items'] = $this->Model_admin->get_pharmacy_inventory();
-            $data['inventorycount'] = $this->Model_admin->count_pharmacy_inventory();
-            $this->load->view('administrator/includes/header');
-            $this->load->view('administrator/pharmacy/pharmacy_request_modal');
-            $this->load->view('administrator/pharmacy/pharmacy_request',$data);
-        }
-
-        function pharmacy_request_submit()
-        {
-          $itemids = array();
-          $quantities = array();
-          foreach($this->input->post('itemid') as $i)
+    function add_item_inventory_import()
+    {
+      $data['error'] = '';    //initialize image upload error array to empty
+	        $config['upload_path'] = './csv/';
+	        $config['allowed_types'] = 'csv';
+	        $config['max_size'] = '1000';
+	        $this->load->library('upload', $config);
+	        $this->upload->initialize($config);
+	        // If upload failed, display error
+	        if (!$this->upload->do_upload())
           {
-            $itemids[] = $i;
-          }
-
-          foreach($this->input->post('quantity') as $q)
+	            redirect('Admin/pharmacy_inventory');
+	        }
+          else
           {
-            $quantities[] = $q;
-          }
+	            $file_data = $this->upload->data();
+	            $file_path =  './csv/'.$file_data['file_name'];
+	            if ($this->csvimport->get_array($file_path))
+              {
+	                $csv_array = $this->csvimport->get_array($file_path);
+	                foreach ($csv_array as $row)
+                  {
+	                    $insert_data = array(
+	                        'item_name'=>$row['Name'],
+	                        'item_description'=>$row['Description'],
+	                        'item_quantity'=>$row['Quantity'],
+	                        'item_price'=>$row['Price']
+	                    );
+	                    $this->Model_admin->add_item_inventory_import($insert_data);
+	                }
+	                //$this->session->set_flashdata('csv', '<div class="alert alert-success text-center">Users imported successfully!</div>');
+	                redirect(base_url().'admin/pharmacy_inventory');
+	            } else
+              $this->session->set_flashdata('error', "Error occured");
+					redirect('Admin/pharmacy_inventory');
+	            }
+    }
 
+    /*=========================================================================================================================*/
+    function CSRListofproducts(){
+      $data['csrinventory'] = $this->Model_admin->get_csr_inventory();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/csr/listofproducts.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+<<<<<<< HEAD
           foreach ($quantities as $key => $value)
           {
             if($value == 0)
@@ -1242,17 +1251,41 @@ function EditSpec($id)
           {
 
           }
+=======
+>>>>>>> 04789342701c9efeaf809441d54b22fac51eb9ca
 
-        }
+    function CSRPendingrequests(){
+      $data['nursetocsr'] = $this->Model_admin->get_nurse_requests();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/csr/pendingrequest.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
 
+    function request_restock($id){
+      var_dump($id);
+      echo "<br>";
+      echo "DIDIRETSO TO SA request_from_csr table ng purchasing with request_type 2 = restock";
+    }
 
+    function request_newproduct(){
+      $this->form_validation->set_rules('itemreq', 'Item Name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('itemquant', 'Quantity', 'required|trim|xss_clean|strip_tags');
 
+      if($this->form_validation->run()==FALSE){
+        echo "Something is wrong";
+      } else {
+        echo $this->input->post('itemreq');
+        echo "<br>";
+        echo $this->input->post('itemquant');
+        echo "<br>";
+              echo "DIDIRETSO TO SA request_from_csr table ng purchasing with request_type 1 = new product";
+      }
+    }
     /*=========================================================================================================================*/
-    function logout()
-    {
+    function logout(){
       $this->session->sess_destroy();
       redirect(base_url());
     }
-}
+  }
 
 ?>

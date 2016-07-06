@@ -1,13 +1,21 @@
 <section id="main-content">
   <section class="wrapper">
     <div class="row">
-        <div class="col-sm-3">
+		 <div class="col-sm-3">
             <section class="panel">
-              <header class="panel-heading" style="background-color: #000;"></header>
+            <header style="font-weight:300" class="panel-heading">
+                 New Nurse
+             <span class="tools pull-right">
+				<a data-original-title="Show Inactive Nurse"
+				   data-placement="top" 
+				   data-toggle="tooltip"
+				class="tooltips" href="<?=base_url()?>Admin/InactiveNurse" role="button" ><i style="color:black" class="fa fa-eye"></i></a>
+             </span>
+            </header>
+			<div class="panel-body">
+            <div class="adv-table">
               <table class="table">
-                  <tr>
-                    <td colspan="2" align="center"><h5><a href="<?=base_url()?>Admin/AddNurse" role="button" class="btn btn-info"><span class="fa fa-plus"/>ADD NEW NURSE</a></h5></td>
-                  </tr>
+                
                   <tr>
                   </tr>
                   <tr>
@@ -30,25 +38,39 @@
                     <td>Number of Nurse: </td>
                     <td><?=$total_nurse?></td>
                   </tr>
-                  <tr>
-                    <td colspan="2" align="center"><h5><a href="<?=base_url()?>Admin/InactiveNurse" role="button" class="btn btn-info">SHOW INACTIVE NURSE</a></h5></td>
-                  </tr>
+                 
               </table>
+			  <center>
+			  <a href="<?=base_url()?>Admin/AddNurse" role="button" class="btn btn-sm btn-round btn-success"><i class="fa fa-plus-circle"></i> Add Nurse</a>
+			  </center>
+			</div>
+			</div>
             </section>
+			
         </div>
+		
         <div class="col-sm-9">
             <section class="panel">
-                <header class="panel-heading">
-                    <center><h4>NURSE LIST<h4></center>
-                </header>
-                <table class="table table-hovered" style="text-align: center;">
+             
+				<header style="font-weight:300" class="panel-heading">
+					 Nurse List (Active)
+				 <span class="tools pull-right">
+				 </span>
+				</header>
+				
+				<div class="panel-body">
+				<div class="adv-table">
+                <table class="table table-striped" style="text-align: center;" id="dynamic-table">
+				<thead>
                   <tr id="tblheader">
-                      <td>#</td>
-                      <td>Name</td>
-                      <td>Contact No.</td>
-                      <td>Position</td>
-                      <td>Action</td>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Contact No.</th>
+                      <th>Position</th>
+                      <th>Action</th>
                   </tr>
+				  </thead>
+				  <tbody>
                   <?php
                     foreach($nurses as $nurse){
                       echo "<tr>";
@@ -65,16 +87,37 @@
                         echo "<td>".$nurse['name']."</td>";
                         echo "<td>";
                           echo "<div class='btn-group' role='group' aria-label='...'>";
-                            echo "<a href='".base_url()."Admin/EditNurse/".$nurse['user_id']."' role='button' class='btn btn-default btn-sm'>Edit</a>";
-                            echo "<a href='".base_url()."Admin/DeactivateNurse/".$nurse  ['user_id']."' role='button' class='btn btn-default btn-sm'>Deactivate</a>";
+                            echo "<a href='".base_url()."Admin/EditNurse/".$nurse['user_id']."' role='button' class='btn btn-warning btn-sm'>Edit</a>";
+                            echo "<a href='".base_url()."Admin/DeactivateNurse/".$nurse  ['user_id']."' role='button' class='btn btn-danger btn-sm'>Deactivate</a>";
                           echo "</div>";
                         echo "</td>";
                       echo "</tr>";
                     }
                   ?>
+				</tbody>
                 </table>
+				</div>
+				</div>
             </section>
+			
         </div>
     </div>
   </section>
 </section>
+
+<script src="<?=base_url()?>js/jquery.js"></script>
+<script src="<?=base_url()?>js/bootstrap.min.js"></script>
+
+<script class="include" type="text/javascript" src="<?=base_url()?>js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="<?=base_url()?>js/jquery.scrollTo.min.js"></script>
+<script src="<?=base_url()?>js/jquery.nicescroll.js" type="text/javascript"></script>
+
+<!--right slidebar-->
+<script src="<?=base_url()?>js/slidebars.min.js"></script>
+<!--common script for all pages-->
+<script src="<?=base_url()?>js/common-scripts.js"></script>
+
+<!--dynamic table initialization -->
+<script type="text/javascript" language="javascript" src="<?php echo base_url()?>assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/data-tables/DT_bootstrap.js"></script>
+<script src="<?php echo base_url()?>js/dynamic_table_init.js"></script>
