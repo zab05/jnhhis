@@ -1240,7 +1240,7 @@ function EditSpec($id)
 
           for($i = 0; $i < sizeof($itemids); $i++)
           {
-            
+
           }
 
         }
