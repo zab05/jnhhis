@@ -724,5 +724,23 @@
     function insertrequestremark($data3){
       $this->db->insert('lab_request_remarks',$data3);
     }
+    /* CSR */
+    function get_csr_inventory()
+    {
+      $this->db->select('*');
+      $this->db->from('csr_inventory');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function get_nurse_requests()
+    {
+      $this->db->select('*');
+      $this->db->from('csr_request');
+      $this->db->where('csr_status',0);
+      $this->db->where('csr_status',2);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
   }
 ?>
