@@ -38,6 +38,27 @@
                   <td>For Approval</td>
                   <td>View Request/Accept/Reject/Hold</td>
                 </tr>
+                <?php
+                foreach($nursetocsr as $request)
+                {
+                  echo "<tr>";
+                    echo "<td>".$request['csr_req_id']."</td>";
+                    echo "<td>".$request['nurse_id']."</td>";
+                    echo "<td>".$request['csr_item_id']."</td>";
+                    echo "<td>".$request['item_quant']."</td>";
+                    if($request['csr_status']==0){
+                    echo "<td>For Approval</td>";
+                  } elseif($request['csr_status']==2){
+                    echo "<td>On Hold</td>";
+                  }
+                    echo "<td>";
+                      echo " <a href='".base_url()."Admin/csr_accept_request/".$item['csr_id']."' role='button' class='btn btn-default btn-xs'>Accept Request</a>";
+                      echo " <a href='".base_url()."Admin/csr_reject_request/".$item['csr_id']."' role='button' class='btn btn-default btn-xs'>Reject Request</a>";
+                      echo " <a href='".base_url()."Admin/csr_hold_request/".$item['csr_id']."' role='button' class='btn btn-default btn-xs'>Hold Request</a>";
+                    echo "</td>";
+                  echo "</tr>";
+                }
+                ?>
               </table>
           </section>
       </div>

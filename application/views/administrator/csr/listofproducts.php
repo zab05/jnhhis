@@ -6,7 +6,7 @@
               <header class="panel-heading" style="background-color: #000;"></header>
               <table class="table">
                 <tr>
-                  <td colspan="2" align="center"><h5><a class="btn btn-info" data-toggle="modal" href="#requestproduct">+Request a Product</a></h5></td>
+                  <td colspan="2" align="center"><h5><a class="btn btn-info" data-toggle="modal" href="#requestproduct">+Request New Product</a></h5></td>
                 </tr>
               </table>
           </section>
@@ -23,13 +23,26 @@
                     <td>Item Name</td>
                     <td>Item Description</td>
                     <td>Item Stocks</td>
+                    <td>Restock</td>
                 </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Cotton</td>
-                  <td>For cleaning wounds</td>
-                  <td>256</td>
-                </tr>
+                <?php
+                foreach($csrinventory as $item)
+                {
+                    echo "<tr>";
+                      echo "<td>".$item['csr_id']."</td>";
+                      echo "<td>".$item['item_name']."</td>";
+                      echo "<td>".$item['item_desc']."</td>";
+                      if($item['item_stock']!=0){
+                      echo "<td>".$item['item_stock']."</td>";
+                    } else {
+                      echo "<td>Out of Stock</td>";
+                    }
+                      echo "<td>";
+                        echo "<a href='".base_url()."Admin/request_restock/".$item['csr_id']."' role='button' class='btn btn-default btn-xs'>Request Restock</a>";
+                      echo"</td>";
+                    echo "</tr>";
+                }
+                 ?>
               </table>
           </section>
       </div>
@@ -41,20 +54,18 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" align="center">Request a Product</h4>
+                        <h4 class="modal-title" align="center">New Product Request Form</h4>
                     </div>
                     <div class="modal-body">
                       <?php
                         $attributes = array('class'=>'form-horizontal', 'role'=>'form');
-                        echo form_open('admin/insert_room', $attributes);
+                        echo form_open('admin/request_newproduct', $attributes);
                       ?>
 
                       <div class="form-group">
                           <label  class="col-lg-3 col-sm-3 control-label">Item: </label>
                           <div class="col-lg-9">
-                              <select class="form-control" name="itemreq">
-                                <option value="1">Cotton</option>
-                              </select>
+                            <input type="text" name="itemreq" class="form-control" placeholder="Item Name">
                           </div>
                       </div>
 
