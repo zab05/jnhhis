@@ -15,11 +15,16 @@
     <link href="<?=base_url()?>assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
     <link rel="stylesheet" href="<?=base_url()?>css/owl.carousel.css" type="text/css">
+	<link href="<?php echo base_url() ?>assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+	<link href="<?php echo base_url() ?>assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/data-tables/DT_bootstrap.css" />
+
     <!--right slidebar-->
     <link href="<?=base_url()?>css/slidebars.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="<?=base_url()?>css/style.css" rel="stylesheet">
     <link href="<?=base_url()?>css/style-responsive.css" rel="stylesheet" />
+	
 
 
   </head>
@@ -34,16 +39,26 @@
               <!--logo start-->
               <a href="index-2.html" class="logo">NORA<span>HS</span></a>
               <!--logo end-->
-              <div class="nav notify-row" id="top_menu">
+
+              <div class="nav notify-row " id="top_menu">
                   <!--  notification start -->
                   <ul class="nav top-menu">
                       <!-- settings start -->
+
+                      <!-- notification dropdown end -->
+                  </ul>
+                  <!--  notification end -->
+              </div>
+              <div class="top-nav ">
+                  <!--search & user info start-->
+                  <ul class="nav pull-right top-menu">
+                      <!-- user login dropdown start-->
                       <li class="dropdown">
                           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                               <i class="fa fa-tasks"></i>
                               <span class="badge bg-success">6</span>
                           </a>
-                          <ul class="dropdown-menu extended tasks-bar">
+                          <ul class="dropdown-menu extended tasks-bar " >
                               <div class="notify-arrow notify-arrow-green"></div>
                               <li>
                                   <p class="green">You have 6 pending tasks</p>
@@ -237,18 +252,10 @@
                               </li>
                           </ul>
                       </li>
-                      <!-- notification dropdown end -->
-                  </ul>
-                  <!--  notification end -->
-              </div>
-              <div class="top-nav ">
-                  <!--search & user info start-->
-                  <ul class="nav pull-right top-menu">
-                      <!-- user login dropdown start-->
                       <li class="dropdown">
                           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                              <img alt="" src="<?=base_url()?>img/avatar1_small.jpg">
-                              <span class="username">Jhon Doue</span>
+                              <img alt="" width="30"src="<?=base_url()?>img/doctor.png">
+                              <span class="username"><?php echo $this->session->userdata("user_firstname") ?></span>
                               <b class="caret"></b>
                           </a>
                           <ul class="dropdown-menu extended logout">
@@ -259,11 +266,11 @@
                               <li><a href="<?=base_url()?>Admin/Logout"><i class="fa fa-key"></i> Log Out</a></li>
                           </ul>
                       </li>
-                      <li class="sb-toggle-right">
-                          <i class="fa  fa-align-right"></i>
-                      </li>
+
                       <!-- user login dropdown end -->
                   </ul>
+
+
                   <!--search & user info end-->
               </div>
           </header>

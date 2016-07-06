@@ -1,10 +1,6 @@
 <!--footer start-->
-<footer class="site-footer">
-    <div class="container">
-      <div class="text-center">
-          2013 &copy; FlatLab by VectorLab.
-      </div>
-    </div>
+<footer class="">
+
 </footer>
 <!--footer end-->
 </section>

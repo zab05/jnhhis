@@ -27,7 +27,7 @@
         $data['total_admitted_in_er_count'] = $this->Model_admin->get_count_patient_admitted_in_er();
         $this->load->view('administrator/includes/header.php');
         $this->load->view('administrator/patient/patientlist.php', $data);
-        $this->load->view('administrator/includes/footer.php');
+        //$this->load->view('administrator/includes/footer.php');
       }else{
         $data['patient'] = $this->Model_admin->get_single_patient($id);
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
@@ -171,7 +171,7 @@
       $data['total_inactive_doctors_count'] = $this->Model_admin->get_total_inactive_doctor_count();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/doctor/active_doctorlist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactiveDoctor(){
@@ -181,7 +181,7 @@
       $data['total_inactive_doctors_count'] = $this->Model_admin->get_total_inactive_doctor_count();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/doctor/inactive_doctorlist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddDoctor(){
@@ -196,8 +196,8 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
@@ -278,7 +278,7 @@
       $data['total_inactive_bedside_nurse'] = $this->Model_admin->get_total_inactive_bedside_nurse();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/nurse/active_nurselist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactiveNurse(){
@@ -290,7 +290,7 @@
       $data['total_inactive_bedside_nurse'] = $this->Model_admin->get_total_inactive_bedside_nurse();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/nurse/inactive_nurselist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddNurse(){
@@ -304,8 +304,8 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
@@ -383,7 +383,7 @@
       $data['total_inactive_radiologist'] = $this->Model_admin->get_total_inactive_radiologists();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/radiology/active_radiologist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactiveRadiologist(){
@@ -393,7 +393,7 @@
       $data['total_inactive_radiologist'] = $this->Model_admin->get_total_inactive_radiologists();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/radiology/inactive_radiologist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddRadiologist(){
@@ -409,8 +409,8 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
@@ -418,7 +418,7 @@
       if($this->form_validation->run() == FALSE){
         echo "may mali";
       }else{
-        $data = array("type_id"=>5,
+        $data = array("type_id"=>6,
                       "username"=>$this->input->post('username'),
                       "password"=>sha1("radiologist"),
                       "email"=>$this->input->post('email'),
@@ -430,6 +430,7 @@
                       "gender"=>$this->input->post('gender'),
                       "status"=>1,
                       "employment_date"=>date('Y-m-d'),
+                      "dept"=>"DEPT-0005"
                     );
         $doctor_id = $this->Model_admin->insert_user($data);
         redirect(base_url().'Admin/RadiologistList');
@@ -485,7 +486,7 @@
       $data['total_inactive_pharmacist'] = $this->Model_admin->get_total_inactive_pharmacist();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/pharmacy/active_pharmacist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactivePharmacist(){
@@ -495,7 +496,7 @@
       $data['total_inactive_pharmacist'] = $this->Model_admin->get_total_inactive_pharmacist();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/pharmacy/inactive_pharmacist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddPharmacist(){
@@ -511,16 +512,18 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
 
+
+
       if($this->form_validation->run() == FALSE){
         echo validation_errors();
       }else{
-        $data = array("type_id"=>6,
+        $data = array("type_id"=>7,
                       "username"=>$this->input->post('username'),
                       "password"=>sha1("pharmacist"),
                       "email"=>$this->input->post('email'),
@@ -725,7 +728,7 @@
       $data['roomtypes'] = $this->Model_admin->get_roomtype_List();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/rooms/roomtypelist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function insert_roomtype(){
@@ -776,7 +779,7 @@
       $data['roomtypes'] = $this->Model_admin->get_roomtype_List();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/rooms/roomlist.php', $data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function insert_room(){
@@ -1138,9 +1141,7 @@ function EditSpec($id){
         $this->Model_admin->insertrequestremark($data3);
       redirect(base_url()."Admin/LaboratoryRequests");
    }
-
-
- }
+  }
 
 
     /*=========================================================================================================================*/
@@ -1189,15 +1190,11 @@ function EditSpec($id){
     function add_item_inventory_import()
     {
       $data['error'] = '';    //initialize image upload error array to empty
-
 	        $config['upload_path'] = './csv/';
 	        $config['allowed_types'] = 'csv';
 	        $config['max_size'] = '1000';
-
 	        $this->load->library('upload', $config);
 	        $this->upload->initialize($config);
-
-
 	        // If upload failed, display error
 	        if (!$this->upload->do_upload())
           {
@@ -1207,7 +1204,6 @@ function EditSpec($id){
           {
 	            $file_data = $this->upload->data();
 	            $file_path =  './csv/'.$file_data['file_name'];
-
 	            if ($this->csvimport->get_array($file_path))
               {
 	                $csv_array = $this->csvimport->get_array($file_path);
@@ -1227,7 +1223,7 @@ function EditSpec($id){
               $this->session->set_flashdata('error', "Error occured");
 					redirect('Admin/pharmacy_inventory');
 	            }
-            }
+    }
 
     /*=========================================================================================================================*/
     function CSRListofproducts(){
