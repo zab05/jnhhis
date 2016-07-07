@@ -35,7 +35,7 @@
     }
 
     function MakeRadiologyRequest(){
-      $data['radiology_exams'] = $this->Model_Radiology->get_inactive_radiology_exams();
+      $data['radiology_exams'] = $this->Model_Radiology->get_radiology_exams();
       $data['patients'] = $this->Model_Radiology->get_patient_list();
       $this->load->view('radiology/includes/header.php');
       $this->load->view('radiology/makeradiologyrequst.php', $data);
@@ -71,6 +71,10 @@
         $this->Model_Radiology->insert_radiology_exam($data);
         redirect(base_url()."Radiology/Maintenance", "refresh");
       }
+    }
+
+    function insert_request(){
+      print_r($this->input->post('exams[]'));
     }
 
     function logout(){
