@@ -79,7 +79,11 @@
                       </div>
 
                       <div class="form-group">
+<<<<<<< HEAD
+                          <label  class="col-lg-3 col-sm-3 control-label">Room Price: </label>
+=======
                           <label  class="col-lg-3 col-sm-3 control-label">Room Price </label>
+>>>>>>> refs/remotes/jj6584/master
                           <div class="col-lg-9">
                             <input type="text" class="form-control"  name="roomprice" placeholder="Room Location">
                           </div>

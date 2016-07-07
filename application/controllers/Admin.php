@@ -1225,7 +1225,42 @@ function EditSpec($id){
 	            }
     }
 
+    /*=========================================================================================================================*/
+    function CSRListofproducts(){
+      $data['csrinventory'] = $this->Model_admin->get_csr_inventory();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/csr/listofproducts.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
 
+
+    function CSRPendingrequests(){
+      $data['nursetocsr'] = $this->Model_admin->get_nurse_requests();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/csr/pendingrequest.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function request_restock($id){
+      var_dump($id);
+      echo "<br>";
+      echo "DIDIRETSO TO SA request_from_csr table ng purchasing with request_type 2 = restock";
+    }
+
+    function request_newproduct(){
+      $this->form_validation->set_rules('itemreq', 'Item Name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('itemquant', 'Quantity', 'required|trim|xss_clean|strip_tags');
+
+      if($this->form_validation->run()==FALSE){
+        echo "Something is wrong";
+      } else {
+        echo $this->input->post('itemreq');
+        echo "<br>";
+        echo $this->input->post('itemquant');
+        echo "<br>";
+              echo "DIDIRETSO TO SA request_from_csr table ng purchasing with request_type 1 = new product";
+      }
+    }
     /*=========================================================================================================================*/
     function logout(){
       $this->session->sess_destroy();

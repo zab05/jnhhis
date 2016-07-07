@@ -17,6 +17,7 @@
               <header class="panel-heading" align="center">LIST OF PATIENTS</header>
             <div class="form-group">
                 <div class="col-lg-12">
+                  <?php if($patientlist != NULL){?>
                   <select name="patient" size="20" style="height: 100%;">
                     <?php
                       foreach($patientlist as $patient){
@@ -30,6 +31,11 @@
                       echo "</option>";*/
                     ?>
                   </select>
+                  <?php
+                } else {
+                  echo "No patient data";
+                }
+                   ?>
                 </div>
             </div>
           </center>
