@@ -23,7 +23,7 @@
                     <td>Item Name</td>
                     <td>Item Description</td>
                     <td>Item Stocks</td>
-                    <td>Restock</td>
+                    <td>Action</td>
                 </tr>
                 <?php
                 foreach($csrinventory as $item)
@@ -38,7 +38,7 @@
                       echo "<td>Out of Stock</td>";
                     }
                       echo "<td>";
-                        echo "<a href='".base_url()."Admin/request_restock/".$item['csr_id']."' role='button' class='btn btn-default btn-xs'>Request Restock</a>";
+                        echo "<a href='".base_url()."Admin/RequestRestock/".$item['csr_id']."' role='button' class='btn btn-default btn-xs'>Request for a stock</a>";
                       echo"</td>";
                     echo "</tr>";
                 }
@@ -59,7 +59,7 @@
                     <div class="modal-body">
                       <?php
                         $attributes = array('class'=>'form-horizontal', 'role'=>'form');
-                        echo form_open('admin/request_newproduct', $attributes);
+                        echo form_open('admin/add_newproduct', $attributes);
                       ?>
 
                       <div class="form-group">
@@ -70,17 +70,17 @@
                       </div>
 
                       <div class="form-group">
-                          <label  class="col-lg-3 col-sm-3 control-label">Quantity: </label>
-                          <div class="col-lg-9">
-                              <select class="form-control" name="itemquant">
-                                <?php
-                                  for($i = 1; $i<=300; $i++){
-                                    echo "<option value=".$i.">".$i."</option>";
-                                  }
-                                ?>
-                              </select>
-                          </div>
-                      </div>
+                        <label  class="col-lg-3 col-sm-3 control-label">Quantity: </label>
+                        <div class="col-lg-9">
+                            <select class="form-control" name="itemquant">
+                              <?php
+                                for($i = 1; $i<=300; $i++){
+                                  echo "<option value=".$i.">".$i."</option>";
+                                }
+                              ?>
+                            </select>
+                        </div>
+                    </div>
 
                     </div>
                     <div class="modal-footer">
