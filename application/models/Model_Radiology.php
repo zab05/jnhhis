@@ -29,6 +29,10 @@
       return $query->result_array();
     }
 
+    function insert_request($data){
+      $this->db->insert('radiology_pat', $data);
+    }
+
     function deactivate($id, $data){
       $this->db->where('exam_id', $id);
       $this->db->update('radiology_exam', $data);

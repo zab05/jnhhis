@@ -48,30 +48,6 @@
                               echo "</div>";
                             }
                           ?>
-                          <!--<div class="col-lg-3">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="inlineCheckbox1" value=""> 1
-                            </label>
-                          </div>
-
-                          <div class="col-lg-3">
-                          <label class="checkbox-inline">
-                              <input type="checkbox" id="inlineCheckbox2" value=""> 2
-                          </label>
-                          </div>
-
-                          <div class="col-lg-3">
-                          <label class="checkbox-inline">
-                              <input type="checkbox" id="inlineCheckbox3" value=""> 3
-                          </label>
-                          </div>
-
-                          <div class="col-lg-3">
-                          <label class="checkbox-inline">
-                              <input type="checkbox" id="inlineCheckbox4" value=""> 4
-                          </label>
-                          </div>
-                        </div>-->
                     </div>
                   </div>
               </div>
@@ -95,7 +71,7 @@
                   <div class="form-group">
                     <label class="control-label col-md-3">Note</label>
                     <div class="col-md-9">
-                        <textarea class="wysihtml5 form-control" rows="10"></textarea>
+                        <textarea class="wysihtml5 form-control" name="note" rows="10"></textarea>
                     </div>
                   </div>
                 </div>

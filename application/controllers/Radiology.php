@@ -74,7 +74,22 @@
     }
 
     function insert_request(){
-      print_r($this->input->post('exams[]'));
+      $this->form_validation->set_rules('exams[]', 'Radiology Exams', 'required|trim');
+      $this->form_validation->set_rules('patient', 'Patient', 'required|trim');
+      $this->form_validation->set_rules('note', 'Request Note', 'trim|xss_clean|strip_tags');
+      if($this->form_validation->run() == FALSE){
+        echo validation_errors();
+      }else{
+        $exams = $this->input->post('exams[]');
+        for($i = 0; $i<count($exams); $i++){
+          $data = array(
+                        'rad_reqid'=>$exams[$i],
+                        'pat_id'=>$this->input->post('patient'),
+                        'request_note'=>$this->input->post('note')
+                       );
+          $this->Model_Radiology->insert_request($data);
+        }
+      }
     }
 
     function logout(){
