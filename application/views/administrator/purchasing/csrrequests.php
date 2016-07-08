@@ -6,11 +6,11 @@
               <header class="panel-heading" style="background-color: #000;"></header>
               <table class="table">
                 <tr>
-                  <td colspan="2" align="center"><h5><a class="btn btn-info" href="#.html">View Accepted Requests</a></h5></td>
+                  <td colspan="2" align="center"><h5><a class="btn btn-info" href="<?=base_url()?>Admin/PurCsrAccRequest">View Accepted Requests</a></h5></td>
                 </tr>
                 <table class="table">
                   <tr>
-                    <td colspan="2" align="center"><h5><a class="btn btn-info" style="background-color:red;" href="#.html">View Rejected Requests</a></h5></td>
+                    <td colspan="2" align="center"><h5><a class="btn btn-info" style="background-color:red;" href="<?=base_url()?>Admin/PurCsrRejRequest">View Rejected Requests</a></h5></td>
                   </tr>
               </table>
           </section>
@@ -34,25 +34,36 @@
                 <?php
                 foreach($csrrequests as $item)
                 {
+                  if($item['pur_stat']==0)
+                  {
                     echo "<tr>";
                       echo "<td>".$item['purchase_id']."</td>";
                       echo "<td>".$item['first_name']." ".$item['middle_name']." ".$item['last_name']."</td>";
                       echo "<td>".$item['item_name']."</td>";
                       echo "<td>".$item['quantity']."</td>";
                       echo "<td>".$item['pur_name']."</td>";
-                      if($item['pur_stat']==0)
-                      {
-                        echo "<td>For Approval</td>";
-                      }
-                      elseif ($item['pur_stat']==3) {
-                        echo "<td>Hold</td>";
-                      }
+                      echo "<td>For Approval</td>";
                     echo "<td>";
-                      echo "<a href='#.html' role='button' class='btn btn-default btn-xs'>Hold</a>";
-                      echo " <a href='#.html' role='button' class='btn btn-default btn-xs'>Accept</a>";
-                      echo " <a href='#.html' role='button' class='btn btn-default btn-xs'>Reject</a>";
+                      echo " <a href='".base_url()."Admin/hold_csr/".$item['purchase_id']."' role='button' class='btn btn-info btn-sm'>Hold</a>";
+                      echo " <a href='".base_url()."Admin/accept_csr/".$item['purchase_id']."' role='button' class='btn btn-info btn-sm'>Accept</a>";
+                      echo " <a href='".base_url()."Admin/reject_csr/".$item['purchase_id']."' role='button' class='btn btn-info btn-sm'>Reject</a>";
                     echo "</td>";
                     echo "</tr>";
+                  } elseif ($item['pur_stat']==3) {
+                    echo "<tr>";
+                      echo "<td>".$item['purchase_id']."</td>";
+                      echo "<td>".$item['first_name']." ".$item['middle_name']." ".$item['last_name']."</td>";
+                      echo "<td>".$item['item_name']."</td>";
+                      echo "<td>".$item['quantity']."</td>";
+                      echo "<td>".$item['pur_name']."</td>";
+                      echo "<td>Hold</td>";
+                    echo "<td>";
+                      echo " <a href='".base_url()."Admin/hold_csr/".$item['purchase_id']."' role='button' class='btn btn-info btn-sm'>Hold</a>";
+                      echo " <a href='".base_url()."Admin/accept_csr/".$item['purchase_id']."' role='button' class='btn btn-info btn-sm'>Accept</a>";
+                      echo " <a href='".base_url()."Admin/reject_csr/".$item['purchase_id']."' role='button' class='btn btn-info btn-sm'>Reject</a>";
+                    echo "</td>";
+                    echo "</tr>";
+                  }
                 }
                  ?>
               </table>

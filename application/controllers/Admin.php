@@ -1313,6 +1313,69 @@ function EditSpec($id){
       $this->load->view('administrator/purchasing/csrrequests.php',$data);
       $this->load->view('administrator/includes/footer.php');
     }
+
+    function PurCsrAccRequest()
+    {
+      $data['accepted'] = $this->Model_admin->get_acceptedcsr_requests();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/purchasing/csraccrequests.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function PurCsrRejRequest()
+    {
+      $data['rejected'] = $this->Model_admin->get_rejectedcsr_requests();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/purchasing/csrrejrequests.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function accept_csr($id)
+    {
+      //Accept = 1
+      $requesttype = $this->Model_admin->get_request_type($id);
+      if($requesttype == "REQ-TYP00001")
+      {
+        //NEW PRODUCT
+      $requestdata = $this->Model_admin->get_request_data($id);
+      $data = array('item_name'=>$requestdata->item_name,
+                    'item_desc'=>$requestdata->item_name,
+                    'item_stock'=>$requestdata->quantity);
+      $this->Model_admin->insertnewcsrproduct($data);
+      $newstat = array('pur_stat'=>1);
+      $this->Model_admin->change_pur_status($id,$newstat);
+        redirect("Admin/PurchasingCSRRequests");
+      } else {
+        //RESTOCK
+      $requestdata = $this->Model_admin->get_request_data($id);
+      $existingstock = $this->Model_admin->get_csr_stock($requestdata->item_id);
+      $sumstock = $existingstock + $requestdata->quantity;
+      $data = array('item_name'=>$requestdata->item_name,
+                    'item_desc'=>$requestdata->item_name,
+                    'item_stock'=>$sumstock);
+
+      $this->Model_admin->restockcsrproduct($requestdata->item_id,$data);
+      $newstat = array('pur_stat'=>1);
+      $this->Model_admin->change_pur_status($id,$newstat);
+        redirect("Admin/PurchasingCSRRequests");
+      }
+    }
+
+    function reject_csr($id)
+    {
+      //Reject = 2
+      $newstat = array('pur_stat'=>2);
+      $this->Model_admin->change_pur_status($id,$newstat);
+        redirect("Admin/PurchasingCSRRequests");
+    }
+
+    function hold_csr($id)
+    {
+      //Hold = 3
+      $newstat = array('pur_stat'=>3);
+      $this->Model_admin->change_pur_status($id,$newstat);
+        redirect("Admin/PurchasingCSRRequests");
+    }
     /*=========================================================================================================================*/
     function logout(){
       $this->session->sess_destroy();
