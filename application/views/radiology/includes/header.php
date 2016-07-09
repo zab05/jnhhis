@@ -279,13 +279,6 @@
                       </li>
 
                       <li>
-                          <a href="<?=base_url()?>Radiology/InsertRequest">
-                              <i class="fa fa-cogs"></i>
-                              <span>Make Radiology Request</span>
-                          </a>
-                      </li>
-
-                      <li>
                           <a href="<?=base_url()?>Radiology/Maintenance">
                               <i class="fa fa-cogs"></i>
                               <span>Radiology Maintenance</span>
@@ -300,14 +293,14 @@
                       </li>
 
                       <li>
-                          <a href="#">
+                          <a href="<?=base_url()?>Radiology/RadiologyRequests">
                               <i class="fa fa-tasks"></i>
                               <span>Radiology Requests</span>
                           </a>
                       </li>
 
                       <li>
-                          <a href="#">
+                          <a href="<?=base_url()?>Radiology/PendingRadiologyRequests">
                               <i class="fa fa-check-square-o"></i>
                               <span>Approval of Requests</span>
                           </a>

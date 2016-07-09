@@ -33,7 +33,7 @@
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
         $this->load->view('administrator/includes/header.php');
         $this->load->view('administrator/patient/show_patient.php', $data);
-        $this->load->view('administrator/includes/footer.php');
+        //$this->load->view('administrator/includes/footer.php');
       }
     }
 
