@@ -293,14 +293,14 @@
                       </li>
 
                       <li>
-                          <a href="#">
+                          <a href="<?=base_url()?>Radiology/RadiologyRequests">
                               <i class="fa fa-tasks"></i>
                               <span>Radiology Requests</span>
                           </a>
                       </li>
 
                       <li>
-                          <a href="#">
+                          <a href="<?=base_url()?>Radiology/PendingRadiologyRequests">
                               <i class="fa fa-check-square-o"></i>
                               <span>Approval of Requests</span>
                           </a>
