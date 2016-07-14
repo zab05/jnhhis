@@ -35,7 +35,7 @@
         $data['total_admitted_in_er_count'] = $this->Model_admin->get_count_patient_admitted_in_er();
         $this->load->view('administrator/includes/header.php');
         $this->load->view('administrator/patient/show_patient.php', $data);
-        $this->load->view('administrator/includes/footer.php');
+        //$this->load->view('administrator/includes/footer.php');
       }
     }
 
@@ -198,8 +198,8 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
@@ -306,8 +306,8 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
@@ -411,8 +411,8 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
@@ -420,7 +420,7 @@
       if($this->form_validation->run() == FALSE){
         echo "may mali";
       }else{
-        $data = array("type_id"=>5,
+        $data = array("type_id"=>6,
                       "username"=>$this->input->post('username'),
                       "password"=>sha1("radiologist"),
                       "email"=>$this->input->post('email'),
@@ -432,6 +432,7 @@
                       "gender"=>$this->input->post('gender'),
                       "status"=>1,
                       "employment_date"=>date('Y-m-d'),
+                      "dept"=>"DEPT-0005"
                     );
         $doctor_id = $this->Model_admin->insert_user($data);
         redirect(base_url().'Admin/RadiologistList');
@@ -513,16 +514,18 @@
       $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags');
-      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
       $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
 
+
+
       if($this->form_validation->run() == FALSE){
         echo validation_errors();
       }else{
-        $data = array("type_id"=>6,
+        $data = array("type_id"=>7,
                       "username"=>$this->input->post('username'),
                       "password"=>sha1("pharmacist"),
                       "email"=>$this->input->post('email'),
@@ -915,11 +918,27 @@ function ApproveLabReq($id)
       redirect(base_url()."Admin/AppofReq");
 }
 
+function LabAccRequest()
+{
+  $data['acceptedreq'] = $this->Model_admin->get_accepted_labreq();
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/labaccrequest.php',$data);
+  $this->load->view('administrator/includes/footer.php');
+}
+
 function CancelLabReq($id)
 {
         $data = array('lab_status'=>3);
         $this->Model_admin->cancellabreq($id,$data);
         redirect(base_url()."Admin/AppofReq");
+}
+
+ function LabRejRequest()
+{
+  $data['rejectedreq'] = $this->Model_admin->get_rejected_labreq();
+  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/laboratory/labrejrequest.php',$data);
+  $this->load->view('administrator/includes/footer.php');
 }
 
 function LabExamCateg(){
@@ -1117,7 +1136,7 @@ function EditSpec($id){
    }
    else {
      $specimens = $this->input->post('specimens');
-     $data1 = array('lab_user'=>1,
+     $data1 = array('user_id_fk'=>$_SESSION['user_id'],
                    'lab_patient'=>$this->input->post('patientid'),
                    'lab_date_req'=>date('Y-m-d H:i:s'),
                    'lab_patient_checkin'=>$this->input->post('patientchckin'),
@@ -1134,15 +1153,13 @@ function EditSpec($id){
      }
 
      $data3 = array('remark'=>$this->input->post('labremark'),
-                    'rem_user'=>1,
                     'rem_date'=>date('Y-m-d'),
-                  'lab_id_fk'=>$id);
+                  'lab_id_fk'=>$id,
+                  'user_id_fk'=>$_SESSION['user_id']);
         $this->Model_admin->insertrequestremark($data3);
       redirect(base_url()."Admin/LaboratoryRequests");
    }
-
-
- }
+  }
 
 
     /*=========================================================================================================================*/
@@ -1191,15 +1208,11 @@ function EditSpec($id){
     function add_item_inventory_import()
     {
       $data['error'] = '';    //initialize image upload error array to empty
-
 	        $config['upload_path'] = './csv/';
 	        $config['allowed_types'] = 'csv';
 	        $config['max_size'] = '1000';
-
 	        $this->load->library('upload', $config);
 	        $this->upload->initialize($config);
-
-
 	        // If upload failed, display error
 	        if (!$this->upload->do_upload())
           {
@@ -1209,7 +1222,6 @@ function EditSpec($id){
           {
 	            $file_data = $this->upload->data();
 	            $file_path =  './csv/'.$file_data['file_name'];
-
 	            if ($this->csvimport->get_array($file_path))
               {
 	                $csv_array = $this->csvimport->get_array($file_path);
@@ -1229,9 +1241,143 @@ function EditSpec($id){
               $this->session->set_flashdata('error', "Error occured");
 					redirect('Admin/pharmacy_inventory');
 	            }
-            }
+    }
+
+    /*=========================================================================================================================*/
+    function CSRListofproducts(){
+      $data['csrinventory'] = $this->Model_admin->get_csr_inventory();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/csr/listofproducts.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
 
 
+    function CSRPendingrequests(){
+      $data['nursetocsr'] = $this->Model_admin->get_nurse_requests();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/csr/pendingrequest.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function RequestRestock($id){
+      $data['restock'] = $this->Model_admin->restockdata($id);
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/csr/restock.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function add_newproduct(){
+      $this->form_validation->set_rules('itemreq', 'Item Name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('itemquant', 'Item Name', 'required|trim|xss_clean|strip_tags');
+
+      if($this->form_validation->run()==FALSE){
+        echo "Something is wrong";
+      } else {
+        $new = $this->Model_admin->reqtypenewproduct();
+        $data = array('requester_id'=>$_SESSION['user_id'],
+                      'item_id'=>NULL,
+                      'quantity'=>$this->input->post('itemquant'),
+                      'request_type'=>$new,
+                      'item_name'=>$this->input->post('itemreq'));
+       $this->Model_admin->requestproduct($data);
+       redirect("Admin/CSRListofproducts");
+      }
+    }
+
+      function request_restock($id)
+      {
+        $itemname = $this->input->post('productname');
+        $itemquant = $this->input->post('productquant');
+
+        $restock = $this->Model_admin->reqtyperestock();
+        $data = array('requester_id'=>$_SESSION['user_id'],
+                      'item_id'=>$id,
+                      'quantity'=>$itemquant,
+                      'request_type'=>$restock,
+                      'item_name'=>$itemname);
+        $this->Model_admin->restockproduct($data);
+        redirect("Admin/CSRListofproducts");
+      }
+
+    /*=========================================================================================================================*/
+    function PurchasingCSRInventory()
+    {
+      $data['csrinventory'] = $this->Model_admin->get_csr_inventory();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/purchasing/csrinventory.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function PurchasingCSRRequests()
+    {
+      $data['csrrequests'] = $this->Model_admin->get_csr_requests();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/purchasing/csrrequests.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function PurCsrAccRequest()
+    {
+      $data['accepted'] = $this->Model_admin->get_acceptedcsr_requests();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/purchasing/csraccrequests.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function PurCsrRejRequest()
+    {
+      $data['rejected'] = $this->Model_admin->get_rejectedcsr_requests();
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/purchasing/csrrejrequests.php',$data);
+      $this->load->view('administrator/includes/footer.php');
+    }
+
+    function accept_csr($id)
+    {
+      //Accept = 1
+      $requesttype = $this->Model_admin->get_request_type($id);
+      if($requesttype == "REQ-TYP00001")
+      {
+        //NEW PRODUCT
+      $requestdata = $this->Model_admin->get_request_data($id);
+      $data = array('item_name'=>$requestdata->item_name,
+                    'item_desc'=>$requestdata->item_name,
+                    'item_stock'=>$requestdata->quantity);
+      $this->Model_admin->insertnewcsrproduct($data);
+      $newstat = array('pur_stat'=>1);
+      $this->Model_admin->change_pur_status($id,$newstat);
+        redirect("Admin/PurchasingCSRRequests");
+      } else {
+        //RESTOCK
+      $requestdata = $this->Model_admin->get_request_data($id);
+      $existingstock = $this->Model_admin->get_csr_stock($requestdata->item_id);
+      $sumstock = $existingstock + $requestdata->quantity;
+      $data = array('item_name'=>$requestdata->item_name,
+                    'item_desc'=>$requestdata->item_name,
+                    'item_stock'=>$sumstock);
+
+      $this->Model_admin->restockcsrproduct($requestdata->item_id,$data);
+      $newstat = array('pur_stat'=>1);
+      $this->Model_admin->change_pur_status($id,$newstat);
+        redirect("Admin/PurchasingCSRRequests");
+      }
+    }
+
+    function reject_csr($id)
+    {
+      //Reject = 2
+      $newstat = array('pur_stat'=>2);
+      $this->Model_admin->change_pur_status($id,$newstat);
+        redirect("Admin/PurchasingCSRRequests");
+    }
+
+    function hold_csr($id)
+    {
+      //Hold = 3
+      $newstat = array('pur_stat'=>3);
+      $this->Model_admin->change_pur_status($id,$newstat);
+        redirect("Admin/PurchasingCSRRequests");
+    }
     /*=========================================================================================================================*/
     function logout(){
       $this->session->sess_destroy();

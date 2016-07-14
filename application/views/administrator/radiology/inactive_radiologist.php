@@ -6,8 +6,8 @@
             <header style="font-weight:300" class="panel-heading">
                  New Radiologist
              <span class="tools pull-right">
-				<a data-original-title="Show Inactive Radiologist"
-				   data-placement="top" 
+				<a data-original-title="Show Active Radiologist"
+				   data-placement="top"
 				   data-toggle="tooltip"
 				class="tooltips" href="<?=base_url()?>Admin/RadiologistList" role="button" ><i style="color:black" class="fa fa-eye"></i></a>
              </span>
@@ -15,7 +15,7 @@
                <div class="panel-body">
                <div class="adv-table">
               <table class="table">
-             
+
                   <tr>
                   </tr>
                   <tr>
@@ -30,7 +30,7 @@
                     <td>Number of Inactive Radiologist: </td>
                     <td><?=$total_inactive_radiologist?></td>
                   </tr>
-                 
+
               </table>
 			  <center>
 			  <a href="<?=base_url()?>Admin/AddRadiologist" role="button" class="btn btn-sm btn-round btn-success"><i class="fa fa-plus-circle"></i> Add Radiologist</a>
@@ -62,7 +62,7 @@
             <?php
               foreach($radiologists as $radiologist){
                 echo "<tr>";
-                  echo "<td>DCTR-".$radiologist['user_id']."</td>";
+                  echo "<td>".$radiologist['user_id']."</td>";
                   echo "<td>";
                     if($radiologist['gender'] == 'M'){
                       echo "Mr. ";
@@ -106,4 +106,3 @@
 <script type="text/javascript" language="javascript" src="<?php echo base_url()?>assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/data-tables/DT_bootstrap.js"></script>
 <script src="<?php echo base_url()?>js/dynamic_table_init.js"></script>
-

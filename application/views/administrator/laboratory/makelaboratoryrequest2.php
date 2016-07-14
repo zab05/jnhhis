@@ -48,6 +48,7 @@
               <header class="panel-heading" align="center">CHOOSE LABORATORY EXAMINATION</header>
             <div class="form-group">
                 <div class="col-lg-12">
+                  <?php if($labexamtype != NULL){?>
                   <select name="laboratoryexam" size="10" style="height: 100%;">
                     <?php
                       foreach($labexamtype as $etype){
@@ -57,6 +58,11 @@
                       }
                     ?>
                   </select>
+                  <?php
+                } else {
+                   echo "No Laboratory Examination Type";
+                }
+                  ?>
                   <div class="form-group">
                     <br>
                       <label  class="col-lg-5 col-sm-3 control-label">Urgency:</label>
@@ -92,10 +98,14 @@
                       <label  class="col-lg-5 col-sm-3 control-label">Specimen:</label>
                       <div class="col-lg-2">
                             <?php
+                              if($specimen != NULL){
                               foreach($specimen as $spec){
                                   echo "<input type='checkbox' name='specimens[]' value='".$spec['specimen_id']."'/>".$spec['specimen_name'];
                                   echo "<br>";
                               }
+                            } else {
+                              echo "No specimens available";
+                            }
                             ?>
                       </div>
                   </div>

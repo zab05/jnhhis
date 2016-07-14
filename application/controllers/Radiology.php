@@ -20,10 +20,6 @@
       $this->load->view('radiology/includes/footer.php');
     }
 
-    function InsertRequest(){
-
-    }
-    
     function Maintenance(){
       $data['radiology_exams'] = $this->Model_Radiology->get_radiology_exams();
       $this->load->view('radiology/includes/header.php');
@@ -36,6 +32,38 @@
       $this->load->view('radiology/includes/header.php');
       $this->load->view('radiology/inactive_exams.php', $data);
       $this->load->view('radiology/includes/footer.php');
+    }
+
+    function MakeRadiologyRequest(){
+      $data['radiology_exams'] = $this->Model_Radiology->get_radiology_exams();
+      $data['patients'] = $this->Model_Radiology->get_patient_list();
+      $this->load->view('radiology/includes/header.php');
+      $this->load->view('radiology/makeradiologyrequst.php', $data);
+      $this->load->view('radiology/includes/footer.php');
+    }
+
+    function RadiologyRequests(){
+      $data['radiology_requests'] = $this->Model_Radiology->get_radiology_requests();
+      $data['total_radiology_request'] = $this->Model_Radiology->count_all_radiology_request();
+      $data['total_pending_request'] = $this->Model_Radiology->count_pending_radiology_request();
+      $this->load->view('radiology/includes/header.php');
+      $this->load->view('radiology/radiology_requests.php', $data);
+      //$this->load->view('radiology/includes/footer.php');
+    }
+
+    function PendingRadiologyRequests(){
+      $data['radiology_requests'] = $this->Model_Radiology->get_pending_requests();
+      $data['total_radiology_request'] = $this->Model_Radiology->count_all_radiology_request();
+      $data['total_pending_request'] = $this->Model_Radiology->count_pending_radiology_request();
+      $this->load->view('radiology/includes/header.php');
+      $this->load->view('radiology/pending_requests.php', $data);
+      //$this->load->view('radiology/includes/footer.php');
+    }
+
+    function approve_request($trans_id){
+      $data = array('request_status'=>1);
+      $this->Model_Radiology->approve_request($trans_id, $data);
+      redirect(base_url().'Radiology/PendingRadiologyRequests');
     }
 
     function DeactivateExam($id){
@@ -66,6 +94,34 @@
                      );
         $this->Model_Radiology->insert_radiology_exam($data);
         redirect(base_url()."Radiology/Maintenance", "refresh");
+      }
+    }
+
+    function insert_request(){
+      $this->form_validation->set_rules('exams[]', 'Radiology Exams', 'required|trim');
+      $this->form_validation->set_rules('patient', 'Patient', 'required|trim');
+      $this->form_validation->set_rules('note', 'Request Note', 'trim|xss_clean|strip_tags');
+      if($this->form_validation->run() == FALSE){
+        echo validation_errors();
+      }else{
+        $exams = $this->input->post('exams[]');
+        for($i = 0; $i<count($exams); $i++){
+          $data_radiology_request = array(
+                        'exam_id'=>$exams[$i],
+                        'patient_id'=>$this->input->post('patient'),
+                        'request_date'=>date('Y-m-d'),
+                        'user_id_fk'=>$this->session->userdata('user_id'),
+                        'req_notes'=>$this->input->post('note')
+                       );
+          $request_id = $this->Model_Radiology->insert_request($data_radiology_request);
+          $data_radiology_pat = array(
+                                      'rad_reqid'=>$request_id->request_id,
+                                      'pat_id'=>$this->input->post('patient'),
+                                      'request_status'=>0
+                                     );
+          $this->Model_Radiology->insert_radiology_pat($data_radiology_pat);
+          echo "yeah";
+        }
       }
     }
 

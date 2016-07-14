@@ -24,7 +24,7 @@
     <!-- Custom styles for this template -->
     <link href="<?=base_url()?>css/style.css" rel="stylesheet">
     <link href="<?=base_url()?>css/style-responsive.css" rel="stylesheet" />
-	
+
 
 
   </head>
@@ -334,9 +334,21 @@
                               <span>CSR</span>
                           </a>
                           <ul class="sub">
-                              <li><a  href="#.html">Receiving of CSR Items</a></li>
-                              <li><a  href="#.html">Requesting of Items</a></li>
-                              <li><a  href="#.html">Releasing of Items</a></li>
+                              <li><a  href="<?=base_url()?>Admin/CSRPendingrequests">Pending Requests</a></li>
+                              <li><a  href="<?=base_url()?>Admin/CSRListofproducts">List of Products</a></li>
+                          </ul>
+                      </li>
+
+                      <li class="sub-menu">
+                          <a href="javascript:;" >
+                              <i class="fa fa-shopping-cart "></i>
+                              <span>Purchasing</span>
+                          </a>
+                          <ul class="sub">
+                              <li><a  href="<?=base_url()?>Admin/PurchasingCSRInventory">CSR Inventory</a></li>
+                              <li><a  href="#.html">Pharmacy Inventory</a></li>
+                              <li><a  href="<?=base_url()?>Admin/PurchasingCSRRequests">CSR Requests</a></li>
+                              <li><a  href="#.html">Pharmacy Requests</a></li>
                           </ul>
                       </li>
 
@@ -355,7 +367,7 @@
                                     </ul>
                                 </li>
                               <li><a  href="<?=base_url()?>Admin/LaboratoryRequests">Laboratory Requests</a></li>
-                              <li><a  href="<?=base_url()?>Admin/AppofReq">Approval of Requests</a></li>
+                              <li><a  href="<?=base_url()?>Admin/AppofReq">Pending Requests</a></li>
                           </ul>
                       </li>
 

@@ -66,6 +66,9 @@
                       <div class="form-group">
                           <label  class="col-lg-3 col-sm-3 control-label">Category: </label>
                           <div class="col-lg-9">
+                            <?php
+                              if($examcateg != NULL){
+                            ?>
                             <select class="form-control" name="examcateg">
                               <?php
                               foreach($examcateg as $categ){
@@ -73,6 +76,11 @@
                               }
                               ?>
                             </select>
+                            <?php
+                          } else {
+                            echo "No Examination Category";
+                          }
+                            ?>
                           </div>
                       </div>
 
