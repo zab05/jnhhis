@@ -3,33 +3,42 @@
     <div class="row">
       <div class="col-sm-3">
           <section class="panel">
-              <header class="panel-heading" style="background-color: #000;"></header>
-              <table class="table">
-                <tr>
-                  <td colspan="2" align="center"><h5><a class="btn btn-info" href="javascript: void(0);">View Accepted Requests</a></h5></td>
-                </tr>
+             
+            <div class="panel-body">
+            <div class="adv-table">
                 <table class="table">
                   <tr>
-                    <td colspan="2" align="center"><h5><a class="btn btn-info" style="background-color:red;" href="javascript: void(0);">View Rejected Requests</a></h5></td>
+       
                   </tr>
               </table>
-          </section>
+			  <center>
+			  <a href="#" data-toggle="modal" role="button" class="btn btn-sm btn-round btn-success"><i class="fa fa-eye"></i> Accepted Requests</a><br><br>
+			  <a href="#" data-toggle="modal" role="button" class="btn btn-sm btn-round btn-danger"><i class="fa fa-eye"></i> Rejected Requests</a>
+			  </center>
+			  </div>
+			  </div>
+		 </section>
       </div>
       <div class="col-sm-9">
           <section class="panel">
-              <header class="panel-heading" style="background-color: #000;"></header>
+              
               <header class="panel-heading">
-                  <center><h4>PENDING REQUESTS<h4></center>
+               Pending Requests
               </header>
-              <table class="table table-hovered" style="text-align: center;">
+			  <div class="panel-body">
+                <div class="adv-table">
+              <table class="table table-striped" id="dynamic-table">
+			  <thead>
                 <tr id="tblheader">
-                    <td>#</td>
-                    <td>Requester</td>
-                    <td>Item Name</td>
-                    <td>Quantity</td>
-                    <td>Status</td>
-                    <td>Action</td>
+                    <th>#</th>
+                    <th>Requested By</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
+				</thead>
+				<tbody>
                 <tr>
                   <td>1</td>
                   <td>Sharon Cuneta</td>
@@ -38,6 +47,7 @@
                   <td>For Approval</td>
                   <td>View Request/Accept/Reject/Hold</td>
                 </tr>
+				</tbody>
                 <?php
                 foreach($nursetocsr as $request)
                 {
@@ -60,6 +70,8 @@
                 }
                 ?>
               </table>
+			  </div>
+				</div>
           </section>
       </div>
     </div>
@@ -112,3 +124,24 @@
     </div>
   </section>
 </section>
+
+<!-- js placed at the end of the document so the pages load faster -->
+
+<script src="<?=base_url()?>js/jquery.js"></script>
+<script src="<?=base_url()?>js/bootstrap.min.js"></script>
+
+<script class="include" type="text/javascript" src="<?=base_url()?>js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="<?=base_url()?>js/jquery.scrollTo.min.js"></script>
+<script src="<?=base_url()?>js/jquery.nicescroll.js" type="text/javascript"></script>
+
+<!--right slidebar-->
+<script src="<?=base_url()?>js/slidebars.min.js"></script>
+<!--common script for all pages-->
+<script src="<?=base_url()?>js/common-scripts.js"></script>
+
+
+<!--dynamic table initialization -->
+<script type="text/javascript" language="javascript" src="<?php echo base_url()?>assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/data-tables/DT_bootstrap.js"></script>
+<script src="<?php echo base_url()?>js/dynamic_table_init.js"></script>
+
