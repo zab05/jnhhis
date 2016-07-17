@@ -59,9 +59,10 @@
     function get_nurse_requests()
     {
       $this->db->select('*');
-      $this->db->from('csr_request');
+      $this->db->from('csr_request a');
+      $this->db->join('users b', 'a.nurse_id=b.user_id','left');
+      $this->db->join('csr_inventory c', 'a.csr_item_id=c.csr_id', 'left');
       $this->db->where('csr_status',0);
-      $this->db->where('csr_status',2);
       $query = $this->db->get();
       return $query->result_array();
     }
@@ -99,5 +100,46 @@
       return $query->result_array();
     }
 
+    //NURSE REQ
+
+    function get_request_quant($id)
+    {
+      $this->db->select('*');
+      $this->db->from('csr_request');
+      $this->db->where('csr_req_id',$id);
+      $query = $this->db->get();
+      return $query->row('item_quant');
+    }
+
+    function get_csrid($id)
+    {
+      $this->db->select('*');
+      $this->db->from('csr_request');
+      $this->db->where('csr_req_id',$id);
+      $query = $this->db->get();
+      return $query->row('csr_item_id');
+    }
+
+    function get_stock_quant($csrid)
+    {
+      $this->db->select('*');
+      $this->db->from('csr_inventory');
+      $this->db->where('csr_id',$csrid);
+      $query = $this->db->get();
+      return $query->row('item_stock');
+    }
+
+    //Accept
+    function accept_request($id,$datareq)
+    {
+      $this->db->where('csr_req_id',$id);
+      $this->db->update('csr_request',$datareq);
+    }
+
+    function setstock($csrid,$datainv)
+    {
+      $this->db->where('csr_id',$csrid);
+      $this->db->update('csr_inventory',$datainv);
+    }
   }
 ?>
