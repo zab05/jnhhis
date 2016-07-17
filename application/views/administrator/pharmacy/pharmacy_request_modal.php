@@ -11,7 +11,7 @@
                            </table>  </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a href="#" id="submit" class="btn btn-success success">Submit</a>
+                <a href="#" id="submitme" class="btn btn-success success">Submit</a>
             </div>
         </div>
     </div>
