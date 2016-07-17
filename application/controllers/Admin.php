@@ -33,7 +33,7 @@
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
         $this->load->view('administrator/includes/header.php');
         $this->load->view('administrator/patient/show_patient.php', $data);
-        $this->load->view('administrator/includes/footer.php');
+        //$this->load->view('administrator/includes/footer.php');
       }
     }
 
@@ -1241,6 +1241,100 @@ function EditSpec($id){
 	            }
     }
 
+    function pharmacy_request()
+    {
+      $data['items'] = $this->Model_admin->get_pharmacy_inventory();
+      $data['patient'] = $this->Model_admin->get_all_patients();
+      $this->load->view('administrator/includes/header');
+      $this->load->view('administrator/pharmacy/pharmacy_request',$data);
+      $this->load->view('administrator/pharmacy/pharmacy_request_modal');
+    }
+
+    function pharmacy_request_submit()
+    {
+      $quantity = $this->input->post('quantity');
+      $itemid = $this->input->post('itemid');
+      $price = $this->input->post('price');
+      $patientid = $this->input->post('patientid');
+      $userid = $this->session->userdata('user_id');
+
+
+      foreach($quantity as $key => $q)
+      {
+        if($q == 0)
+        {
+          unset($quantity[$key]);
+          unset($itemid[$key]);
+          unset($price[$key]);
+        }
+      }
+      $quantity = array_values($quantity);
+      $itemid = array_values($itemid);
+      $price = array_values($price);
+
+      foreach($price as $key => $p)
+      {
+        $price[$key] = $p * $quantity[$key];
+      }
+
+      foreach($itemid as $key => $i)
+      {
+        $data = array('phar_item'=>$i,
+                      'phar_user_id'=>$userid,
+                      'phar_patient'=>$patientid,
+                      'quant_requested'=>$quantity[$key],
+                      'total_price'=>$price[$key],
+                      'phar_stat'=>0);
+        $this->Model_admin->insert_pharmacy_request($data);
+      }
+
+      $data['items'] = $this->Model_admin->get_pharmacy_inventory();
+
+      foreach($data['items'] as $d)
+      {
+        foreach($itemid as $key => $i)
+        {
+          if($d->item_id == $i)
+          {
+            $newquantity = $d->item_quantity - $quantity[$key];
+            $data = array('item_quantity'=>$newquantity);
+            $this->Model_admin->update_pharmacy_quantity($d->item_id,$data);
+          }
+        }
+      }
+
+      redirect('Admin/pharmacy_request');
+    }
+
+    function process_pharmacy_request()
+    {
+      $data['requests'] = $this->Model_admin->get_pharmacy_requests();
+      $data['items'] = $this->Model_admin->get_pharmacy_inventory();
+      $data['patient'] = $this->Model_admin->get_all_patients();
+      $this->load->view('administrator/includes/header');
+      $this->load->view('administrator/pharmacy/accept_pharmacy_request_modal');
+      $this->load->view('administrator/pharmacy/reject_pharmacy_request_modal');
+      $this->load->view('administrator/pharmacy/process_pharmacy_request',$data);
+    }
+
+    function accept_pharmacy_request()
+    {
+      $postid = $this->uri->segment(3);
+      $data = array('phar_stat'=>1);
+      $this->Model_admin->process_pharmacy_request_model($postid,$data);
+      redirect('Admin/process_pharmacy_request');
+    }
+
+    function reject_pharmacy_request()
+    {
+      $postid = $this->uri->segment(3);
+      $quantity = $this->uri->segment(4);
+      //ibalik yung quantity
+      $data = array('phar_stat'=>2);
+      $this->Model_admin->process_pharmacy_request_model($postid,$data);
+      redirect('Admin/process_pharmacy_request');
+    }
+
     /*=========================================================================================================================*/
     function CSRListofproducts(){
       $data['csrinventory'] = $this->Model_admin->get_csr_inventory();
@@ -1248,7 +1342,6 @@ function EditSpec($id){
       $this->load->view('administrator/csr/listofproducts.php',$data);
       $this->load->view('administrator/includes/footer.php');
     }
-
 
     function CSRPendingrequests(){
       $data['nursetocsr'] = $this->Model_admin->get_nurse_requests();

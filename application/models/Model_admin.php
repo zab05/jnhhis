@@ -541,6 +541,40 @@
       $this->db->insert('pharmacy_inventory',$data);
     }
 
+    function get_all_patients()
+    {
+      $this->db->select('*');
+      $this->db->from('patient');
+      $query = $this->db->get();
+      return $query->result();
+    }
+
+    function insert_pharmacy_request($data)
+    {
+      $this->db->insert('pharmacy_audit',$data);
+    }
+
+    function update_pharmacy_quantity($id,$data)
+    {
+      $this->db->where('item_id',$id);
+      $this->db->update('pharmacy_inventory',$data);
+    }
+
+    function get_pharmacy_requests()
+    {
+      $this->db->select('*');
+      $this->db->from('pharmacy_audit');
+      $query = $this->db->get();
+      return $query->result();
+    }
+
+    function process_pharmacy_request_model($id,$data)
+    {
+        $this->db->where('phar_item',$id);
+        $this->db->update('pharmacy_audit',$data);
+    }
+
+
     /* Laboratory Request*/
     function get_laboratoryrequest_list()
     {
