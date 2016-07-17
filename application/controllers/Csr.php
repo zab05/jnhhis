@@ -33,6 +33,22 @@ function PendingRequests()
     $this->load->view("csr/includes/footer.php");
 }
 
+function AcceptedRequests()
+{
+  $data['nursetocsr'] = $this->Model_Csr->get_nurse_acceptedrequests();
+  $this->load->view("csr/includes/header.php");
+  $this->load->view("csr/acceptedrequest.php",$data);
+  $this->load->view("csr/includes/footer.php");
+}
+
+function RejectedRequests()
+{
+  $data['nursetocsr'] = $this->Model_Csr->get_nurse_rejectedrequests();
+  $this->load->view("csr/includes/header.php");
+  $this->load->view("csr/rejectedrequest.php",$data);
+  $this->load->view("csr/includes/footer.php");
+}
+
 function ListofProducts()
 {
     $data['csrinventory'] = $this->Model_Csr->get_csr_inventory();
@@ -113,13 +129,17 @@ function csr_accept_request($id)
 function csr_reject_request($id)
 {
   //2
-
+   $datareq = array('csr_status' =>2);
+   $this->Model_Csr->reject_request($id,$datareq);
+    redirect("Csr/PendingRequests");
 }
 
 function csr_hold_request($id)
 {
   //3
-
+  $datareq = array('csr_status' =>3);
+  $this->Model_Csr->hold_request($id,$datareq);
+  redirect("Csr/PendingRequests");
 }
 
     function logout(){

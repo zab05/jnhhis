@@ -55,17 +55,40 @@
       $query = $this->db->get();
       return $query->row();
     }
-
+    // NURSE REQUESTS
     function get_nurse_requests()
     {
       $this->db->select('*');
       $this->db->from('csr_request a');
       $this->db->join('users b', 'a.nurse_id=b.user_id','left');
       $this->db->join('csr_inventory c', 'a.csr_item_id=c.csr_id', 'left');
-      $this->db->where('csr_status',0);
       $query = $this->db->get();
       return $query->result_array();
     }
+
+    function get_nurse_acceptedrequests()
+    {
+      $this->db->select('*');
+      $this->db->from('csr_request a');
+      $this->db->join('users b', 'a.nurse_id=b.user_id','left');
+      $this->db->join('csr_inventory c', 'a.csr_item_id=c.csr_id', 'left');
+      $this->db->where('csr_status',1);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function get_nurse_rejectedrequests()
+    {
+      $this->db->select('*');
+      $this->db->from('csr_request a');
+      $this->db->join('users b', 'a.nurse_id=b.user_id','left');
+      $this->db->join('csr_inventory c', 'a.csr_item_id=c.csr_id', 'left');
+      $this->db->where('csr_status',2);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    //PRODUCTS REQUESTS
 
     function get_accepted_request()
     {
@@ -140,6 +163,22 @@
     {
       $this->db->where('csr_id',$csrid);
       $this->db->update('csr_inventory',$datainv);
+    }
+
+    //Reject
+
+    function reject_request($id,$datareq)
+    {
+      $this->db->where('csr_req_id',$id);
+      $this->db->update('csr_request',$datareq);
+    }
+
+    //Hold
+
+    function hold_request($id,$datareq)
+    {
+      $this->db->where('csr_req_id',$id);
+      $this->db->update('csr_request',$datareq);
     }
   }
 ?>
