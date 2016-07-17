@@ -91,6 +91,35 @@ function request_restock($id)
   redirect("Csr/ListofProducts");
 }
 
+function csr_accept_request($id)
+{
+  //1
+  $request_quantity = $this->Model_Csr->get_request_quant($id);
+  $csrid = $this->Model_Csr->get_csrid($id);
+  $stock_quantity = $this->Model_Csr->get_stock_quant($csrid);
+  $stock_sum = $stock_quantity - $request_quantity;
+  $datareq = array('csr_status' =>1);
+  $datainv = array('item_stock' => $stock_sum);
+
+  //CSR REQUEST
+  $this->Model_Csr->accept_request($id,$datareq);
+  //CSR INVENTORY
+  $this->Model_Csr->setstock($csrid,$datainv);
+  redirect("Csr/PendingRequests");
+
+}
+
+function csr_reject_request($id)
+{
+  //2
+
+}
+
+function csr_hold_request($id)
+{
+  //3
+
+}
 
     function logout(){
       $this->session->sess_destroy();
