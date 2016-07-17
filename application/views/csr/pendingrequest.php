@@ -6,11 +6,11 @@
               <header class="panel-heading" style="background-color: #000;"></header>
               <table class="table">
                 <tr>
-                  <td colspan="2" align="center"><h5><a class="btn btn-info" href="javascript: void(0);">View Accepted Requests</a></h5></td>
+                  <td colspan="2" align="center"><h5><a class="btn btn-info" href="AcceptedRequests">View Accepted Requests</a></h5></td>
                 </tr>
                 <table class="table">
                   <tr>
-                    <td colspan="2" align="center"><h5><a class="btn btn-info" style="background-color:red;" href="javascript: void(0);">View Rejected Requests</a></h5></td>
+                    <td colspan="2" align="center"><h5><a class="btn btn-info" style="background-color:red;" href="RejectedRequests">View Rejected Requests</a></h5></td>
                   </tr>
               </table>
           </section>
@@ -33,21 +33,32 @@
                 <?php
                 foreach($nursetocsr as $request)
                 {
+                  if($request['csr_status']==0){
                   echo "<tr>";
                     echo "<td>".$request['csr_req_id']."</td>";
                     echo "<td>".$request['first_name']." ".$request['middle_name']." ".$request['last_name']."</td>";
                     echo "<td>".$request['item_name']."</td>";
                     echo "<td>".$request['item_quant']."</td>";
-                    if($request['csr_status']==0){
                     echo "<td>For Approval</td>";
-                  } elseif($request['csr_status']==2){
-                    echo "<td>On Hold</td>";
-                  }
                     echo "<td>";
                       echo " <a href='".base_url()."csr/csr_accept_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>Accept Request</a>";
                       echo " <a href='".base_url()."csr/csr_reject_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>Reject Request</a>";
                       echo " <a href='".base_url()."csr/csr_hold_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>Hold Request</a>";
                     echo "</td>";
+                  } elseif($request['csr_status']==3){
+                    echo "<tr>";
+                      echo "<td>".$request['csr_req_id']."</td>";
+                      echo "<td>".$request['first_name']." ".$request['middle_name']." ".$request['last_name']."</td>";
+                      echo "<td>".$request['item_name']."</td>";
+                      echo "<td>".$request['item_quant']."</td>";
+                      echo "<td>Hold</td>";
+                      echo "<td>";
+                        echo " <a href='".base_url()."csr/csr_accept_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>Accept Request</a>";
+                        echo " <a href='".base_url()."csr/csr_reject_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>Reject Request</a>";
+                        echo " <a href='".base_url()."csr/csr_hold_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>Hold Request</a>";
+                      echo "</td>";
+                  }
+
                   echo "</tr>";
                 }
                 ?>
