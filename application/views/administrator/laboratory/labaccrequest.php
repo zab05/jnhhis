@@ -3,18 +3,23 @@
     <div class="row">
       <div class="col-sm-12">
           <section class="panel">
-              <header class="panel-heading" style="background-color: #000;"></header>
+              
               <header class="panel-heading">
-                  <center><h4><a href="<?=base_url()?>Admin/AppofReq" role='button' class='btn btn-default btn-xs'><</a> ACCEPTED LABORATORY REQUESTS<h4></center>
-              </header>
-              <table class="table table-hovered" style="text-align: center;">
+                <a href="<?=base_url()?>Admin/AppofReq" role='button' class='btn btn-primary btn-xs'><i class="fa fa-chevron-left"></i></a> Accepted Laboratory Requests
+              </header><div class="panel-body">
+                <div class="adv-table">
+
+              <table class="table table-striped" id="dynamic-table">
+			  <thead>
                 <tr id="tblheader">
-                    <td>Request #</td>
-                    <td>Date Added</td>
-                    <td>Check-In #</td>
-                    <td>Patient</td>
-                    <td>Action</td>
+                    <th>Request #</th>
+                    <th>Date Added</th>
+                    <th>Check-In #</th>
+                    <th>Patient</th>
+                    <th>Action</th>
                 </tr>
+				</thead>
+				<tbody>
                 <?php
                 foreach($acceptedreq as $req)
                 {
@@ -24,15 +29,36 @@
                   echo "<td>".$req['lab_patient_checkin']."</td>";
                   echo "<td>".$req['first_name']." ".$req['middle_name']." ".$req['last_name']."</td>";
                   echo "<td>";
-                    echo "<a href='".base_url()."Admin/ShowLabReq/".$req['lab_id']."' role='button' class='btn btn-default btn-xs'>Show</a>";
+                    echo "<a href='".base_url()."Admin/ShowLabReq/".$req['lab_id']."' role='button' class='btn btn-info btn-xs'>View</a>";
                   echo"</td>";
                   echo "</tr>";
                 }
 
                 ?>
+				</tbody>
               </table>
+			  </div>
+				</div>
           </section>
       </div>
     </div>
   </section>
 </section>
+
+<script src="<?=base_url()?>js/jquery.js"></script>
+<script src="<?=base_url()?>js/bootstrap.min.js"></script>
+
+<script class="include" type="text/javascript" src="<?=base_url()?>js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="<?=base_url()?>js/jquery.scrollTo.min.js"></script>
+<script src="<?=base_url()?>js/jquery.nicescroll.js" type="text/javascript"></script>
+
+<!--right slidebar-->
+<script src="<?=base_url()?>js/slidebars.min.js"></script>
+<!--common script for all pages-->
+<script src="<?=base_url()?>js/common-scripts.js"></script>
+
+
+<!--dynamic table initialization -->
+<script type="text/javascript" language="javascript" src="<?php echo base_url()?>assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/data-tables/DT_bootstrap.js"></script>
+<script src="<?php echo base_url()?>js/dynamic_table_init.js"></script>
