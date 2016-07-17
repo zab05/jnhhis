@@ -8,4 +8,5 @@ INSERT INTO `user_type` (`type_id`, `name`, `description`) VALUES
 (7, 'Pharmacist', 'Pharmacist'),
 (8, 'LABORATORY PEOPLE', 'LABORATORY PEOPLE'),
 (9, 'Purchasing Staff', 'Purchasing Staff'),
-(10, 'Accounting Staff', 'Accounting Staff');
+(10, 'Accounting Staff', 'Accounting Staff'),
+(11, 'CSR Staff', 'CSR Staff');

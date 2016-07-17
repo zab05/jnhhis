@@ -7,6 +7,9 @@
       if($this->session->userdata("user_loggedin")==TRUE){
         if($this->session->userdata("type_id") == 5){
           redirect(base_url()."Radiology", "refresh");
+        } if($this->session->userdata("type_id") == 11)
+        {
+          redirect(base_url()."Csr", "refresh");
         }
       }else{
         redirect(base_url());
