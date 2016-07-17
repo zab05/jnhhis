@@ -305,7 +305,7 @@
                           </a>
                       </li>
                       <li>
-                          <a href="#">
+                          <a href="<?php echo base_url()?>Nurse/csr">
                               <i class="fa fa-check-square-o"></i>
                               <span>CSR Request</span>
                           </a>
