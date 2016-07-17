@@ -1342,7 +1342,7 @@ function EditSpec($id){
       $data['csrinventory'] = $this->Model_admin->get_csr_inventory();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/csr/listofproducts.php',$data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function CSRPendingrequests(){
@@ -1406,7 +1406,7 @@ function EditSpec($id){
       $data['csrrequests'] = $this->Model_admin->get_csr_requests();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/purchasing/csrrequests.php',$data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function PurCsrAccRequest()
