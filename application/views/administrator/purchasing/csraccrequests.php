@@ -6,7 +6,7 @@
           <section class="panel">
           
               <header class="panel-heading">
-                 <a href="<?=base_url()?>Admin/PurchasingCSRRequests" role='button' class='btn btn-info btn-xs'><i class="fa fa-chevron-left"></i></a> Accepted CSR Requests
+                 <a href="<?=base_url()?>Admin/PurchasingCSRRequests" role='button' class='btn btn-primary btn-xs'><i class="fa fa-chevron-left"></i></a> Accepted CSR Requests
               </header>
 			  
 			  <div class="panel-body">

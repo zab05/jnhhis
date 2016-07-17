@@ -7,7 +7,7 @@
 		  
              
               <header class="panel-heading">
-                <a href="<?=base_url()?>Admin/PurchasingCSRRequests" role='button' class='btn btn-info btn-xs'><i class="fa fa-chevron-left"></i></a> Rejected CSR Requests<h4></center>
+                <a href="<?=base_url()?>Admin/PurchasingCSRRequests" role='button' class='btn btn-primary btn-xs'><i class="fa fa-chevron-left"></i></a> Rejected CSR Requests<h4></center>
               </header>
 			  <div class="panel-body">
               <div class="adv-table">

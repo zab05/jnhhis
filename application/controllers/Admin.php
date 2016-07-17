@@ -877,7 +877,7 @@ $this->load->view('administrator/includes/footer.php');
       $data['laboratorytoremarks'] = $this->Model_admin->get_laboratorytoremarks_data($id);
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/laboratory/showlaboratoryrequest.php',$data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
 
@@ -900,7 +900,7 @@ $data['patient'] = $this->Model_admin->get_single_patient($patient);
 $data['specimen'] = $this->Model_admin->get_all_labspec();
 $this->load->view('administrator/includes/header.php');
 $this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
-$this->load->view('administrator/includes/footer.php');
+//$this->load->view('administrator/includes/footer.php');
 }
 }
 
@@ -1349,7 +1349,7 @@ function EditSpec($id){
       $data['nursetocsr'] = $this->Model_admin->get_nurse_requests();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/csr/pendingrequest.php',$data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function RequestRestock($id){
