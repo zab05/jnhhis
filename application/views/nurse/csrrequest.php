@@ -7,6 +7,7 @@
       <section class="panel">
             <?php if(isset($_SESSION['succ'])){
                     echo $_SESSION['succ'];
+                    //a
                 }
 
                  ?>
