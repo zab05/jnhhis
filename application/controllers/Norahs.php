@@ -14,9 +14,9 @@
       }else if($this->session->userdata("user_loggedin")==TRUE && $this->session->userdata("user_type")==4){
         //redirect(base_url());
       }else if($this->session->userdata("user_loggedin")==TRUE && $this->session->userdata("user_type")==5){
-        redirect(base_url()."Radiology", "refresh");
-      }else if($this->session->userdata("user_loggedin")==TRUE && $this->session->userdata("user_type")==6){
         //redirect(base_url());
+      }else if($this->session->userdata("user_loggedin")==TRUE && $this->session->userdata("user_type")==6){
+        redirect(base_url()."Radiology", "refresh");
       }
     }
 
