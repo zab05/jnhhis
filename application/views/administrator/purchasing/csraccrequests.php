@@ -18,12 +18,13 @@
                 <?php
                 foreach($accepted as $item)
                 {
-                    echo "<tr>";
+                      echo "<tr>";
                       echo "<td>".$item['purchase_id']."</td>";
                       echo "<td>".$item['first_name']." ".$item['middle_name']." ".$item['last_name']."</td>";
                       echo "<td>".$item['item_name']."</td>";
                       echo "<td>".$item['quantity']."</td>";
                       echo "<td>".$item['pur_name']."</td>";
+                      echo "</tr>";
                 }
                  ?>
               </table>
