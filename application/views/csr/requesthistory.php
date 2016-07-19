@@ -15,6 +15,7 @@
                     <td>Item Name</td>
                     <td>Quantity</td>
                     <td>Request Type</td>
+                    <td>Date Accepted</td>
                 </tr>
                 <?php
                   foreach($accepted as $item)
@@ -25,6 +26,7 @@
                     echo "<td>".$item['item_name']."</td>";
                     echo "<td>".$item['quantity']."</td>";
                     echo "<td>".$item['pur_name']."</td>";
+                    echo "<td>".$item['date_altered_status']."</td>";
                     echo "</tr>";
                   }
                 ?>
@@ -44,6 +46,7 @@
                     <td>Item Name</td>
                     <td>Quantity</td>
                     <td>Request Type</td>
+                    <td>Date Rejected</td>
                 </tr>
                 <?php
                   foreach($rejected as $item)
@@ -54,6 +57,7 @@
                     echo "<td>".$item['item_name']."</td>";
                     echo "<td>".$item['quantity']."</td>";
                     echo "<td>".$item['pur_name']."</td>";
+                    echo "<td>".$item['date_altered_status']."</td>";
                     echo "</tr>";
                   }
                 ?>
@@ -73,6 +77,7 @@
                     <td>Item Name</td>
                     <td>Quantity</td>
                     <td>Request Type</td>
+                    <td>Date On-Hold</td>
                 </tr>
                 <?php
                   foreach($hold as $item)
@@ -83,6 +88,7 @@
                     echo "<td>".$item['item_name']."</td>";
                     echo "<td>".$item['quantity']."</td>";
                     echo "<td>".$item['pur_name']."</td>";
+                    echo "<td>".$item['date_altered_status']."</td>";
                     echo "</tr>";
                   }
                 ?>

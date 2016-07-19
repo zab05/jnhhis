@@ -2,13 +2,13 @@
   <section class="wrapper">
     <div class="row">
       <div class="col-sm-12">
-	  
+
           <section class="panel">
-          
+
               <header class="panel-heading">
                  <a href="<?=base_url()?>Admin/PurchasingCSRRequests" role='button' class='btn btn-primary btn-xs'><i class="fa fa-chevron-left"></i></a> Accepted CSR Requests
               </header>
-			  
+
 			  <div class="panel-body">
               <div class="adv-table">
               <table class="table table-striped" id="dynamic-table">
@@ -19,6 +19,7 @@
                   <th style="text-align: center;">Item Name</th>
                   <th style="text-align: center;">Quantity</th>
                   <th style="text-align: center;">Request Type</th>
+                  <th style="text-align: center;">Date Accepted</th>
                 </tr>
 				</thead>
 				<tbody>
@@ -31,6 +32,7 @@
                       echo "<td>".$item['item_name']."</td>";
                       echo "<td>".$item['quantity']."</td>";
                       echo "<td>".$item['pur_name']."</td>";
+                      echo "<td>".$item['date_altered_status']."</td>";
                       echo "</tr>";
                 }
                  ?>
@@ -60,4 +62,3 @@
 <script type="text/javascript" language="javascript" src="<?php echo base_url()?>assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/data-tables/DT_bootstrap.js"></script>
 <script src="<?php echo base_url()?>js/dynamic_table_init.js"></script>
-
