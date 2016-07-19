@@ -2,18 +2,18 @@
   <section class="wrapper">
     <div class="row">
       <div class="col-sm-3">
-	  
+
           <section class="panel">
               <header class="panel-heading">
 				Request History
 			  <span class="tools pull-right">
-	
+
               </span>
 			  </header>
 			  <div class="panel-body">
               <div class="adv-table">
               <table class="table">
-                
+
 				</table>
 				<center>
 				<a href="<?=base_url()?>Admin/PurCsrAccRequest" data-toggle="modal" role="button" class="btn btn-sm btn-round btn-success"><i class="fa fa-eye"></i> Accepted Requests</a><br><br>
@@ -24,11 +24,19 @@
           </section>
       </div>
       <div class="col-sm-9">
+
           <section class="panel">
-              
-              <header class="panel-heading">
-				CSR Product Requests
-              </header>
+			  <div class="panel-body">
+              <div class="adv-table">
+				<center>
+				<h1>PURCHASING CSR REQUESTS</h1>
+				</center>
+				</div>
+				</div>
+          </section>
+      </div>
+      <div class="col-sm-12">
+          <section class="panel">
 			  <div class="panel-body">
               <div class="adv-table">
               <table class="table table-striped" id="dynamic-table">
@@ -38,9 +46,10 @@
                     <th>Requested By</th>
                     <th>Name</th>
                     <th>Qty</th>
+                    <th>Date Requested</th>
                     <th>Type</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th style="text-align:center;">Action</th>
                 </tr>
 				</thead>
 				<tbody>
@@ -54,13 +63,15 @@
                       echo "<td>".$item['first_name']." ".$item['middle_name']." ".$item['last_name']."</td>";
                       echo "<td>".$item['item_name']."</td>";
                       echo "<td>".$item['quantity']."</td>";
+                      echo "<td>".$item['date_created']."</td>";
                       echo "<td>".$item['pur_name']."</td>";
                       echo "<td>For Approval</td>";
                     echo "<td>";
-                      echo " <a href='".base_url()."Admin/hold_csr/".$item['purchase_id']."' role='button' class='btn btn-info btn-sm'>Hold</a>";
-                      echo " <a href='".base_url()."Admin/accept_csr/".$item['purchase_id']."' role='button' class='btn btn-info btn-sm'>Accept</a>";
-                      echo " <a href='".base_url()."Admin/reject_csr/".$item['purchase_id']."' role='button' class='btn btn-info btn-sm'>Reject</a>";
-                    echo "</td>";
+                    echo "<div class='btn-group' role='group' aria-label='...'>";
+                               echo " <a href='".base_url()."Admin/hold_csr/".$item['purchase_id']."' role='button' class='btn btn-warning btn-sm'>H</a>";
+                               echo " <a href='".base_url()."Admin/accept_csr/".$item['purchase_id']."' role='button' class='btn btn-success btn-sm'>✓</a>";
+                               echo " <a href='".base_url()."Admin/reject_csr/".$item['purchase_id']."' role='button' class='btn btn-danger btn-sm'>X</a>";
+         					 echo "</div>";
                     echo "</tr>";
                   } elseif ($item['pur_stat']==3) {
                     echo "<tr>";
@@ -68,13 +79,14 @@
                       echo "<td>".$item['first_name']." ".$item['middle_name']." ".$item['last_name']."</td>";
                       echo "<td>".$item['item_name']."</td>";
                       echo "<td>".$item['quantity']."</td>";
+                      echo "<td>".$item['date_created']."</td>";
                       echo "<td>".$item['pur_name']."</td>";
                       echo "<td>Hold</td>";
                     echo "<td>";
 					 echo "<div class='btn-group' role='group' aria-label='...'>";
-                      echo " <a href='".base_url()."Admin/hold_csr/".$item['purchase_id']."' role='button' class='btn btn-warning btn-sm'>Hold</a>";
-                      echo " <a href='".base_url()."Admin/accept_csr/".$item['purchase_id']."' role='button' class='btn btn-success btn-sm'>Accept</a>";
-                      echo " <a href='".base_url()."Admin/reject_csr/".$item['purchase_id']."' role='button' class='btn btn-danger btn-sm'>Reject</a>";
+                      echo " <a href='".base_url()."Admin/hold_csr/".$item['purchase_id']."' role='button' class='btn btn-warning btn-sm'>H</a>";
+                      echo " <a href='".base_url()."Admin/accept_csr/".$item['purchase_id']."' role='button' class='btn btn-success btn-sm'>✓</a>";
+                      echo " <a href='".base_url()."Admin/reject_csr/".$item['purchase_id']."' role='button' class='btn btn-danger btn-sm'>X</a>";
 					 echo "</div>";
 				   echo "</td>";
                     echo "</tr>";

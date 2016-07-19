@@ -27,6 +27,7 @@
                     <td>Requester</td>
                     <td>Item Name</td>
                     <td>Quantity</td>
+                    <td>Date Requested</td>
                     <td>Status</td>
                     <td>Action</td>
                 </tr>
@@ -39,11 +40,12 @@
                     echo "<td>".$request['first_name']." ".$request['middle_name']." ".$request['last_name']."</td>";
                     echo "<td>".$request['item_name']."</td>";
                     echo "<td>".$request['item_quant']."</td>";
+                    echo "<td>".$request['date_created']."</td>";
                     echo "<td>For Approval</td>";
                     echo "<td>";
-                      echo " <a href='".base_url()."csr/csr_accept_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>Accept Request</a>";
-                      echo " <a href='".base_url()."csr/csr_reject_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>Reject Request</a>";
-                      echo " <a href='".base_url()."csr/csr_hold_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>Hold Request</a>";
+                      echo " <a href='".base_url()."csr/csr_accept_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>✓</a>";
+                      echo " <a href='".base_url()."csr/csr_reject_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>X</a>";
+                      echo " <a href='".base_url()."csr/csr_hold_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>H</a>";
                     echo "</td>";
                   } elseif($request['csr_status']==3){
                     echo "<tr>";
@@ -51,11 +53,12 @@
                       echo "<td>".$request['first_name']." ".$request['middle_name']." ".$request['last_name']."</td>";
                       echo "<td>".$request['item_name']."</td>";
                       echo "<td>".$request['item_quant']."</td>";
+                      echo "<td>".$request['date_created']."</td>";
                       echo "<td>Hold</td>";
                       echo "<td>";
-                        echo " <a href='".base_url()."csr/csr_accept_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>Accept Request</a>";
-                        echo " <a href='".base_url()."csr/csr_reject_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>Reject Request</a>";
-                        echo " <a href='".base_url()."csr/csr_hold_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>Hold Request</a>";
+                      echo " <a href='".base_url()."csr/csr_accept_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>✓</a>";
+                      echo " <a href='".base_url()."csr/csr_reject_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>X</a>";
+                      echo " <a href='".base_url()."csr/csr_hold_request/".$request['csr_req_id']."' role='button' class='btn btn-default btn-xs'>H</a>";
                       echo "</td>";
                   }
 

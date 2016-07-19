@@ -13,6 +13,7 @@
                     <td>Requester</td>
                     <td>Item Name</td>
                     <td>Quantity</td>
+                    <td>Date Rejected</td>
                 </tr>
                 <?php
                 foreach($nursetocsr as $request)
@@ -22,6 +23,7 @@
                     echo "<td>".$request['first_name']." ".$request['middle_name']." ".$request['last_name']."</td>";
                     echo "<td>".$request['item_name']."</td>";
                     echo "<td>".$request['item_quant']."</td>";
+                    echo "<td>".$request['date_altered_status']."</td>";
                   echo "</tr>";
                 }
                 ?>

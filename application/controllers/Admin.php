@@ -1440,7 +1440,8 @@ function EditSpec($id){
                     'item_desc'=>$requestdata->item_name,
                     'item_stock'=>$requestdata->quantity);
       $this->Model_admin->insertnewcsrproduct($data);
-      $newstat = array('pur_stat'=>1);
+      $newstat = array('pur_stat'=>1,
+                       'date_altered_status'=>date('Y-m-d H:i:s'));
       $this->Model_admin->change_pur_status($id,$newstat);
         redirect("Admin/PurchasingCSRRequests");
       } else {
@@ -1453,7 +1454,8 @@ function EditSpec($id){
                     'item_stock'=>$sumstock);
 
       $this->Model_admin->restockcsrproduct($requestdata->item_id,$data);
-      $newstat = array('pur_stat'=>1);
+      $newstat = array('pur_stat'=>1,
+                       'date_altered_status'=>date('Y-m-d H:i:s'));
       $this->Model_admin->change_pur_status($id,$newstat);
         redirect("Admin/PurchasingCSRRequests");
       }
@@ -1462,7 +1464,8 @@ function EditSpec($id){
     function reject_csr($id)
     {
       //Reject = 2
-      $newstat = array('pur_stat'=>2);
+      $newstat = array('pur_stat'=>2,
+                       'date_altered_status'=>date('Y-m-d H:i:s'));
       $this->Model_admin->change_pur_status($id,$newstat);
         redirect("Admin/PurchasingCSRRequests");
     }
@@ -1470,7 +1473,8 @@ function EditSpec($id){
     function hold_csr($id)
     {
       //Hold = 3
-      $newstat = array('pur_stat'=>3);
+      $newstat = array('pur_stat'=>3,
+                       'date_altered_status'=>date('Y-m-d H:i:s'));
       $this->Model_admin->change_pur_status($id,$newstat);
         redirect("Admin/PurchasingCSRRequests");
     }

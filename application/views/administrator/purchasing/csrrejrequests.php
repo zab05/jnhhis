@@ -2,16 +2,16 @@
   <section class="wrapper">
     <div class="row">
       <div class="col-sm-12">
-	  
+
           <section class="panel">
-		  
-             
+
+
               <header class="panel-heading">
                 <a href="<?=base_url()?>Admin/PurchasingCSRRequests" role='button' class='btn btn-primary btn-xs'><i class="fa fa-chevron-left"></i></a> Rejected CSR Requests<h4></center>
               </header>
 			  <div class="panel-body">
               <div class="adv-table">
-				
+
               <table class="table table-striped" id="dynamic-table">
 			    <thead>
                 <tr>
@@ -20,6 +20,7 @@
                   <th>Item Name</th>
                   <th>Quantity</th>
                   <th>Request Type</th>
+                  <th>Date Rejected</th>
                 </tr>
 				</thead>
 				<tbody>
@@ -32,6 +33,7 @@
                       echo "<td>".$item['item_name']."</td>";
                       echo "<td>".$item['quantity']."</td>";
                       echo "<td>".$item['pur_name']."</td>";
+                      echo "<td>".$item['date_altered_status']."</td>";
                 }
                  ?>
 			  </tbody>

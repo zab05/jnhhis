@@ -115,7 +115,8 @@ function csr_accept_request($id)
   $csrid = $this->Model_Csr->get_csrid($id);
   $stock_quantity = $this->Model_Csr->get_stock_quant($csrid);
   $stock_sum = $stock_quantity - $request_quantity;
-  $datareq = array('csr_status' =>1);
+  $datareq = array('csr_status' =>1,
+                   'date_altered_status'=>date('Y-m-d H:i:s'));
   $datainv = array('item_stock' => $stock_sum);
 
   //CSR REQUEST
@@ -129,7 +130,8 @@ function csr_accept_request($id)
 function csr_reject_request($id)
 {
   //2
-   $datareq = array('csr_status' =>2);
+   $datareq = array('csr_status' =>2,
+                    'date_altered_status'=>date('Y-m-d H:i:s'));
    $this->Model_Csr->reject_request($id,$datareq);
     redirect("Csr/PendingRequests");
 }
@@ -137,7 +139,8 @@ function csr_reject_request($id)
 function csr_hold_request($id)
 {
   //3
-  $datareq = array('csr_status' =>3);
+  $datareq = array('csr_status' =>3,
+                   'date_altered_status'=>date('Y-m-d H:i:s'));
   $this->Model_Csr->hold_request($id,$datareq);
   redirect("Csr/PendingRequests");
 }

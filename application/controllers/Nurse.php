@@ -69,8 +69,8 @@
               $data = array(
                 'nurse_id' => $this->session->userdata('user_id'),
                 'csr_item_id' => $this->input->post('hiddenItemId'),
-                'item_quant' => $this->input->post('stock')
-
+                'item_quant' => $this->input->post('stock'),
+                'date_created' => date('Y-m-d H:i:s')
               );
 
               if($this->Model_nurse->CSRReqAddSingle($data)){
