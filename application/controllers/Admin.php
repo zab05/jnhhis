@@ -318,7 +318,7 @@
       if($this->form_validation->run() == FALSE){
         echo "may mali";
       }else{
-        $data = array("type_id"=>$this->input->post('nursetype'),
+        $data_user = array("type_id"=>3,
                       "username"=>$this->input->post('username'),
                       "password"=>sha1("nurse"),
                       "email"=>$this->input->post('email'),
@@ -331,7 +331,11 @@
                       "status"=>1,
                       "employment_date"=>date('Y-m-d'),
                     );
-        $doctor_id = $this->Model_admin->insert_user($data);
+        $id = $this->Model_admin->insert_user($data_user);
+        $data_nurse = array("user_nurse_fk"=>$id->user_id,
+                            "nurse_type"=>$this->input->post('nursetype')
+                           );
+        $this->Model_admin->insert_nurse($data_nurse);
         redirect(base_url().'Admin/NurseList');
       }
     }

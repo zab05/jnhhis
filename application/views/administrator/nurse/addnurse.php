@@ -15,9 +15,9 @@
                 <label  class="col-lg-3 col-sm-3 control-label">Type: </label>
                 <div class="col-lg-9">
                   <select class="form-control" name="nursetype">
-                    <option value='3'>Nurse Manager</option>
-                    <option value='4'>Charge Nurse</option>
-                    <option value='5'>Bedside Nurse</option>
+                    <option value='1'>Nurse Manager</option>
+                    <option value='2'>Charge Nurse</option>
+                    <option value='3'>Bedside Nurse</option>
                   </select>
                 </div>
             </div>
