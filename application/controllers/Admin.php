@@ -13,6 +13,7 @@
         }
       }else{
         redirect(base_url());
+        //redirect
       }
     }
 
@@ -316,7 +317,8 @@
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
 
       if($this->form_validation->run() == FALSE){
-        echo "may mali";
+        echo "may mali";//patangal to
+
       }else{
         $data_user = array("type_id"=>3,
                       "username"=>$this->input->post('username'),

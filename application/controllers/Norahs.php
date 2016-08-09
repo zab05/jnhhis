@@ -67,6 +67,8 @@
                 redirect(base_url()."Nurse", "refresh");
               }else if($user_details->type_id == 11){
                 redirect(base_url()."Csr", "refresh");
+              }else if($user_details->type_id >= 13 || $user_details->type_id <= 15){
+                redirect(base_url()."Management", "refresh");
               }
               else{
                 echo "Unauthorized Access!";
