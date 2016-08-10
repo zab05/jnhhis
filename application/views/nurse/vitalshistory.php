@@ -6,7 +6,7 @@
                 <div class="row">
              <div class="col-lg-12">
                  <section class="panel">
-                   <h1 style="color: red;\">SAMPLE DATA Only d pa tapos need vital signs table</h1>
+                   <h1 style="color: red;">SAMPLE DATA Only d pa tapos need vital signs table</h1>
                      <header class="panel-heading">
                         <?php echo $this->uri->segment(3); ?> Vital signs History
                      </header>

@@ -286,7 +286,7 @@
                       </li>
 
                       <li>
-                          <a href="<?=base_url()?>Management/viewallmembers">
+                          <a href="<?=base_url()?>Management/showrequests">
                               <i class="fa fa-check-square-o"></i>
                               <span>All request for approval</span>
                           </a>
