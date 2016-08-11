@@ -115,9 +115,12 @@
                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                  <h4 class="modal-title">Edit</h4>
              </div>
+
+             <?php echo form_open('Admin/updatepermission'); ?>
    <div class="modal-body">
         Name:
         <input type="text" id="updatedrolename" name="name" class="form-control" value="<?php echo $user_type['name'];?>"><br>
+        <input type="hidden" id="updatedoldname" name="oldName">
                 <strong>Permission</strong>
               <table>
 
@@ -146,6 +149,7 @@
 
                     <?php
                       }
+
                     ?>
 
 
@@ -156,9 +160,11 @@
       </div>
     <div class="modal-footer">
     <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-       <button class="btn btn-success" type="button">Save changes</button>
+       <button class="btn btn-success" type="submit">Save changes</button>
          </div>
      </div>
+
+     </form>
  </div>
 </div>
                              <!-- modal -->
@@ -177,6 +183,7 @@
 function editrole(d){
     //console.log(d.getAttribute("data-userid"))
     document.getElementById("updatedrolename").value = d.getAttribute("data-rolename")
+    document.getElementById("updatedoldname").value = d.getAttribute("data-rolename")
     // document.getElementById("updatefirstname").value = d.getAttribute("data-firstname")
     // document.getElementById("updatelastname").value = d.getAttribute("data-lastname")
     // document.getElementById("updatemiddlename").value = d.getAttribute("data-middlename")

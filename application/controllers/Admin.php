@@ -69,6 +69,12 @@
 
     }
 
+    function updatepermission()
+    {
+        echo $_POST['oldName'];
+        
+    }
+
 
 
 
