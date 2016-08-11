@@ -24,7 +24,7 @@
       $this->load->view('administrator/includes/footer.php');
     }
     /*=========================================================================================================================*/
-<<<<<<< HEAD
+
 
     function Users(){
 
@@ -37,7 +37,7 @@
     function RolesAndPermission(){
       $data['title'] = "HIS: Users and roles";
       $data['user_types'] = $this->Model_admin->get_usertypes();
-      $data['task_names'] = $this->Model_admin->get_tasks();
+      $data['task_names'] = $this->Model_admin->fetch_tasks();
       $data['permissions'] = $this->Model_admin->get_permission();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/rolesandpermission', $data);
@@ -74,15 +74,11 @@
     function updatepermission()
     {
         echo $_POST['oldName'];
-        
+
     }
 
 
 
-
-
-=======
->>>>>>> 922366f0839b7f4f57290aa0c980b045470823be
     function PatientList($id = null){
       if(empty($id)){
         $header['tasks'] = $this->Model_admin->get_tasks();

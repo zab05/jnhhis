@@ -287,7 +287,7 @@
                           </a>
                       </li>
 
-<<<<<<< HEAD
+
                       <li class="sub-menu">
                           <a href="index-2.html">
                               <i class="fa fa-cogs"></i>
@@ -398,7 +398,7 @@
                               -->
                               <li><a  href="<?=base_url()?>Admin/Users">User</a></li>
                               <li><a  href="<?=base_url()?>Admin/RolesAndPermission">Roles and Permission</a></li>
-=======
+
                       <?php
                        foreach($tasks as $task){
                       echo "<li class='sub-menu'>";
@@ -407,7 +407,6 @@
                       echo "<span>".$task['task_name']."</span>";
                       echo "</a>";
                       echo "<ul class='sub'>";
->>>>>>> 922366f0839b7f4f57290aa0c980b045470823be
 
                         foreach($permissions as $permission)
                         {

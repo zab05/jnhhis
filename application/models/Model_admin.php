@@ -968,7 +968,7 @@
       return $query->result_array();
     }
 
-    function get_tasks()
+    function fetch_tasks()
     {
         $this->db->select();
         $this->db->from('task');
