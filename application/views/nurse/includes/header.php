@@ -7,7 +7,7 @@
     <meta name="author" content="Mosaddek">
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="img/favicon.html">
-    <!-- <title>Radiology</title> -->
+    <title>Nurse</title>
     <!-- Bootstrap core CSS -->
     <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/bootstrap-reset.css" rel="stylesheet">
@@ -15,11 +15,18 @@
     <link href="<?=base_url()?>assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
     <link rel="stylesheet" href="<?=base_url()?>css/owl.carousel.css" type="text/css">
+	<link href="<?php echo base_url() ?>assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+	<link href="<?php echo base_url() ?>assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/data-tables/DT_bootstrap.css" />
+
     <!--right slidebar-->
     <link href="<?=base_url()?>css/slidebars.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="<?=base_url()?>css/style.css" rel="stylesheet">
     <link href="<?=base_url()?>css/style-responsive.css" rel="stylesheet" />
+
+
+
   </head>
   <body>
 
@@ -32,16 +39,26 @@
               <!--logo start-->
               <a href="index-2.html" class="logo">NORA<span>HS</span></a>
               <!--logo end-->
-              <div class="nav notify-row" id="top_menu">
+
+              <div class="nav notify-row " id="top_menu">
                   <!--  notification start -->
                   <ul class="nav top-menu">
                       <!-- settings start -->
+
+                      <!-- notification dropdown end -->
+                  </ul>
+                  <!--  notification end -->
+              </div>
+              <div class="top-nav ">
+                  <!--search & user info start-->
+                  <ul class="nav pull-right top-menu">
+                      <!-- user login dropdown start-->
                       <li class="dropdown">
                           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                               <i class="fa fa-tasks"></i>
                               <span class="badge bg-success">6</span>
                           </a>
-                          <ul class="dropdown-menu extended tasks-bar">
+                          <ul class="dropdown-menu extended tasks-bar " >
                               <div class="notify-arrow notify-arrow-green"></div>
                               <li>
                                   <p class="green">You have 6 pending tasks</p>
@@ -235,18 +252,10 @@
                               </li>
                           </ul>
                       </li>
-                      <!-- notification dropdown end -->
-                  </ul>
-                  <!--  notification end -->
-              </div>
-              <div class="top-nav ">
-                  <!--search & user info start-->
-                  <ul class="nav pull-right top-menu">
-                      <!-- user login dropdown start-->
                       <li class="dropdown">
                           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                              <img alt="" src="<?=base_url()?>img/avatar1_small.jpg">
-                              <span class="username">Jhon Doue</span>
+                              <img alt="" width="30"src="<?=base_url()?>img/doctor.png">
+                              <span class="username"><?php echo $this->session->userdata("user_firstname") ?></span>
                               <b class="caret"></b>
                           </a>
                           <ul class="dropdown-menu extended logout">
@@ -254,14 +263,14 @@
                               <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                               <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
                               <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
-                              <li><a href="<?=base_url()?>Radiology/Logout"><i class="fa fa-key"></i> Log Out</a></li>
+                              <li><a href="<?=base_url()?>Admin/Logout"><i class="fa fa-key"></i> Log Out</a></li>
                           </ul>
                       </li>
-                      <li class="sb-toggle-right">
-                          <i class="fa  fa-align-right"></i>
-                      </li>
+
                       <!-- user login dropdown end -->
                   </ul>
+
+
                   <!--search & user info end-->
               </div>
           </header>
@@ -272,57 +281,34 @@
                   <!-- sidebar menu start-->
                   <ul class="sidebar-menu" id="nav-accordion">
                       <li>
-                          <a class="active" href="<?=base_url()?>Nurse">
+                          <a class="active" href="index-2.html">
                               <i class="fa fa-dashboard"></i>
                               <span>Dashboard</span>
                           </a>
                       </li>
 
-                      <li>
-                          <a href="<?=base_url()?>Nurse/vitalsigns">
-                              <i class="fa fa-tasks"></i>
-                              <span>View Patient vital signs</span>
-                          </a>
+                      <?php
+
+                       foreach($tasks as $task){
+                      echo "<li class='sub-menu'>";
+                      echo "<a href='javascript:;'>";
+                      echo "<i class='".$task['task_logo']."'></i>";
+                      echo "<span>".$task['task_name']."</span>";
+                      echo "</a>";
+                      echo "<ul class='sub'>";
+
+                        foreach($permissions as $permission)
+                        {
+                          if($permission['task_id']==$task['task_id'])
+                          {
+                              echo "<li><a href='".base_url().$permission['permission_link']."'>".$permission['permission_name']."</a></li>";
+                          }
+
+                        }
+                     echo "</ul>";
+                    }
+                      ?>
                       </li>
-
-                      <li>
-                          <a href="#">
-                              <i class="fa fa-medkit"></i>
-                              <span>Request Medicine</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#">
-                              <i class="fa fa-user-md"></i>
-                              <span>Doctor's Appointments</span>
-                          </a>
-                      </li>
-
-                      <li>
-                          <a href="#">
-                              <i class="fa fa-check-square-o"></i>
-                              <span>Approval of Requests</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="<?php echo base_url()?>Nurse/csr">
-                              <i class="fa fa-check-square-o"></i>
-                              <span>CSR Request</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#">
-                              <i class="fa fa-clock-o"></i>
-                              <span>Manage Shifting hours</span>
-                          </a>
-                      </li>
-
-
-
-
-
-
-
                   </ul>
                   <!-- sidebar menu end-->
               </div>
