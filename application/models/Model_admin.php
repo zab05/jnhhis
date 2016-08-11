@@ -10,6 +10,17 @@
       return $query->result_array();
     }
 
+    function get_users(){
+      $query = $this->db->query("select * from users a
+                                 join user_type b on a.type_id = b.type_id");
+      return $query->result_array();
+    }
+
+    function get_user_type(){
+      $query = $this->db->query("select * from user_type");
+      return $query->result_array();
+    }
+
     function get_total_patient_count(){
       $this->db->select('*');
       $this->db->from('patient');

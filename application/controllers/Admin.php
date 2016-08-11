@@ -25,8 +25,11 @@
     /*=========================================================================================================================*/
 
     function Users(){
+
+      $data['users'] = $this->Model_admin->get_users();
+      $data['usertypes'] = $this->Model_admin->get_user_type();
       $this->load->view('administrator/includes/header.php');
-      $this->load->view('administrator/users');
+      $this->load->view('administrator/users', $data);
     }
 
     function RolesAndPermission(){
@@ -206,6 +209,62 @@
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/doctor/adddoctor.php', $data);
       $this->load->view('administrator/includes/footer.php');
+    }
+
+    function insert_user(){
+      $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'Username', 'required|trim|xss_clean|strip_tags|is_unique[users.username]');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags|is_unique[users.email]');
+      $this->form_validation->set_rules('gender', 'Gender', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
+
+      if($this->form_validation->run() == FALSE){
+        echo validation_errors();
+      }else{
+        $data = array("type_id"=>$this->input->post('usertype'),
+                      "username"=>$this->input->post('username'),
+                      "password"=>sha1("doctor"),
+                      "email"=>$this->input->post('email'),
+                      "first_name"=>$this->input->post('firstname'),
+                      "last_name"=>$this->input->post('lastname'),
+                      "middle_name"=>$this->input->post('middlename'),
+                      "birthdate"=>$this->input->post('birthday'),
+                      "contact_number"=>$this->input->post('mobile_number'),
+                      "gender"=>$this->input->post('gender'),
+                      "status"=>1,
+                      "employment_date"=>date('Y-m-d'),
+                    );
+        $user_id = $this->Model_admin->insert_user($data);
+        //$this->Model_admin->insert_doctor_information($doctor_id, $this->input->post('specialty'));
+        redirect(base_url().'Admin/Users');
+      }
+    }
+
+    function update_user(){
+      $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('firstname', 'First Name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('birthday', 'birthday', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('mobile_number', 'Mobile number', 'required|trim|xss_clean|strip_tags');
+
+      if($this->form_validation->run() == FALSE){
+        echo validation_errors();
+      }else{
+        $data = array(
+                      'first_name'=>$this->input->post('firstname'),
+                      'last_name'=>$this->input->post('lastname'),
+                      'middle_name'=>$this->input->post('middlename'),
+                      'email'=>$this->input->post('email'),
+                      'birthdate'=>$this->input->post('birthday'),
+                      'contact_number'=>$this->input->post('mobile_number')
+                     );
+         $this->Model_admin->update_user($this->input->post('userid'), $data);
+         redirect(base_url().'Admin/Users');
+      }
     }
 
     function insert_doctor(){
