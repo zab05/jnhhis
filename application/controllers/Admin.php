@@ -23,6 +23,17 @@
       $this->load->view('administrator/includes/footer.php');
     }
     /*=========================================================================================================================*/
+
+    function Users(){
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/users');
+    }
+
+    function RolesAndPermission(){
+      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/rolesandpermission');
+    }
+
     function PatientList($id = null){
       if(empty($id)){
         $data['patients'] = $this->Model_admin->get_patient_list();
