@@ -319,7 +319,7 @@
                               <span>Pharmacy</span>
                           </a>
                           <ul class="sub">
-                              
+
                               <li><a  href="<?php echo base_url().'Admin/pharmacy_inventory'?>">Inventory</a></li>
                               <li><a  href="<?php echo base_url().'Admin/pharmacy_request'?>">Make Pharmacy Request</a></li>
                               <li><a  href="<?php echo base_url().'Admin/process_pharmacy_request'?>">Process Pharmacy Request</a></li>
@@ -385,13 +385,20 @@
                       <li class="sub-menu">
                           <a href="javascript:;" >
                               <i class="fa fa-users"></i>
-                              <span>Employee</span>
+                              <span>User Management</span>
                           </a>
                           <ul class="sub">
+                              <!--
                               <li><a  href="<?=base_url()?>Admin/DoctorList">Doctors</a></li>
                               <li><a  href="<?=base_url()?>Admin/NurseList">Nurses</a></li>
                               <li><a  href="<?=base_url()?>Admin/RadiologistList">Radiologists</a></li>
                               <li><a  href="<?=base_url()?>Admin/PharmacistList">Pharmacists</a></li>
+                              <li><a  href="<?=base_url()?>Admin/Permission">Permission</a></li>
+                              -->
+                              <li><a  href="<?=base_url()?>Admin/User">User</a></li>
+                              <li><a  href="<?=base_url()?>Admin/RolesAndPermission">Roles and Permission</a></li>
+
+
                           </ul>
                       </li>
 
