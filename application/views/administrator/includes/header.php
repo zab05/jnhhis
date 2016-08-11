@@ -288,117 +288,6 @@
                       </li>
 
 
-                      <li class="sub-menu">
-                          <a href="index-2.html">
-                              <i class="fa fa-cogs"></i>
-                              <span>Maintenance</span>
-                          </a>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="<?=base_url()?>Admin/PatientList">
-                              <i class="fa fa-list-alt"></i>
-                              <span>Patient List</span>
-                          </a>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa fa-sign-in"></i>
-                              <span>Admit Patient</span>
-                          </a>
-                          <ul class="sub">
-                              <li><a  href="<?=base_url()?>Admin/EmergencyRoom">Emergency Room</a></li>
-                              <li><a  href="<?=base_url()?>Admin/DirectRoomAdmission">Direct Room Admission</a></li>
-                              <li><a  href="<?=base_url()?>Admin/ViewAdmittedPatients">View Admitted Patients</a></li>
-                          </ul>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa fa-medkit"></i>
-                              <span>Pharmacy</span>
-                          </a>
-                          <ul class="sub">
-
-                              <li><a  href="<?php echo base_url().'Admin/pharmacy_inventory'?>">Inventory</a></li>
-                              <li><a  href="<?php echo base_url().'Admin/pharmacy_request'?>">Make Pharmacy Request</a></li>
-                              <li><a  href="<?php echo base_url().'Admin/process_pharmacy_request'?>">Process Pharmacy Request</a></li>
-                          </ul>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa fa-truck"></i>
-                              <span>CSR</span>
-                          </a>
-                          <ul class="sub">
-                              <li><a  href="<?=base_url()?>Admin/CSRPendingrequests">Pending Requests</a></li>
-                              <li><a  href="<?=base_url()?>Admin/CSRListofproducts">List of Products</a></li>
-                          </ul>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa fa-shopping-cart "></i>
-                              <span>Purchasing</span>
-                          </a>
-                          <ul class="sub">
-                              <li><a  href="<?=base_url()?>Admin/PurchasingCSRInventory">CSR Inventory</a></li>
-                              <li><a  href="#.html">Pharmacy Inventory</a></li>
-                              <li><a  href="<?=base_url()?>Admin/PurchasingCSRRequests">CSR Requests</a></li>
-                              <li><a  href="#.html">Pharmacy Requests</a></li>
-                          </ul>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa fa-flask"></i>
-                              <span>Laboratory</span>
-                          </a>
-                          <ul class="sub">
-                                <li class="sub-menu">
-                                    <a  href="#">Laboratory Maintenance</a>
-                                    <ul class="sub">
-                                      <li><a  href="<?=base_url()?>Admin/LabExamType">Laboratory Exam Type</a></li>
-                                      <li><a  href="<?=base_url()?>Admin/LabExamSpec">Laboratory Specimens</a></li>
-                                      <li><a  href="<?=base_url()?>Admin/LabExamCateg">Examination Category</a></li>
-                                    </ul>
-                                </li>
-                              <li><a  href="<?=base_url()?>Admin/LaboratoryRequests">Laboratory Requests</a></li>
-                              <li><a  href="<?=base_url()?>Admin/AppofReq">Pending Requests</a></li>
-                          </ul>
-                      </li>
-
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa  fa-stethoscope"></i>
-                              <span>Radiology</span>
-                          </a>
-                          <ul class="sub">
-                              <li><a  href="#.html">Radiology Maintenance</a></li>
-                              <li><a  href="#.html">Radiology Requests</a></li>
-                              <li><a  href="#.html">Approval of Requests</a></li>
-                          </ul>
-                      </li>
-
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa fa-users"></i>
-                              <span>User Management</span>
-                          </a>
-                          <ul class="sub">
-                              <!--
-                              <li><a  href="<?=base_url()?>Admin/DoctorList">Doctors</a></li>
-                              <li><a  href="<?=base_url()?>Admin/NurseList">Nurses</a></li>
-                              <li><a  href="<?=base_url()?>Admin/RadiologistList">Radiologists</a></li>
-                              <li><a  href="<?=base_url()?>Admin/PharmacistList">Pharmacists</a></li>
-                              <li><a  href="<?=base_url()?>Admin/Permission">Permission</a></li>
-                              -->
-                              <li><a  href="<?=base_url()?>Admin/Users">User</a></li>
-                              <li><a  href="<?=base_url()?>Admin/RolesAndPermission">Roles and Permission</a></li>
-
                       <?php
                        foreach($tasks as $task){
                       echo "<li class='sub-menu'>";
@@ -407,6 +296,7 @@
                       echo "<span>".$task['task_name']."</span>";
                       echo "</a>";
                       echo "<ul class='sub'>";
+
 
                         foreach($permissions as $permission)
                         {
