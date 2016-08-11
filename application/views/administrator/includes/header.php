@@ -288,6 +288,7 @@
                       </li>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                       <?php
                        foreach($tasks as $task){
                       echo "<li class='sub-menu'>";
@@ -297,6 +298,8 @@
                       echo "</a>";
                       echo "<ul class='sub'>";
 =======
+=======
+>>>>>>> 3d3090e88a4309b82137769ed0b940217c874f56
                       <li class="sub-menu">
                           <a href="index-2.html">
                               <i class="fa fa-cogs"></i>
@@ -407,7 +410,20 @@
                               -->
                               <li><a  href="<?=base_url()?>Admin/Users">User</a></li>
                               <li><a  href="<?=base_url()?>Admin/RolesAndPermission">Roles and Permission</a></li>
+<<<<<<< HEAD
 >>>>>>> 3ca682bad9f5542b4fd80a21e16077f5f38ac80c
+=======
+=======
+                      <?php
+                       foreach($tasks as $task){
+                      echo "<li class='sub-menu'>";
+                      echo "<a href='javascript:;'>";
+                      echo "<i class='".$task['task_logo']."'></i>";
+                      echo "<span>".$task['task_name']."</span>";
+                      echo "</a>";
+                      echo "<ul class='sub'>";
+>>>>>>> 922366f0839b7f4f57290aa0c980b045470823be
+>>>>>>> 3d3090e88a4309b82137769ed0b940217c874f56
 
                         foreach($permissions as $permission)
                         {
