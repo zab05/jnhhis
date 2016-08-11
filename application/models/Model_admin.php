@@ -946,6 +946,26 @@
       return $query->result_array();
     }
 
+    function get_tasks()
+    {
+        $this->db->select();
+        $this->db->from('task');
+        $query = $this->db->get();
+        return $query->result_array();
+
+
+    }
+
+    function get_permission()
+    {
+      $this->db->select();
+      $this->db->from('permission');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+
+
     function insertRole($data){
         $query = $this->db->insert('user_type', $data);
 

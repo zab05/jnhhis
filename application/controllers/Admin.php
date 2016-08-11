@@ -35,6 +35,8 @@
     function RolesAndPermission(){
       $data['title'] = "HIS: Users and roles";
       $data['user_types'] = $this->Model_admin->get_usertypes();
+      $data['task_names'] = $this->Model_admin->get_tasks();
+      $data['permissions'] = $this->Model_admin->get_permission();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/rolesandpermission', $data);
       $this->load->view('administrator/includes/footer.php');

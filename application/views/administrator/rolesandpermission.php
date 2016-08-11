@@ -50,18 +50,11 @@
                                   <th>Action</th>
                                    <th>id</th>
                                    <th>Role name</th>
-                                   <th>maintenance</th>
-                                   <th>Patient list</th>
-                                   <th>Admit patient</th>
-                                   <th>Pharmacy</th>
-                                   <th>CSR</th>
-                                   <th>purchasing</th>
-                                   <th>Laboratory</th>
-                                   <th>Radiology</th>
-                                   <th>User Management</th>
-                                   <th>Rooms</th>
-                                   <th>Billing</th>
-                                   <th>Cashier</th>
+                                   <?php foreach ($task_names as $task_name) { ?>
+
+
+                                   <th><?php echo $task_name['task_name']; ?></th>
+                                  <? } ?>
                                </tr>
                                </thead>
                                <tbody>
@@ -70,23 +63,38 @@
                                 ?>
                                <tr>
 
-                                    <td><i class='fa fa-trash-o'> | <i class='fa fa-edit pull-right'></td>
+                                    <td><i class='fa fa-trash-o'> | <a href="#"
+                                      data-rolename="<?php echo $user_type['name'];?>"
+                                      onclick="editrole(this)"> <i class='fa fa-edit pull-right' data-toggle="modal"></i></a>
+
+                                      </td>
 
                                    <td data-title="Code"><?= $user_type['type_id']; ?></td>
                                    <td data-title="Company"><?= $user_type['name']; ?></td>
 
-                                   <td><input type="checkbox" name="businessType[]" value="1"></td>
-                                    <td><input type="checkbox" name="businessType[]" value="2"></td>
-                                  <td>  <input type="checkbox" name="businessType[]" value="3"></td>
-                                    <td><input type="checkbox" name="businessType[]" value="1"></td>
-                                    <td><input type="checkbox" name="businessType[]" value="2"></td>
-                                    <td><input type="checkbox" name="businessType[]" value="3"></td>
-                                    <td><input type="checkbox" name="businessType[]" value="1"></td>
-                                    <td><input type="checkbox" name="businessType[]" value="2"></td>
-                                    <td><input type="checkbox" name="businessType[]" value="3"></td>
-                                    <td><input type="checkbox" name="businessType[]" value="1"></td>
-                                    <td><input type="checkbox" name="businessType[]" value="1"></td>
-                                    <td><input type="checkbox" name="businessType[]" value="1"></td>
+                                   <?php
+                                       foreach ($task_names as $task_name) { ?>
+                                          <td>
+                                              <?php
+
+                                                  foreach ($permissions as $permission) {
+                                                      echo "<table><tr>";
+                                                      if($permission['task_id'] == $task_name['task_id']){ ?>
+
+
+
+                                                          <td><?php  echo $permission['permission_name'].":<br>"; ?></td>
+                                                          <td>Yes</td>
+
+                                                <?      }
+                                                      echo "</tr></table>";
+
+                                                  }
+
+                                               ?>
+                                          </td>
+                                      <? }
+                                    ?>
                                </tr>
                                 <?php }
                                ?>
@@ -99,7 +107,84 @@
   </div>
 
 
+  <!-- Modal -->
+<div class="modal fade " id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+       <div class="modal-content">
+                <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title">Edit</h4>
+             </div>
+   <div class="modal-body">
+        Name:
+        <input type="text" id="updatedrolename" name="name" class="form-control" value="<?php echo $user_type['name'];?>"><br>
+                <strong>Permission</strong>
+              <table>
+
+                    <?php foreach ($task_names as $task_name) { ?>
+
+                        <tr>
+
+                          <td><?php echo $task_name['task_name'].":"; ?></td>
+                           <td>
+                              <?php foreach ($permissions as $permission) {
+                                      if($task_name['task_id'] == $permission['task_id']){
+                                ?>
+
+                                    <?php echo form_checkbox('permissions[]', $permission['permission_id'])." ".$permission['permission_name'];
+
+                                    ?>
+
+                                <?php } } ?>
+
+
+
+                          </td>
+
+                        </tr>
+
+
+                    <?php
+                      }
+                    ?>
+
+
+
+
+              </table>
+
+      </div>
+    <div class="modal-footer">
+    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+       <button class="btn btn-success" type="button">Save changes</button>
+         </div>
+     </div>
+ </div>
+</div>
+                             <!-- modal -->
+
+
+
+
+
+
 
 
       </section>
   </section>
+
+<script type="text/javascript">
+function editrole(d){
+    //console.log(d.getAttribute("data-userid"))
+    document.getElementById("updatedrolename").value = d.getAttribute("data-rolename")
+    // document.getElementById("updatefirstname").value = d.getAttribute("data-firstname")
+    // document.getElementById("updatelastname").value = d.getAttribute("data-lastname")
+    // document.getElementById("updatemiddlename").value = d.getAttribute("data-middlename")
+    // document.getElementById("updateusername").value = d.getAttribute("data-username")
+    // document.getElementById("updateemail").value = d.getAttribute("data-email")
+    // document.getElementById("updatemobilenumber").value = d.getAttribute("data-mobilenumber")
+    // document.getElementById("updatebirthdate").value = d.getAttribute("data-birthdate")
+    $("#edit").modal()
+
+}
+</script>
