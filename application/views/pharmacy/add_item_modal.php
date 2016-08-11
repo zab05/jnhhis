@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <div class="row">
                   <div class="col-lg-7">
-                  <?php echo form_open('Admin/add_item_inventory'); ?>
+                  <?php echo form_open('Pharmacy/add_item_inventory'); ?>
                     <h4 style="font-weight:100" class="modal-title">Input Item Details</h4>
                     <hr>
                       <div class="form-group">

@@ -8,7 +8,7 @@
                   <center><h4>PHARMACY REQUEST<h4></center>
               </header>
 
-                <form role="form" id="formfield" action="<?php echo base_url();?>admin/pharmacy_request_submit" method="post">
+                <form role="form" id="formfield" action="<?php echo base_url();?>Pharmacy/pharmacy_request_submit" method="post">
                 <input type="button" name="btn" value="Submit request" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-success" />
 
                 <center>

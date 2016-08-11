@@ -319,10 +319,10 @@
                               <span>Pharmacy</span>
                           </a>
                           <ul class="sub">
-                              
-                              <li><a  href="<?php echo base_url().'Admin/pharmacy_inventory'?>">Inventory</a></li>
-                              <li><a  href="<?php echo base_url().'Admin/pharmacy_request'?>">Make Pharmacy Request</a></li>
-                              <li><a  href="<?php echo base_url().'Admin/process_pharmacy_request'?>">Process Pharmacy Request</a></li>
+
+                              <li><a  href="<?php echo base_url().'Pharmacy/pharmacy_inventory'?>">Inventory</a></li>
+                              <li><a  href="<?php echo base_url().'Pharmacy/pharmacy_request'?>">Make Pharmacy Request</a></li>
+                              <li><a  href="<?php echo base_url().'Pharmacy/process_pharmacy_request'?>">Process Pharmacy Request</a></li>
                           </ul>
                       </li>
 
