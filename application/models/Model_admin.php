@@ -974,8 +974,6 @@
         $this->db->from('task');
         $query = $this->db->get();
         return $query->result_array();
-
-
     }
 
     function get_permission()
