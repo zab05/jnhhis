@@ -395,7 +395,7 @@
                               <li><a  href="<?=base_url()?>Admin/PharmacistList">Pharmacists</a></li>
                               <li><a  href="<?=base_url()?>Admin/Permission">Permission</a></li>
                               -->
-                              <li><a  href="<?=base_url()?>Admin/User">User</a></li>
+                              <li><a  href="<?=base_url()?>Admin/Users">User</a></li>
                               <li><a  href="<?=base_url()?>Admin/RolesAndPermission">Roles and Permission</a></li>
 
 
