@@ -30,9 +30,43 @@
     }
 
     function RolesAndPermission(){
+      $data['title'] = "HIS: Users and roles";
+      $data['user_types'] = $this->Model_admin->get_usertypes();
       $this->load->view('administrator/includes/header.php');
-      $this->load->view('administrator/rolesandpermission');
+      $this->load->view('administrator/rolesandpermission', $data);
+      $this->load->view('administrator/includes/footer.php');
+
     }
+
+
+    function addrole()
+    {
+      $this->form_validation->set_rules('rolename', 'Role name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('desc', 'Description', 'required|trim|xss_clean|strip_tags');
+
+        if($this->form_validation->run()){
+
+            $data = array(
+              'name' => $this->input->post('rolename'),
+              'description' => $this->input->post('desc')
+            );
+
+            if($this->Model_admin->insertRole($data)){
+                $this->RolesAndPermission();
+            }else{
+                $this->RolesAndPermission();
+            }
+
+
+        }else{
+            echo "nganga";
+        }
+
+    }
+
+
+
+
 
     function PatientList($id = null){
       if(empty($id)){
