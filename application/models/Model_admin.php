@@ -949,6 +949,41 @@
       return $query->result_array();
     }
 
+    function fetch_tasks()
+    {
+      $this->db->select('*');
+      $this->db->from('task');
+      $query = $this->db->get();
+      return $query->result_array();
+
+    }
+
+    function get_usertypes()
+    {
+      $this->db->select('*');
+      $this->db->from('user_type');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function fetch_permissions()
+    {
+      $this->db->select('*');
+      $this->db->from('permission');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function insertRole($data)
+    {
+      $sql = $this->db->insert('user_type', $data);
+        if($sql){
+          return true;
+        }else{
+          return false;
+        }
+    }
+
 
   }
 ?>

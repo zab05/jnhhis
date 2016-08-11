@@ -24,6 +24,7 @@
       $this->load->view('administrator/includes/footer.php');
     }
     /*=========================================================================================================================*/
+
     function PatientList($id = null){
       if(empty($id)){
         $header['tasks'] = $this->Model_admin->get_tasks();
@@ -1602,11 +1603,65 @@ function EditSpec($id){
       $this->Model_admin->change_pur_status($id,$newstat);
         redirect("Admin/PurchasingCSRRequests");
     }
+
+    function rolesandpermission()
+    {
+      $data['title'] = "HIS";
+      $data['task_names'] = $this->Model_admin->fetch_tasks();
+      $data['user_types'] = $this->Model_admin->get_usertypes();
+      $data['permissions'] = $this->Model_admin->fetch_permissions();
+      $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+      $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
+      $this->load->view('administrator/includes/header.php',$header);
+      $this->load->view('administrator/rolesandpermission', $data);
+      $this->load->view('administrator/includes/footer');
+    }
+
+    function addrole()
+    {
+      $this->form_validation->set_rules('rolename', 'Role name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('desc', 'Description', 'required|trim|xss_clean|strip_tags');
+
+        if($this->form_validation->run()){
+
+          $data = array(
+            'name' => $this->input->post('rolename'),
+            'description' => $this->input->post('desc')
+
+          );
+          if($this->Model_admin->insertRole($data)){
+
+            $this->rolesandpermission();
+          }else{
+
+      
+          }
+
+        }else{
+          $this->rolesandpermission();
+
+        }
+
+    }
+
+
+
+
+
+
+
+
     /*=========================================================================================================================*/
     function logout(){
       $this->session->sess_destroy();
       redirect(base_url());
     }
+
+
+
+
+
+
   }
 
 ?>
