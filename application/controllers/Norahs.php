@@ -63,7 +63,10 @@
                 redirect(base_url()."Admin","refresh");
               }else if($user_details->type_id == 5){
                 redirect(base_url()."Radiology", "refresh");
-              }else if($user_details->type_id == 3){
+              }else if($user_details->type_id == 6){
+                redirect(base_url()."Laboratory", "refresh");
+              }
+              else if($user_details->type_id == 3){
                 redirect(base_url()."Nurse", "refresh");
               }else if($user_details->type_id == 11){
                 redirect(base_url()."Csr", "refresh");

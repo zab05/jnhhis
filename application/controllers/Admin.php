@@ -13,56 +13,54 @@
         }
       }else{
         redirect(base_url());
-        //redirect
       }
     }
 
     function index(){
-      $this->load->view('administrator/includes/header.php');
+      $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+      $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/index.php');
       $this->load->view('administrator/includes/footer.php');
     }
     /*=========================================================================================================================*/
-
-    function Users(){
-      $this->load->view('administrator/includes/header.php');
-      $this->load->view('administrator/users');
-    }
-
-    function RolesAndPermission(){
-      $this->load->view('administrator/includes/header.php');
-      $this->load->view('administrator/rolesandpermission');
-    }
-
     function PatientList($id = null){
       if(empty($id)){
+        $header['tasks'] = $this->Model_admin->get_tasks();
+        $header['permissions'] = $this->Model_admin->get_permissions();
         $data['patients'] = $this->Model_admin->get_patient_list();
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
         $data['total_admitted_patients_count'] = $this->Model_admin->get_count_admitted_patient();
         $data['total_admitted_in_er_count'] = $this->Model_admin->get_count_patient_admitted_in_er();
-        $this->load->view('administrator/includes/header.php');
+        $this->load->view('administrator/includes/header.php',$header);
         $this->load->view('administrator/patient/patientlist.php', $data);
         //$this->load->view('administrator/includes/footer.php');
       }else{
+        $header['tasks'] = $this->Model_admin->get_tasks();
+        $header['permissions'] = $this->Model_admin->get_permissions();
         $data['patient'] = $this->Model_admin->get_single_patient($id);
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
         $data['total_admitted_patients_count'] = $this->Model_admin->get_count_admitted_patient();
         $data['total_admitted_in_er_count'] = $this->Model_admin->get_count_patient_admitted_in_er();
-        $this->load->view('administrator/includes/header.php');
+        $this->load->view('administrator/includes/header.php',$header);
         $this->load->view('administrator/patient/show_patient.php', $data);
         //$this->load->view('administrator/includes/footer.php');
       }
     }
 
     function PatientHistory($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['patient'] = $this->Model_admin->get_single_patient($id);
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/patient/list_of_patient_history.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
 
     function AddPatient(){
-      $this->load->view('administrator/includes/header.php');
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/patient/addpatient.php');
       $this->load->view('administrator/includes/footer.php');
     }
@@ -116,8 +114,10 @@
     }
 
     function EditPatient($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['patient'] = $this->Model_admin->get_single_patient($id);
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/patient/editpatient.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -159,22 +159,28 @@
     }
 
     function VitalSign($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['patient'] = $this->Model_admin->get_single_patient($id);
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/patient/view_vital.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
 
     function Pharmacy($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['patient'] = $this->Model_admin->get_single_patient($id);
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/patientlist/viewpharmacy.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
 
     function Billing($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['patient'] = $this->Model_admin->get_single_patient($id);
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/patient/billinghistory.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -182,28 +188,34 @@
     /*=========================================================================================================================*/
 
     function DoctorList(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['doctors'] = $this->Model_admin->get_doctor_list();
       $data['total_doctors_count'] = $this->Model_admin->get_total_doctor_count();
       $data['total_active_doctors_count'] = $this->Model_admin->get_total_active_doctor_count();
       $data['total_inactive_doctors_count'] = $this->Model_admin->get_total_inactive_doctor_count();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/doctor/active_doctorlist.php', $data);
       //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactiveDoctor(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['doctors'] = $this->Model_admin->get_inactive_doctor_list();
       $data['total_doctors_count'] = $this->Model_admin->get_total_doctor_count();
       $data['total_active_doctors_count'] = $this->Model_admin->get_total_active_doctor_count();
       $data['total_inactive_doctors_count'] = $this->Model_admin->get_total_inactive_doctor_count();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/doctor/inactive_doctorlist.php', $data);
       //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddDoctor(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['specialties'] = $this->Model_admin->get_specialty();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/doctor/adddoctor.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -242,9 +254,11 @@
     }
 
     function EditDoctor($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['doctor'] = $this->Model_admin->get_single_doctor($id);
       $data['specialties'] = $this->Model_admin->get_specialty();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/doctor/editdoctor.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -287,31 +301,37 @@
 
     /*=========================================================================================================================*/
     function NurseList(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['nurses'] = $this->Model_admin->get_active_nurses_list();
       $data['total_nurse'] = $this->Model_admin->get_total_nurse();
       $data['total_active_nurse_manager'] = $this->Model_admin->get_total_active_nurse_manager();
       $data['total_inactive_nurse_manager'] = $this->Model_admin->get_total_inactive_nurse_manager();
       $data['total_active_bedside_nurse'] = $this->Model_admin->get_total_active_bedside_nurse();
       $data['total_inactive_bedside_nurse'] = $this->Model_admin->get_total_inactive_bedside_nurse();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/nurse/active_nurselist.php', $data);
       //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactiveNurse(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['nurses'] = $this->Model_admin->get_inactive_nurses_list();
       $data['total_nurse'] = $this->Model_admin->get_total_nurse();
       $data['total_active_nurse_manager'] = $this->Model_admin->get_total_active_nurse_manager();
       $data['total_inactive_nurse_manager'] = $this->Model_admin->get_total_inactive_nurse_manager();
       $data['total_active_bedside_nurse'] = $this->Model_admin->get_total_active_bedside_nurse();
       $data['total_inactive_bedside_nurse'] = $this->Model_admin->get_total_inactive_bedside_nurse();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/nurse/inactive_nurselist.php', $data);
       //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddNurse(){
-      $this->load->view('administrator/includes/header.php');
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/nurse/addnurse.php');
       $this->load->view('administrator/includes/footer.php');
     }
@@ -328,10 +348,9 @@
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
 
       if($this->form_validation->run() == FALSE){
-        echo "may mali";//patangal to
-
+        echo "may mali";
       }else{
-        $data_user = array("type_id"=>3,
+        $data = array("type_id"=>$this->input->post('nursetype'),
                       "username"=>$this->input->post('username'),
                       "password"=>sha1("nurse"),
                       "email"=>$this->input->post('email'),
@@ -344,18 +363,16 @@
                       "status"=>1,
                       "employment_date"=>date('Y-m-d'),
                     );
-        $id = $this->Model_admin->insert_user($data_user);
-        $data_nurse = array("user_nurse_fk"=>$id->user_id,
-                            "nurse_type"=>$this->input->post('nursetype')
-                           );
-        $this->Model_admin->insert_nurse($data_nurse);
+        $doctor_id = $this->Model_admin->insert_user($data);
         redirect(base_url().'Admin/NurseList');
       }
     }
 
     function EditNurse($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['nurse'] = $this->Model_admin->get_single_nurse($id);
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/nurse/editnurse.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -399,30 +416,36 @@
     /*=========================================================================================================================*/
 
     function RadiologistList(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['radiologists'] = $this->Model_admin->get_active_radiologists();
       $data['total_radiologist'] = $this->Model_admin->get_total_radiologists();
       $data['total_active_radiologist'] = $this->Model_admin->get_total_active_radiologists();
       $data['total_inactive_radiologist'] = $this->Model_admin->get_total_inactive_radiologists();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/radiology/active_radiologist.php', $data);
       //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactiveRadiologist(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['radiologists'] = $this->Model_admin->get_inactive_radiologists();
       $data['total_radiologist'] = $this->Model_admin->get_total_radiologists();
       $data['total_active_radiologist'] = $this->Model_admin->get_total_active_radiologists();
       $data['total_inactive_radiologist'] = $this->Model_admin->get_total_inactive_radiologists();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/radiology/inactive_radiologist.php', $data);
       //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddRadiologist(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['total_radiologist'] = $this->Model_admin->get_total_radiologists();
       $data['total_active_radiologist'] = $this->Model_admin->get_total_active_radiologists();
       $data['total_inactive_radiologist'] = $this->Model_admin->get_total_inactive_radiologists();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/radiology/add_radiologist.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -460,8 +483,10 @@
     }
 
     function EditRadioligst($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['radiologist'] = $this->Model_admin->get_single_radiologist($id);
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/radiology/edit_radiologist.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -502,30 +527,36 @@
 
     /*=========================================================================================================================*/
     function PharmacistList(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['pharmacists'] = $this->Model_admin->get_active_pharmacist();
       $data['total_pharmacist'] = $this->Model_admin->get_total_pharmacist();
       $data['total_active_pharmacist'] = $this->Model_admin->get_total_active_pharmacist();
       $data['total_inactive_pharmacist'] = $this->Model_admin->get_total_inactive_pharmacist();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/pharmacy/active_pharmacist.php', $data);
       //$this->load->view('administrator/includes/footer.php');
     }
 
     function InactivePharmacist(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['pharmacists'] = $this->Model_admin->get_inactive_pharmacist();
       $data['total_pharmacist'] = $this->Model_admin->get_total_pharmacist();
       $data['total_active_pharmacist'] = $this->Model_admin->get_total_active_pharmacist();
       $data['total_inactive_pharmacist'] = $this->Model_admin->get_total_inactive_pharmacist();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/pharmacy/inactive_pharmacist.php', $data);
       //$this->load->view('administrator/includes/footer.php');
     }
 
     function AddPharmacist(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['total_pharmacist'] = $this->Model_admin->get_total_pharmacist();
       $data['total_active_pharmacist'] = $this->Model_admin->get_total_active_pharmacist();
       $data['total_inactive_pharmacist'] = $this->Model_admin->get_total_inactive_pharmacist();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/pharmacy/add_pharmacist.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -564,8 +595,10 @@
     }
 
     function EditPharmacist($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['pharmacist'] = $this->Model_admin->get_single_pharmacist($id);
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/pharmacy/edit_pharmacist.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -606,16 +639,20 @@
     }
     /*=========================================================================================================================*/
     function EmergencyRoom(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['emergency_rooms'] = $this->Model_admin->get_available_beds_from_emergency_room();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/admitting/choose_er_room.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
 
     function ChoosePatient($bed_id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['patients'] = $this->Model_admin->get_non_admitted_patient_list();
       $data['bed_id'] = $bed_id;
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/admitting/choosepatient_to_er.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -657,24 +694,30 @@
     }
 
     function DirectRoomAdmission(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['rooms'] = $this->Model_admin->get_room_list_for_directadmission();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/admitting/choose_direct_room.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
 
     function ChooseBed($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['beds'] = $this->Model_admin->get_available_beds_for_directadmission($id);
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/admitting/choose_bed.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
 
     function ChoosePatientToDR($bed_id, $roomid){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['patients'] = $this->Model_admin->get_non_admitted_patient_list();
       $data['bed_id'] = $bed_id;
       $data['roomid'] = $roomid;
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/admitting/choosepatient_to_dr.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -705,31 +748,39 @@
 
     function ViewAdmittedPatients($id = NULL){
       if(empty($id)){
+        $header['tasks'] = $this->Model_admin->get_tasks();
+        $header['permissions'] = $this->Model_admin->get_permissions();
         $data['rooms'] = $this->Model_admin->get_room_list();
-        $this->load->view('administrator/includes/header.php');
+        $this->load->view('administrator/includes/header.php',$header);
         $this->load->view('administrator/admitting/roomlist.php', $data);
         $this->load->view('administrator/includes/footer.php');
       }else{
+        $header['tasks'] = $this->Model_admin->get_tasks();
+        $header['permissions'] = $this->Model_admin->get_permissions();
         $data['beds'] = $this->Model_admin->get_admitted_patient($id);
-        $this->load->view('administrator/includes/header.php');
+        $this->load->view('administrator/includes/header.php',$header);
         $this->load->view('administrator/admitting/viewadmittedpatient.php', $data);
         $this->load->view('administrator/includes/footer.php');
       }
     }
 
     function TransferRoom($patientid){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['rooms'] = $this->Model_admin->get_room_list_for_directadmission();
       $data['patientid'] = $patientid;
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/admitting/choose_room_to_transfer.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
 
     function ChooseBedToTransfer($patientid, $roomid){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['beds'] = $this->Model_admin->get_available_beds_for_directadmission($roomid);
       $data['patientid'] = $patientid;
       $data['roomid'] = $roomid;
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/admitting/choose_bed_to_transfer.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -747,8 +798,10 @@
     /*=========================================================================================================================*/
     function RoomType()
     {
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['roomtypes'] = $this->Model_admin->get_roomtype_List();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/rooms/roomtypelist.php', $data);
       //$this->load->view('administrator/includes/footer.php');
     }
@@ -772,8 +825,10 @@
     }
 
     function UpdateRoomType($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['roomtype'] = $this->Model_admin->get_room_type($id);
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/rooms/updateroomtype.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -797,9 +852,11 @@
     }
 
     function Rooms(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['rooms'] = $this->Model_admin->get_room_list();
       $data['roomtypes'] = $this->Model_admin->get_roomtype_List();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/rooms/roomlist.php', $data);
       //$this->load->view('administrator/includes/footer.php');
     }
@@ -833,17 +890,21 @@
     }
 
     function ViewRoom($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['roomdata'] = $this->Model_admin->get_room_data($id);
       $data['roomid'] = $id;
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/rooms/viewroom.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
 
     function UpdateRoom($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['rooms'] = $this->Model_admin->get_single_room_type($id);
       $data['roomtypes'] = $this->Model_admin->get_roomtype_List();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/rooms/updateroom.php', $data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -882,33 +943,41 @@
     }
     /*=========================================================================================================================*/
 function LaboratoryRequests(){
+  $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+  $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
 $data['laboratoryreq'] = $this->Model_admin->get_laboratoryrequest_list();
-$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/includes/header.php',$header);
 $this->load->view('administrator/laboratory/laboratoryrequest.php',$data);
 $this->load->view('administrator/includes/footer.php');
 }
 
     function ShowLabReq($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['requestno'] = $id;
       $data['laboratorytopatient'] = $this->Model_admin->get_laboratorytopatient_data($id);
       $data['laboratorytouser'] =  $this->Model_admin->get_laboratorytouser_data($id);
       $data['laboratorytolabrequest'] = $this->Model_admin->get_laboratorytorequest_data($id);
       $data['laboratorytospecimen'] = $this->Model_admin->get_laboratorytospecimen_data($id);
       $data['laboratorytoremarks'] = $this->Model_admin->get_laboratorytoremarks_data($id);
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/laboratory/showlaboratoryrequest.php',$data);
       //$this->load->view('administrator/includes/footer.php');
     }
 
 
     function MakeLaboratoryRequests(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
 $data['patientlist'] = $this->Model_admin->get_patient_list();
-$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/includes/header.php',$header);
 $this->load->view('administrator/laboratory/makelaboratoryrequest.php',$data);
 $this->load->view('administrator/includes/footer.php');
 }
 
 function MakeLaboratoryRequests2(){
+  $header['tasks'] = $this->Model_admin->get_tasks();
+  $header['permissions'] = $this->Model_admin->get_permissions();
 $patient = $this->input->post('patient');
 if($patient==""){
 redirect(base_url()."Admin/MakeLaboratoryRequests");
@@ -918,15 +987,17 @@ $data['urgencycat'] = $this->Model_admin->get_all_urgencycategory();
 $data['fastingcat'] = $this->Model_admin->get_all_fastingcategory();
 $data['patient'] = $this->Model_admin->get_single_patient($patient);
 $data['specimen'] = $this->Model_admin->get_all_labspec();
-$this->load->view('administrator/includes/header.php');
+$this->load->view('administrator/includes/header.php',$header);
 $this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
 //$this->load->view('administrator/includes/footer.php');
 }
 }
 
 function AppofReq(){
+  $header['tasks'] = $this->Model_admin->get_tasks();
+  $header['permissions'] = $this->Model_admin->get_permissions();
   $data['laboratoryreq'] = $this->Model_admin->get_laboratoryrequest_list();
-  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/includes/header.php',$header);
   $this->load->view('administrator/laboratory/approvalofrequest.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
@@ -940,8 +1011,10 @@ function ApproveLabReq($id)
 
 function LabAccRequest()
 {
+  $header['tasks'] = $this->Model_admin->get_tasks();
+  $header['permissions'] = $this->Model_admin->get_permissions();
   $data['acceptedreq'] = $this->Model_admin->get_accepted_labreq();
-  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/includes/header.php',$header);
   $this->load->view('administrator/laboratory/labaccrequest.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
@@ -955,52 +1028,66 @@ function CancelLabReq($id)
 
  function LabRejRequest()
 {
+  $header['tasks'] = $this->Model_admin->get_tasks();
+  $header['permissions'] = $this->Model_admin->get_permissions();
   $data['rejectedreq'] = $this->Model_admin->get_rejected_labreq();
-  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/includes/header.php',$header);
   $this->load->view('administrator/laboratory/labrejrequest.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
 
 function LabExamCateg(){
+  $header['tasks'] = $this->Model_admin->get_tasks();
+  $header['permissions'] = $this->Model_admin->get_permissions();
   $data['examcateg'] = $this->Model_admin->get_all_examcateg();
-  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/includes/header.php',$header);
   $this->load->view('administrator/laboratory/labexamcateg.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
 
 function EditExamCateg($id){
+  $header['tasks'] = $this->Model_admin->get_tasks();
+  $header['permissions'] = $this->Model_admin->get_permissions();
   $data['examcateg'] = $this->Model_admin->get_examcateg($id);
-  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/includes/header.php',$header);
   $this->load->view('administrator/laboratory/editexamcateg.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
 
 function LabExamType(){
+  $header['tasks'] = $this->Model_admin->get_tasks();
+  $header['permissions'] = $this->Model_admin->get_permissions();
   $data['examtype'] = $this->Model_admin->get_all_examtype();
   $data['examcateg'] = $this->Model_admin->get_all_examcateg();
-  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/includes/header.php',$header);
   $this->load->view('administrator/laboratory/labexamtype.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
 
 function EditExamType($id){
+  $header['tasks'] = $this->Model_admin->get_tasks();
+  $header['permissions'] = $this->Model_admin->get_permissions();
   $data['examtype'] = $this->Model_admin->get_specific_examtype($id);
   $data['examcateg'] = $this->Model_admin->get_all_examcateg();
-  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/includes/header.php',$header);
   $this->load->view('administrator/laboratory/editexamtype.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
 
 function LabExamSpec(){
+  $header['tasks'] = $this->Model_admin->get_tasks();
+  $header['permissions'] = $this->Model_admin->get_permissions();
   $data['labspec'] = $this->Model_admin->get_all_labspec();
-  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/includes/header.php',$header);
   $this->load->view('administrator/laboratory/labexamspec.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
 
 function EditSpec($id){
+  $header['tasks'] = $this->Model_admin->get_tasks();
+  $header['permissions'] = $this->Model_admin->get_permissions();
   $data['spec'] = $this->Model_admin->get_specific_specimen($id);
-  $this->load->view('administrator/includes/header.php');
+  $this->load->view('administrator/includes/header.php',$header);
   $this->load->view('administrator/laboratory/editspec.php',$data);
   $this->load->view('administrator/includes/footer.php');
 }
@@ -1185,6 +1272,8 @@ function EditSpec($id){
     /*=========================================================================================================================*/
     function pharmacy_inventory()
     {
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['items'] = $this->Model_admin->get_pharmacy_inventory();
       $data['inventorycount'] = $this->Model_admin->count_pharmacy_inventory();
       $this->load->view('administrator/includes/header');
@@ -1265,6 +1354,8 @@ function EditSpec($id){
 
     function pharmacy_request()
     {
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['items'] = $this->Model_admin->get_pharmacy_inventory();
       $data['patient'] = $this->Model_admin->get_all_patients();
       $this->load->view('administrator/includes/header');
@@ -1330,6 +1421,8 @@ function EditSpec($id){
 
     function process_pharmacy_request()
     {
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['requests'] = $this->Model_admin->get_pharmacy_requests();
       $data['items'] = $this->Model_admin->get_pharmacy_inventory();
       $data['patient'] = $this->Model_admin->get_all_patients();
@@ -1359,22 +1452,28 @@ function EditSpec($id){
 
     /*=========================================================================================================================*/
     function CSRListofproducts(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['csrinventory'] = $this->Model_admin->get_csr_inventory();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/csr/listofproducts.php',$data);
       //$this->load->view('administrator/includes/footer.php');
     }
 
     function CSRPendingrequests(){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['nursetocsr'] = $this->Model_admin->get_nurse_requests();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/csr/pendingrequest.php',$data);
       //$this->load->view('administrator/includes/footer.php');
     }
 
     function RequestRestock($id){
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['restock'] = $this->Model_admin->restockdata($id);
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/csr/restock.php',$data);
       $this->load->view('administrator/includes/footer.php');
     }
@@ -1415,32 +1514,40 @@ function EditSpec($id){
     /*=========================================================================================================================*/
     function PurchasingCSRInventory()
     {
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['csrinventory'] = $this->Model_admin->get_csr_inventory();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/purchasing/csrinventory.php',$data);
       $this->load->view('administrator/includes/footer.php');
     }
 
     function PurchasingCSRRequests()
     {
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['csrrequests'] = $this->Model_admin->get_csr_requests();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/purchasing/csrrequests.php',$data);
       //$this->load->view('administrator/includes/footer.php');
     }
 
     function PurCsrAccRequest()
     {
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['accepted'] = $this->Model_admin->get_acceptedcsr_requests();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/purchasing/csraccrequests.php',$data);
       $this->load->view('administrator/includes/footer.php');
     }
 
     function PurCsrRejRequest()
     {
+      $header['tasks'] = $this->Model_admin->get_tasks();
+      $header['permissions'] = $this->Model_admin->get_permissions();
       $data['rejected'] = $this->Model_admin->get_rejectedcsr_requests();
-      $this->load->view('administrator/includes/header.php');
+      $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/purchasing/csrrejrequests.php',$data);
       $this->load->view('administrator/includes/footer.php');
     }
