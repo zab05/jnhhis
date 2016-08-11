@@ -7,9 +7,13 @@
       if($this->session->userdata("user_loggedin")==TRUE){
         if($this->session->userdata("type_id") == 5){
           redirect(base_url()."Radiology", "refresh");
+        } if($this->session->userdata("type_id") == 11)
+        {
+          redirect(base_url()."Csr", "refresh");
         }
       }else{
         redirect(base_url());
+        //redirect
       }
     }
 
@@ -31,6 +35,8 @@
       }else{
         $data['patient'] = $this->Model_admin->get_single_patient($id);
         $data['total_patients_count'] = $this->Model_admin->get_total_patient_count();
+        $data['total_admitted_patients_count'] = $this->Model_admin->get_count_admitted_patient();
+        $data['total_admitted_in_er_count'] = $this->Model_admin->get_count_patient_admitted_in_er();
         $this->load->view('administrator/includes/header.php');
         $this->load->view('administrator/patient/show_patient.php', $data);
         //$this->load->view('administrator/includes/footer.php');
@@ -311,9 +317,10 @@
       $this->form_validation->set_rules('mobile_number', 'Phone number', 'required|trim|xss_clean|strip_tags');
 
       if($this->form_validation->run() == FALSE){
-        echo "may mali";
+        echo "may mali";//patangal to
+
       }else{
-        $data = array("type_id"=>$this->input->post('nursetype'),
+        $data_user = array("type_id"=>3,
                       "username"=>$this->input->post('username'),
                       "password"=>sha1("nurse"),
                       "email"=>$this->input->post('email'),
@@ -326,7 +333,11 @@
                       "status"=>1,
                       "employment_date"=>date('Y-m-d'),
                     );
-        $doctor_id = $this->Model_admin->insert_user($data);
+        $id = $this->Model_admin->insert_user($data_user);
+        $data_nurse = array("user_nurse_fk"=>$id->user_id,
+                            "nurse_type"=>$this->input->post('nursetype')
+                           );
+        $this->Model_admin->insert_nurse($data_nurse);
         redirect(base_url().'Admin/NurseList');
       }
     }
@@ -875,7 +886,7 @@ $this->load->view('administrator/includes/footer.php');
       $data['laboratorytoremarks'] = $this->Model_admin->get_laboratorytoremarks_data($id);
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/laboratory/showlaboratoryrequest.php',$data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
 
@@ -898,7 +909,7 @@ $data['patient'] = $this->Model_admin->get_single_patient($patient);
 $data['specimen'] = $this->Model_admin->get_all_labspec();
 $this->load->view('administrator/includes/header.php');
 $this->load->view('administrator/laboratory/makelaboratoryrequest2.php',$data);
-$this->load->view('administrator/includes/footer.php');
+//$this->load->view('administrator/includes/footer.php');
 }
 }
 
@@ -1340,14 +1351,14 @@ function EditSpec($id){
       $data['csrinventory'] = $this->Model_admin->get_csr_inventory();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/csr/listofproducts.php',$data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function CSRPendingrequests(){
       $data['nursetocsr'] = $this->Model_admin->get_nurse_requests();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/csr/pendingrequest.php',$data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function RequestRestock($id){
@@ -1404,7 +1415,7 @@ function EditSpec($id){
       $data['csrrequests'] = $this->Model_admin->get_csr_requests();
       $this->load->view('administrator/includes/header.php');
       $this->load->view('administrator/purchasing/csrrequests.php',$data);
-      $this->load->view('administrator/includes/footer.php');
+      //$this->load->view('administrator/includes/footer.php');
     }
 
     function PurCsrAccRequest()
@@ -1435,7 +1446,8 @@ function EditSpec($id){
                     'item_desc'=>$requestdata->item_name,
                     'item_stock'=>$requestdata->quantity);
       $this->Model_admin->insertnewcsrproduct($data);
-      $newstat = array('pur_stat'=>1);
+      $newstat = array('pur_stat'=>1,
+                       'date_altered_status'=>date('Y-m-d H:i:s'));
       $this->Model_admin->change_pur_status($id,$newstat);
         redirect("Admin/PurchasingCSRRequests");
       } else {
@@ -1448,7 +1460,8 @@ function EditSpec($id){
                     'item_stock'=>$sumstock);
 
       $this->Model_admin->restockcsrproduct($requestdata->item_id,$data);
-      $newstat = array('pur_stat'=>1);
+      $newstat = array('pur_stat'=>1,
+                       'date_altered_status'=>date('Y-m-d H:i:s'));
       $this->Model_admin->change_pur_status($id,$newstat);
         redirect("Admin/PurchasingCSRRequests");
       }
@@ -1457,7 +1470,8 @@ function EditSpec($id){
     function reject_csr($id)
     {
       //Reject = 2
-      $newstat = array('pur_stat'=>2);
+      $newstat = array('pur_stat'=>2,
+                       'date_altered_status'=>date('Y-m-d H:i:s'));
       $this->Model_admin->change_pur_status($id,$newstat);
         redirect("Admin/PurchasingCSRRequests");
     }
@@ -1465,7 +1479,8 @@ function EditSpec($id){
     function hold_csr($id)
     {
       //Hold = 3
-      $newstat = array('pur_stat'=>3);
+      $newstat = array('pur_stat'=>3,
+                       'date_altered_status'=>date('Y-m-d H:i:s'));
       $this->Model_admin->change_pur_status($id,$newstat);
         redirect("Admin/PurchasingCSRRequests");
     }

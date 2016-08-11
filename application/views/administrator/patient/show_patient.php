@@ -24,11 +24,11 @@ table tr td {border:0}
                     </tr>
                     <tr>
                       <td>Patients Admitted: </td>
-                      <td>1</td>
+                      <td><?=$total_admitted_patients_count?></td>
                     </tr>
                     <tr>
                       <td>Patients in ER: </td>
-                      <td>1</td>
+                      <td><?=$total_admitted_in_er_count?></td>
                     </tr>
                 </table>
                 <center>
@@ -61,7 +61,7 @@ table tr td {border:0}
                 </tr>
               </table>
               <center>
-              <table id="patient-info" class="table" style="width: 50%; text-align: left; ">
+              <table id="patient-info" class="table" style="width: 55%; text-align: left; ">
                 <tr>
                   <td style="border:0;width: 50%;"><b>Patient Number:</b></td>
                   <td><?=" ".$patient->patient_id?></td>

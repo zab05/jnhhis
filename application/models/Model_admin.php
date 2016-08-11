@@ -118,8 +118,16 @@
 
     function insert_user($data){
       $this->db->insert('users', $data);
-      $doctor_id = $this->db->insert_id();
-      return $doctor_id;
+      $this->db->select('*');
+      $this->db->from('users');
+      $this->db->order_by("user_id", "desc");
+      $this->db->limit(1);
+      $query = $this->db->get();
+      return $query->row();
+    }
+
+    function insert_nurse($data){
+      $this->db->insert('nurses', $data);
     }
 
     function update_user($id, $data){

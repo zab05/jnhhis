@@ -27,6 +27,25 @@
 
       }
 
+      public function fetchAllCSRItems(){
+
+        $this -> db -> select('*');
+        $this -> db -> from('csr_inventory');
+        $query = $this->db->get();
+        return $query->result_array();
+
+      }
+
+
+      public function CSRReqAddSingle($data){
+        $sql =$this -> db -> insert('csr_request', $data);
+          if($sql){
+              return true;
+          }else{
+              return false;
+          }
+      }
+
 
 
 
