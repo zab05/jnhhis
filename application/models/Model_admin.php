@@ -2,6 +2,28 @@
   if (!defined('BASEPATH'))exit('No direct script access allowed');
   class Model_admin extends CI_Model{
 
+    /*TESTINGS*/
+    function get_tasks($type_id)
+    {
+      $this->db->select('*');
+      $this->db->from('task_usertype tu');
+      $this->db->join('task t','tu.task_id=t.task_id','left');
+      $this->db->where('user_type_id',$type_id);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function get_permissions($type_id)
+    {
+      $where = "user_type_id ='$type_id' and access='1'";
+      $this->db->select('*');
+      $this->db->from('permission_usertype pu');
+      $this->db->join('permission p','pu.permission_id=p.permission_id','left');
+      $this->db->where($where);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
     /*Patients*/
     function get_patient_list(){
       $this->db->select('*');
@@ -852,6 +874,41 @@
       $this->db->where('pur_stat',2);
       $query = $this->db->get();
       return $query->result_array();
+    }
+
+    function fetch_tasks()
+    {
+      $this->db->select('*');
+      $this->db->from('task');
+      $query = $this->db->get();
+      return $query->result_array();
+
+    }
+
+    function get_usertypes()
+    {
+      $this->db->select('*');
+      $this->db->from('user_type');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function fetch_permissions()
+    {
+      $this->db->select('*');
+      $this->db->from('permission');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function insertRole($data)
+    {
+      $sql = $this->db->insert('user_type', $data);
+        if($sql){
+          return true;
+        }else{
+          return false;
+        }
     }
 
 

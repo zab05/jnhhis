@@ -7,7 +7,7 @@
     <meta name="author" content="Mosaddek">
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="img/favicon.html">
-    <title>Administrator</title>
+    <title>Laboratory</title>
     <!-- Bootstrap core CSS -->
     <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/bootstrap-reset.css" rel="stylesheet">
@@ -287,8 +287,8 @@
                           </a>
                       </li>
 
-
                       <?php
+
                        foreach($tasks as $task){
                       echo "<li class='sub-menu'>";
                       echo "<a href='javascript:;'>";
@@ -297,20 +297,6 @@
                       echo "</a>";
                       echo "<ul class='sub'>";
 
-?>
-                      <li class="sub-menu">
-                          <a href="javascript:;" >
-                              <i class="fa fa-medkit"></i>
-                              <span>Pharmacy</span>
-                          </a>
-                          <ul class="sub">
-
-                              <li><a  href="<?php echo base_url().'Pharmacy/pharmacy_inventory'?>">Inventory</a></li>
-                              <li><a  href="<?php echo base_url().'Pharmacy/pharmacy_request'?>">Make Pharmacy Request</a></li>
-                              <li><a  href="<?php echo base_url().'Pharmacy/process_pharmacy_request'?>">Process Pharmacy Request</a></li>
-                          </ul>
-                      </li>
-<?php
                         foreach($permissions as $permission)
                         {
                           if($permission['task_id']==$task['task_id'])

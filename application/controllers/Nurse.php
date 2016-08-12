@@ -20,7 +20,9 @@
 
     public function index(){
       $data['title'] = "HIS: Nurse dashboard";
-      $this->load->view('nurse/includes/header.php');
+      $header['tasks'] = $this->Model_nurse->get_tasks($this->session->userdata('type_id'));
+      $header['permissions'] = $this->Model_nurse->get_permissions($this->session->userdata('type_id'));
+      $this->load->view('nurse/includes/header.php',$header);
       $this->load->view('nurse/index.php', $data);
       $this->load->view('nurse/includes/footer.php');
     }

@@ -7,19 +7,26 @@ class pharmacy extends CI_Controller{
   {
     parent::__construct();
     $this->load->model('Model_pharmacy');
+    $this->load->model('Model_admin');
   }
   /*=========================================================================================================================*/
 
   function landing()
   {
-    $this->load->view('administrator/includes/header');
+    $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+    $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
+    $this->load->view('administrator/includes/header', $header);
     $this->load->view('pharmacy/landing');
   }
+
+
   function pharmacy_inventory()
   {
+    $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+    $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
     $data['items'] = $this->Model_pharmacy->get_pharmacy_inventory();
     $data['inventorycount'] = $this->Model_pharmacy->count_pharmacy_inventory();
-    $this->load->view('administrator/includes/header');
+    $this->load->view('administrator/includes/header', $header);
     $this->load->view('pharmacy/add_item_modal');
     $this->load->view('pharmacy/delete_item_modal');
     $this->load->view('pharmacy/update_item_modal');
@@ -97,9 +104,11 @@ class pharmacy extends CI_Controller{
 
   function pharmacy_request()
   {
+    $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+    $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
     $data['items'] = $this->Model_pharmacy->get_pharmacy_inventory();
     $data['patient'] = $this->Model_pharmacy->get_all_patients();
-    $this->load->view('administrator/includes/header');
+    $this->load->view('administrator/includes/header', $header);
     $this->load->view('pharmacy/pharmacy_request',$data);
     $this->load->view('pharmacy/pharmacy_request_modal');
   }
@@ -197,7 +206,7 @@ class pharmacy extends CI_Controller{
                                                     'unique_id'=>$d->unique_id);
     }
 
-    $this->load->view('administrator/includes/header');
+    $this->load->view('administrator/includes/header', $header);
     $this->load->view('pharmacy/process_pharmacy_request',$data);
   }
 
@@ -226,10 +235,12 @@ class pharmacy extends CI_Controller{
   {
     $id = $this->uri->segment('3');
 
+    $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+    $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
     $data['details'] = $this->Model_pharmacy->get_specific_request($id);
     $data['items'] = $this->Model_pharmacy->get_pharmacy_inventory();
     $data['id'] = $id;
-    $this->load->view('administrator/includes/header');
+    $this->load->view('administrator/includes/header', $header);
     $this->load->view('pharmacy/accept_pharmacy_request_modal');
     $this->load->view('pharmacy/reject_pharmacy_request_modal');
     $this->load->view('pharmacy/view_one_request',$data);
