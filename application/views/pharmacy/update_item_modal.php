@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
 
-        <?php echo form_open('Admin/update_item_inventory');?>
+        <?php echo form_open('Pharmacy/update_item_inventory');?>
 
                                 <input type="hidden" name="itemid">
                                   <div class="form-group">
