@@ -4,6 +4,12 @@
   <section id="main-content">
       <section class="wrapper">
 
+        <?php
+            // echo "<pre>";
+            // print_r($permittedViews);
+            // echo "</pre>";
+         ?>
+
         <div class="col-lg-12">
                <section class="panel">
                    <header class="panel-heading">
@@ -84,7 +90,28 @@
 
 
                                                           <td><?php  echo $permission['permission_name'].":<br>"; ?></td>
-                                                          <td>Yes</td>
+
+                                                          <?php
+                                                          //not final huhu
+                                                              foreach ($permittedViews as $permittedView) {
+                                                                  if($permittedView['permission_id'] == $permission['permission_id'] && $permittedView['user_type_id'] == $this->session->userdata('type_id')){
+
+                                                                    if($permittedView['access'] == 1){
+                                                                        //echo "<td>Yes</td>";
+                                                                        $var = "Yes";
+
+                                                                    }else{
+                                                                        //  echo "<td>No</td>";
+                                                                            $var = "No";
+                                                                    }
+
+                                                                  }
+                                                              }
+
+                                                           ?>
+
+
+                                                          <td><?php echo $var; ?></td>
 
                                                 <?      }
                                                       echo "</tr></table>";

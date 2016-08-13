@@ -911,6 +911,14 @@
         }
     }
 
+    function fetchPermittedViews()
+    {
+      $this->db->select('*');
+      $this->db->from('permission_usertype');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
 
   }
 ?>

@@ -1429,6 +1429,7 @@ function EditSpec($id){
       $data['task_names'] = $this->Model_admin->fetch_tasks();
       $data['user_types'] = $this->Model_admin->get_usertypes();
       $data['permissions'] = $this->Model_admin->fetch_permissions();
+      $data['permittedViews'] = $this->Model_admin->fetchPermittedViews();
       $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
       $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
       $this->load->view('administrator/includes/header.php',$header);
