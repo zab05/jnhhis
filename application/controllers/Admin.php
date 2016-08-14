@@ -799,8 +799,8 @@
     /*=========================================================================================================================*/
     function RoomType()
     {
-      $header['tasks'] = $this->Model_admin->get_tasks();
-      $header['permissions'] = $this->Model_admin->get_permissions();
+      $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+      $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
       $data['roomtypes'] = $this->Model_admin->get_roomtype_List();
       $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/rooms/roomtypelist.php', $data);
@@ -1272,8 +1272,8 @@ function EditSpec($id){
 
     /*=========================================================================================================================*/
     function CSRListofproducts(){
-      $header['tasks'] = $this->Model_admin->get_tasks();
-      $header['permissions'] = $this->Model_admin->get_permissions();
+      $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+      $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
       $data['csrinventory'] = $this->Model_admin->get_csr_inventory();
       $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/csr/listofproducts.php',$data);
@@ -1281,8 +1281,8 @@ function EditSpec($id){
     }
 
     function CSRPendingrequests(){
-      $header['tasks'] = $this->Model_admin->get_tasks();
-      $header['permissions'] = $this->Model_admin->get_permissions();
+      $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+      $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
       $data['nursetocsr'] = $this->Model_admin->get_nurse_requests();
       $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/csr/pendingrequest.php',$data);
@@ -1290,8 +1290,8 @@ function EditSpec($id){
     }
 
     function RequestRestock($id){
-      $header['tasks'] = $this->Model_admin->get_tasks();
-      $header['permissions'] = $this->Model_admin->get_permissions();
+      $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+      $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
       $data['restock'] = $this->Model_admin->restockdata($id);
       $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/csr/restock.php',$data);
@@ -1334,8 +1334,8 @@ function EditSpec($id){
     /*=========================================================================================================================*/
     function PurchasingCSRInventory()
     {
-      $header['tasks'] = $this->Model_admin->get_tasks();
-      $header['permissions'] = $this->Model_admin->get_permissions();
+      $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+      $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
       $data['csrinventory'] = $this->Model_admin->get_csr_inventory();
       $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/purchasing/csrinventory.php',$data);
@@ -1344,8 +1344,8 @@ function EditSpec($id){
 
     function PurchasingCSRRequests()
     {
-      $header['tasks'] = $this->Model_admin->get_tasks();
-      $header['permissions'] = $this->Model_admin->get_permissions();
+      $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+      $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
       $data['csrrequests'] = $this->Model_admin->get_csr_requests();
       $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/purchasing/csrrequests.php',$data);
@@ -1354,8 +1354,8 @@ function EditSpec($id){
 
     function PurCsrAccRequest()
     {
-      $header['tasks'] = $this->Model_admin->get_tasks();
-      $header['permissions'] = $this->Model_admin->get_permissions();
+      $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+      $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
       $data['accepted'] = $this->Model_admin->get_acceptedcsr_requests();
       $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/purchasing/csraccrequests.php',$data);
@@ -1364,8 +1364,8 @@ function EditSpec($id){
 
     function PurCsrRejRequest()
     {
-      $header['tasks'] = $this->Model_admin->get_tasks();
-      $header['permissions'] = $this->Model_admin->get_permissions();
+      $header['tasks'] = $this->Model_admin->get_tasks($this->session->userdata('type_id'));
+      $header['permissions'] = $this->Model_admin->get_permissions($this->session->userdata('type_id'));
       $data['rejected'] = $this->Model_admin->get_rejectedcsr_requests();
       $this->load->view('administrator/includes/header.php',$header);
       $this->load->view('administrator/purchasing/csrrejrequests.php',$data);
