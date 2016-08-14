@@ -1467,6 +1467,35 @@ function EditSpec($id){
 
 
 
+    function updatePermission()
+    {
+      // echo $_POST['hiddenUserTypeId']."<br>";
+      // print_r($_POST['permissions']);
+
+      $this->form_validation->set_rules('name', 'Role Name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('permissions[]', 'Permissions', 'required');
+
+        if($this->form_validation->run()){
+          $permissionArrays = $this ->input ->post('permissions');
+            if($this->input->post('name') == $this->input->post('oldName')){
+                    $this->Model_admin->deleteAllTaskUserTypeById($this->input->post('hiddenUserTypeId'));
+                    $this->Model_admin->deleteAllUserTypeById($this->input->post('hiddenUserTypeId'));
+                    $this->Model_admin->insertPermissionUserType($permissionArrays);
+                    $this->rolesandpermission();
+            }else{
+
+            }
+        }else{
+
+        }
+
+
+
+    }
+
+
+
+
 
 
 

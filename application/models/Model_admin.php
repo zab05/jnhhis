@@ -919,6 +919,73 @@
       return $query->result_array();
     }
 
+    function getTaskIdforPermission($id)
+    {
+        $this->db->select('task_id');
+        $this->db->from('permission');
+        $this->db->where('permission_id', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    function checkExistingTaskUserType($taskId,$userTypeId)
+    {
+      $this->db->select('task_usertype_id');
+      $this->db->from('task_usertype');
+      $this->db->where('task_id', $taskId);
+      $this->db->where('user_type_id', $userTypeId);
+      $query = $this->db->get();
+
+          if($query->num_rows() > 0){
+              return false;
+          }else{
+              return true;
+          }
+
+
+
+    }
+
+    function deleteAllUserTypeById($id)
+    {
+      $this->db->where('user_type_id',$id);
+      $this->db->delete('permission_usertype');
+    }
+    function deleteAllTaskUserTypeById($id)
+    {
+      $this->db->where('user_type_id',$id);
+      $this->db->delete('task_usertype');
+    }
+
+    function insertPermissionUserType($permissionArrays)
+    {
+
+        foreach ($permissionArrays as $permissionArray => $value) {
+            $data = array(
+              'user_type_id' => $this->input->post('hiddenUserTypeId'),
+              'permission_id' => $value,
+              'access' => 1
+
+            );
+          $sql =  $this->db->insert('permission_usertype', $data);
+
+            $taskId = $this->Model_admin->getTaskIdforPermission($value);
+            $newTaskId = "";
+            foreach ($taskId as $taskID) {
+                $newTaskId = $taskID['task_id'];
+            }
+
+            $var = array(
+              'task_id' => $newTaskId,
+              'user_type_id' => $this->input->post('hiddenUserTypeId')
+            );
+                if($this->Model_admin->checkExistingTaskUserType($newTaskId, $this->input->post('hiddenUserTypeId'))){
+                    $sqlquery = $this->db->insert('task_usertype', $var);
+                }
+
+
+        }
+    }
+
 
   }
 ?>
