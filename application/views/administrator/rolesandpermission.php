@@ -94,26 +94,24 @@
                                                           <td><?php  echo $permission['permission_name'].":<br>"; ?></td>
 
                                                           <?php
-                                                          //not final huhu
+
+                                                            $flag = "";
                                                               foreach ($permittedViews as $permittedView) {
-                                                                  if($permittedView['permission_id'] == $permission['permission_id'] && $permittedView['user_type_id'] == $this->session->userdata('type_id')){
 
-                                                                    if($permittedView['access'] == 1){
-                                                                        //echo "<td>Yes</td>";
-                                                                        $var = "Yes";
+                                                                  if($permittedView['permission_id'] == $permission['permission_id']
+                                                                  && $permittedView['user_type_id'] == $user_type['type_id']){
 
-                                                                    }else{
-                                                                        //  echo "<td>No</td>";
-                                                                            $var = "No";
-                                                                    }
+                                                                      if($permittedView['access'] == 1){
+                                                                          $flag = "true";
+                                                                          $var = "<i class='fa fa-check-circle'></i>";
+                                                                      }
+
 
                                                                   }
+
                                                               }
-
                                                            ?>
-
-
-                                                          <td><?php echo $var; ?></td>
+                                                          <td><?php if(empty($flag)){echo "<i class='fa fa-circle-o'></i>";}else{echo $var;}?></td>
 
                                                 <?      }
                                                       echo "</tr></table>";
