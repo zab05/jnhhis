@@ -11,12 +11,10 @@
                               <thead>
                               <tr>
                                   <th></i>#</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i>Item</th>
-                                  <th><i class="fa fa-bookmark"></i> Price</th>
-                                  <th><i class=" fa fa-edit"></i> Date</th>
-                                  <th><i class=" fa fa-edit"></i> Requested by</th>
-                                  <th><i class=" fa fa-edit"></i> For patient</th>
-                                  <th><i class=" fa fa-edit"></i> Action</th>
+                                  <th><i class="fa fa-bookmark"></i>Medicine</th>
+                                  <th><i class="fa fa-bookmark"></i>Quantity</th>
+                                  <th><i class=" fa fa-edit"></i> Price</th>
+                                  <th><i class=" fa fa-edit"></i> Total price</th>
                                   <th></th>
                               </tr>
                               </thead>
@@ -24,33 +22,24 @@
 
                               <?php
                               $count = 1;
-                              foreach($requests as $r)
+                              foreach($details as $d)
                               {
+                                foreach($items as $i)
+                                {
+                                  if($d->phar_item == $i->item_id)
+                                  {
+                                    $medicine = $i->item_name;
+                                    $price = $i->item_price;
+                                  }
+                                }
                                 echo '<tr>';
                                 echo '<td>'.$count.'</td>';
-                                echo '<td>'.$r->phar_item.'</td>';
-                                echo '<td>'.$r->total_price.'</td>';
-                                echo '<td>'.$r->date_req.'</td>';
-                                echo '<td>'.$r->phar_user_id.'</td>';
-                                echo '<td>'.$r->phar_patient.'</td>';
-                                if($r->phar_stat == 0)
-                                {
-                                  echo '<td><span class="label label-info label-mini">Due</span></td>';
-                                }
-                                else if ($r->phar_stat == 1)
-                                {
-                                  echo '<td><span class="label label-success label-mini">OK</span></td>';
-                                }
-                                else
-                                {
-                                    echo '<td><span class="label label-danger label-mini">Rejected</span></td>';
-                                }
-                                echo '<td>';
-                                ?>
-                                <button class="btn btn-success btn-xs" data-href="<?php echo base_url();?>Admin/accept_pharmacy_request/<?php echo $r->phar_item?>" data-toggle="modal" data-target="#confirm-accept"><i class="fa fa-check"></i></button>
-                                <button class="btn btn-danger btn-xs" data-href="<?php echo base_url();?>Admin/reject_pharmacy_request/<?php echo $r->phar_item?>/<?php echo $r->quant_requested?>" data-toggle="modal" data-target="#confirm-reject"><i class="fa fa-ban"></i></button>
-                                <?php
-                                echo '</td>';
+                                echo '<td>'.$medicine.'</td>';
+                                echo '<td>'.$d->quant_requested.' Medicines'.'</td>';
+                                echo '<td>'.$price.'</td>';
+                                echo '<td>'.$d->total_price.'</td>';
+
+                                echo '</tr>';
 
                               }
                               ?>
@@ -58,7 +47,10 @@
 
                               </tbody>
                           </table>
-
+<center>
+                            <button class="btn btn-success btn" data-href="<?php echo base_url();?>Pharmacy/accept_pharmacy_request/<?php echo $id?>" data-toggle="modal" data-target="#confirm-accept"><i class="fa fa-check"></i></button>
+                            <button class="btn btn-danger btn" data-href="<?php echo base_url();?>Pharmacy/reject_pharmacy_request/<?php echo $id?>" data-toggle="modal" data-target="#confirm-reject"><i class="fa fa-ban"></i></button>
+</center>
 
     </div>
   </section>

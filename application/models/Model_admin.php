@@ -532,79 +532,6 @@
       $this->db->update('users', $data);
     }
 
-    /*Pharmacy Inventory*/
-    function get_pharmacy_inventory()
-    {
-      $this->db->select('*');
-      $this->db->from('pharmacy_inventory');
-      $query = $this->db->get();
-      return $query->result();
-    }
-
-    function count_pharmacy_inventory()
-    {
-      $this->db->select('*');
-      $this->db->from('pharmacy_inventory');
-      $query = $this->db->get();
-      return $query->num_rows();
-    }
-
-    function update_item_inventory($id, $data)
-    {
-      $this->db->where('item_id', $id);
-      $this->db->update('pharmacy_inventory', $data);
-    }
-
-    function delete_item_inventory($id)
-    {
-      $this->db->where('item_id',$id);
-      $this->db->delete('pharmacy_inventory');
-    }
-
-    function add_item_inventory($data)
-    {
-      $this->db->insert('pharmacy_inventory',$data);
-    }
-
-    function add_item_inventory_import($data)
-    {
-      $this->db->insert('pharmacy_inventory',$data);
-    }
-
-    function get_all_patients()
-    {
-      $this->db->select('*');
-      $this->db->from('patient');
-      $query = $this->db->get();
-      return $query->result();
-    }
-
-    function insert_pharmacy_request($data)
-    {
-      $this->db->insert('pharmacy_audit',$data);
-    }
-
-    function update_pharmacy_quantity($id,$data)
-    {
-      $this->db->where('item_id',$id);
-      $this->db->update('pharmacy_inventory',$data);
-    }
-
-    function get_pharmacy_requests()
-    {
-      $this->db->select('*');
-      $this->db->from('pharmacy_audit');
-      $query = $this->db->get();
-      return $query->result();
-    }
-
-    function process_pharmacy_request_model($id,$data)
-    {
-        $this->db->where('phar_item',$id);
-        $this->db->update('pharmacy_audit',$data);
-    }
-
-
     /* Laboratory Request*/
     function get_laboratoryrequest_list()
     {
@@ -947,6 +874,116 @@
       $this->db->where('pur_stat',2);
       $query = $this->db->get();
       return $query->result_array();
+    }
+
+    function fetch_tasks()
+    {
+      $this->db->select('*');
+      $this->db->from('task');
+      $query = $this->db->get();
+      return $query->result_array();
+
+    }
+
+    function get_usertypes()
+    {
+      $this->db->select('*');
+      $this->db->from('user_type');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function fetch_permissions()
+    {
+      $this->db->select('*');
+      $this->db->from('permission');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function insertRole($data)
+    {
+      $sql = $this->db->insert('user_type', $data);
+        if($sql){
+          return true;
+        }else{
+          return false;
+        }
+    }
+
+    function fetchPermittedViews()
+    {
+      $this->db->select('*');
+      $this->db->from('permission_usertype');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    function getTaskIdforPermission($id)
+    {
+        $this->db->select('task_id');
+        $this->db->from('permission');
+        $this->db->where('permission_id', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    function checkExistingTaskUserType($taskId,$userTypeId)
+    {
+      $this->db->select('task_usertype_id');
+      $this->db->from('task_usertype');
+      $this->db->where('task_id', $taskId);
+      $this->db->where('user_type_id', $userTypeId);
+      $query = $this->db->get();
+
+          if($query->num_rows() > 0){
+              return false;
+          }else{
+              return true;
+          }
+
+
+
+    }
+
+    function deleteAllUserTypeById($id)
+    {
+      $this->db->where('user_type_id',$id);
+      $this->db->delete('permission_usertype');
+    }
+    function deleteAllTaskUserTypeById($id)
+    {
+      $this->db->where('user_type_id',$id);
+      $this->db->delete('task_usertype');
+    }
+
+    function insertPermissionUserType($permissionArrays)
+    {
+
+        foreach ($permissionArrays as $permissionArray => $value) {
+            $data = array(
+              'user_type_id' => $this->input->post('hiddenUserTypeId'),
+              'permission_id' => $value,
+              'access' => 1
+
+            );
+          $sql =  $this->db->insert('permission_usertype', $data);
+
+            $taskId = $this->Model_admin->getTaskIdforPermission($value);
+            $newTaskId = "";
+            foreach ($taskId as $taskID) {
+                $newTaskId = $taskID['task_id'];
+            }
+
+            $var = array(
+              'task_id' => $newTaskId,
+              'user_type_id' => $this->input->post('hiddenUserTypeId')
+            );
+                if($this->Model_admin->checkExistingTaskUserType($newTaskId, $this->input->post('hiddenUserTypeId'))){
+                    $sqlquery = $this->db->insert('task_usertype', $var);
+                }
+
+
+        }
     }
 
 

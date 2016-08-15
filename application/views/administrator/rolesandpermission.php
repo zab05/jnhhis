@@ -4,6 +4,12 @@
   <section id="main-content">
       <section class="wrapper">
 
+        <?php
+            // echo "<pre>";
+            // print_r($permittedViews);
+            // echo "</pre>";
+         ?>
+
         <div class="col-lg-12">
                <section class="panel">
                    <header class="panel-heading">
@@ -45,6 +51,7 @@
                    <div class="panel-body">
                        <section id="no-more-tables">
                            <table class="table table-bordered table-striped table-condensed cf">
+
                                <thead class="cf">
                                <tr>
                                   <th>Action</th>
@@ -65,6 +72,7 @@
 
                                     <td><i class='fa fa-trash-o'> | <a href="#"
                                       data-rolename="<?php echo $user_type['name'];?>"
+                                      data-userTypeId="<?php echo $user_type['type_id']?>"
                                       onclick="editrole(this)"> <i class='fa fa-edit pull-right' data-toggle="modal"></i></a>
 
                                       </td>
@@ -84,7 +92,26 @@
 
 
                                                           <td><?php  echo $permission['permission_name'].":<br>"; ?></td>
-                                                          <td>Yes</td>
+
+                                                          <?php
+
+                                                            $flag = "";
+                                                              foreach ($permittedViews as $permittedView) {
+
+                                                                  if($permittedView['permission_id'] == $permission['permission_id']
+                                                                  && $permittedView['user_type_id'] == $user_type['type_id']){
+
+                                                                      if($permittedView['access'] == 1){
+                                                                          $flag = "true";
+                                                                          $var = "<i class='fa fa-check-circle'></i>";
+                                                                      }
+
+
+                                                                  }
+
+                                                              }
+                                                           ?>
+                                                          <td><?php if(empty($flag)){echo "<i class='fa fa-circle-o'></i>";}else{echo $var;}?></td>
 
                                                 <?      }
                                                       echo "</tr></table>";
@@ -116,11 +143,12 @@
                  <h4 class="modal-title">Edit</h4>
              </div>
 
-             <?php echo form_open('Admin/updatepermission'); ?>
+             <?php echo form_open('Admin/updatePermission'); ?>
    <div class="modal-body">
         Name:
         <input type="text" id="updatedrolename" name="name" class="form-control" value="<?php echo $user_type['name'];?>"><br>
         <input type="hidden" id="updatedoldname" name="oldName">
+        <input type="hidden" id="hiddenusertypeid" name="hiddenUserTypeId">
                 <strong>Permission</strong>
               <table>
 
@@ -184,7 +212,7 @@ function editrole(d){
     //console.log(d.getAttribute("data-userid"))
     document.getElementById("updatedrolename").value = d.getAttribute("data-rolename")
     document.getElementById("updatedoldname").value = d.getAttribute("data-rolename")
-    // document.getElementById("updatefirstname").value = d.getAttribute("data-firstname")
+    document.getElementById("hiddenusertypeid").value = d.getAttribute("data-userTypeId")
     // document.getElementById("updatelastname").value = d.getAttribute("data-lastname")
     // document.getElementById("updatemiddlename").value = d.getAttribute("data-middlename")
     // document.getElementById("updateusername").value = d.getAttribute("data-username")
